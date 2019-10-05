@@ -10,7 +10,14 @@ import UIKit
 
 @IBDesignable
 class UButton: UIButton {
+    //MARK: - Variables
+    @IBInspectable var cornerRadius: CGFloat = 22 {
+        didSet {
+            setCornerRadius(value: cornerRadius)
+        }
+    }
     
+    //MARK: - Overrides
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -25,7 +32,13 @@ class UButton: UIButton {
         setup()
     }
     
+    //MARK: - Modifications
+    func setCornerRadius(value: CGFloat) {
+        layer.cornerRadius = value
+    }
+    
     func setup() {
-        //update button view
+        setCornerRadius(value: cornerRadius)
+        self.backgroundColor = UIColor(named: "UBackground")
     }
 }
