@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+enum Storyboard {
+    static let AuthStoryboard = "Auth"
+}
+
+enum StoryboardId {
+    static let Auth = "auth"
+}
