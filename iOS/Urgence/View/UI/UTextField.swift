@@ -79,7 +79,8 @@ class UTextField: UITextField {
         setBorderWidth(value: borderWidth)
         setBorderColor(value: borderColor)
         
-        self.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        self.textColor = #colorLiteral(red: 0.8080000281, green: 0.8080000281, blue: 0.8080000281, alpha: 1)
+        self.attributedPlaceholder = NSAttributedString(string: self.placeholder ?? "", attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.8080000281, green: 0.8080000281, blue: 0.8080000281, alpha: 1)])//placeholder color
         self.backgroundColor = #colorLiteral(red: 0.2156862745, green: 0.2431372549, blue: 0.2862745098, alpha: 0)
         self.borderStyle = .none
     }
