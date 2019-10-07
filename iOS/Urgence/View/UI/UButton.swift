@@ -39,6 +39,5 @@ class UButton: UIButton {
     
     func setup() {
         setCornerRadius(value: cornerRadius)
-        self.backgroundColor = #colorLiteral(red: 0.1411764706, green: 0.1607843137, blue: 0.1921568627, alpha: 1) 
     }
 }
