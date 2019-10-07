@@ -16,12 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //firebase config
         FirebaseApp.configure()
-        
         return true
-    }
-    
-    func applicationDidFinishLaunching(_ application: UIApplication) {
-        application.statusBarStyle = .lightContent // .default
     }
     
     // MARK: UISceneSession Lifecycle
