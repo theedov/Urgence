@@ -19,7 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-
+    
+    func applicationDidFinishLaunching(_ application: UIApplication) {
+        application.statusBarStyle = .lightContent // .default
+    }
     
     // MARK: UISceneSession Lifecycle
     @available(iOS 13.0, *)
