@@ -27,6 +27,8 @@
 		6FB9A1AD234A1F4B005D8855 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A1AC234A1F4B005D8855 /* ChangePasswordVC.swift */; };
 		6FB9A1B0234A1F77005D8855 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A1AF234A1F77005D8855 /* NotificationVC.swift */; };
 		6FB9A1B3234AF6B0005D8855 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A1B2234AF6B0005D8855 /* Constants.swift */; };
+		6FB9A1B6234B14E7005D8855 /* FirebaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A1B5234B14E7005D8855 /* FirebaseExtension.swift */; };
+		6FB9A1B8234B19AF005D8855 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A1B7234B19AF005D8855 /* Extensions.swift */; };
 		AFF71F38BDCC36C15E8C8024 /* Pods_Urgence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F027F153DEFC58C94A4DD /* Pods_Urgence.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +56,8 @@
 		6FB9A1AC234A1F4B005D8855 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		6FB9A1AF234A1F77005D8855 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
 		6FB9A1B2234AF6B0005D8855 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6FB9A1B5234B14E7005D8855 /* FirebaseExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseExtension.swift; sourceTree = "<group>"; };
+		6FB9A1B7234B19AF005D8855 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		729F027F153DEFC58C94A4DD /* Pods_Urgence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Urgence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2CE51B5B68E6054864218FF /* Pods-Urgence.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urgence.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Urgence/Pods-Urgence.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,9 +220,19 @@
 		6FB9A1B1234AF681005D8855 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6FB9A1B4234B14CB005D8855 /* Extensions */,
 				6FB9A1B2234AF6B0005D8855 /* Constants.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		6FB9A1B4234B14CB005D8855 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6FB9A1B5234B14E7005D8855 /* FirebaseExtension.swift */,
+				6FB9A1B7234B19AF005D8855 /* Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,6 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FB9A1B6234B14E7005D8855 /* FirebaseExtension.swift in Sources */,
 				6FB9A1A9234A1F0A005D8855 /* SettingsVC.swift in Sources */,
 				6FB9A19D234A1DE7005D8855 /* SignUpVC.swift in Sources */,
 				6FB9A17323485569005D8855 /* SignInVC.swift in Sources */,
@@ -381,6 +396,7 @@
 				6FB9A19B234A1DC7005D8855 /* MonitoringVC.swift in Sources */,
 				6FB9A1A1234A1E1D005D8855 /* ForgotPasswordVC.swift in Sources */,
 				6FB9A1AB234A1F3A005D8855 /* EditProfileVC.swift in Sources */,
+				6FB9A1B8234B19AF005D8855 /* Extensions.swift in Sources */,
 				6FB9A19523488EFC005D8855 /* UButton.swift in Sources */,
 				6FB9A1B0234A1F77005D8855 /* NotificationVC.swift in Sources */,
 			);

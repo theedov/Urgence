@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="BVG-mO-2Dl">
-                                <rect key="frame" x="80.666666666666657" y="144" width="214.00000000000003" height="172"/>
+                                <rect key="frame" x="-26.666666666666657" y="144" width="428.33333333333326" height="344"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="T2T-lN-j1y" userLabel="Inputs">
-                                <rect key="frame" x="20" y="396" width="335" height="120"/>
+                                <rect key="frame" x="20" y="568" width="335" height="120"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rLe-w7-21O" customClass="UTextField" customModule="Urgence" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
@@ -42,10 +42,10 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dots" translatesAutoresizingMaskIntoConstraints="NO" id="SgV-v7-I0T">
-                                <rect key="frame" x="184" y="528" width="7" height="31"/>
+                                <rect key="frame" x="180.66666666666666" y="700" width="14" height="62"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="3e8-yM-13Q" userLabel="Buttons">
-                                <rect key="frame" x="20" y="571" width="335" height="132"/>
+                                <rect key="frame" x="20" y="774" width="335" height="132"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myp-qU-aLc" customClass="UButton" customModule="Urgence" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="60"/>
@@ -57,6 +57,9 @@
                                         <state key="normal" title="Enter the House">
                                             <color key="titleColor" name="UText"/>
                                         </state>
+                                        <connections>
+                                            <action selector="enterHouseClicked:" destination="Ehf-Vo-f28" eventType="touchUpInside" id="Ts1-HZ-erM"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPN-sK-tvs" customClass="UButton" customModule="Urgence" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="335" height="60"/>
@@ -75,7 +78,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ork-zF-Cwn">
-                                <rect key="frame" x="79" y="715" width="217" height="33"/>
+                                <rect key="frame" x="79" y="918" width="217" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Forgot password? Click here">
                                     <color key="titleColor" name="UText"/>
@@ -84,6 +87,10 @@
                                     <segue destination="jTk-UJ-Ua8" kind="show" id="yHa-cJ-Vge"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="qfA-qF-Ppv">
+                                <rect key="frame" x="177.66666666666666" y="508" width="20" height="20"/>
+                                <color key="color" name="UText"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" name="UBackground"/>
                         <constraints>
@@ -93,6 +100,8 @@
                             <constraint firstItem="3e8-yM-13Q" firstAttribute="top" secondItem="SgV-v7-I0T" secondAttribute="bottom" constant="12" id="HuW-JB-PeA"/>
                             <constraint firstItem="3e8-yM-13Q" firstAttribute="leading" secondItem="fqx-fo-gij" secondAttribute="leading" constant="20" id="MZY-Bc-C7x"/>
                             <constraint firstItem="T2T-lN-j1y" firstAttribute="leading" secondItem="fqx-fo-gij" secondAttribute="leading" constant="20" id="Ng0-Qz-IX2"/>
+                            <constraint firstItem="qfA-qF-Ppv" firstAttribute="top" secondItem="BVG-mO-2Dl" secondAttribute="bottom" constant="20" id="O6h-oF-6Pd"/>
+                            <constraint firstItem="qfA-qF-Ppv" firstAttribute="centerX" secondItem="jpi-js-UpH" secondAttribute="centerX" id="UvJ-eG-Fgt"/>
                             <constraint firstItem="BVG-mO-2Dl" firstAttribute="top" secondItem="fqx-fo-gij" secondAttribute="top" constant="100" id="hAw-fE-gQN"/>
                             <constraint firstItem="BVG-mO-2Dl" firstAttribute="centerX" secondItem="jpi-js-UpH" secondAttribute="centerX" id="nz2-2P-u2y"/>
                             <constraint firstItem="SgV-v7-I0T" firstAttribute="centerX" secondItem="T2T-lN-j1y" secondAttribute="centerX" id="t8X-Bx-IRe"/>
@@ -102,6 +111,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fqx-fo-gij"/>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="qfA-qF-Ppv" id="T9V-uf-Uwx"/>
+                        <outlet property="emailTxt" destination="rLe-w7-21O" id="X5f-ae-bra"/>
+                        <outlet property="passwordTxt" destination="rFp-cY-rGQ" id="UMn-HL-GT9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K4z-g4-oCo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -144,16 +158,16 @@
         <image name="dots" width="7" height="31"/>
         <image name="logo" width="214" height="172"/>
         <namedColor name="UBackground">
-            <color red="0.14117647058823529" green="0.16078431372549018" blue="0.19215686274509802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.14100000262260437" green="0.16099999845027924" blue="0.19200000166893005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="UPrimary">
-            <color red="0.21568627450980393" green="0.24313725490196078" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.21600000560283661" green="0.24300000071525574" blue="0.28600001335144043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="USecondary">
-            <color red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.80800002813339233" green="0.80800002813339233" blue="0.80800002813339233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="UText">
-            <color red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.80800002813339233" green="0.80800002813339233" blue="0.80800002813339233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
