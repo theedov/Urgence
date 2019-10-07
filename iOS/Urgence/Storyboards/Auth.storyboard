@@ -128,7 +128,142 @@
                     <view key="view" contentMode="scaleToFill" id="34v-rv-34p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="XVf-Rz-mOE">
+                                <rect key="frame" x="20" y="23" width="25" height="19.666666666666671"/>
+                                <color key="tintColor" name="USecondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="Bez-1B-s6d"/>
+                                    <constraint firstAttribute="width" constant="25" id="U2W-Eo-z8q"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Resident" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DyF-JN-tvS">
+                                <rect key="frame" x="20.000000000000014" y="65" width="218.33333333333337" height="40.666666666666657"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                <color key="textColor" name="UText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="pjc-Ih-Tms">
+                                <rect key="frame" x="177.66666666666666" y="125.66666666666669" width="20" height="20"/>
+                                <color key="color" name="UText"/>
+                            </activityIndicatorView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ks3-me-PYR" userLabel="Inputs">
+                                <rect key="frame" x="20" y="165.66666666666663" width="335" height="260"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jMC-d8-cdh" customClass="UTextField" customModule="Urgence" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="ZWZ-zN-mRU"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="740-WY-GEF" customClass="UTextField" customModule="Urgence" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="70" width="335" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="bbF-hn-2GC"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f3V-58-jYk" customClass="UTextField" customModule="Urgence" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="140.00000000000003" width="335" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Ld5-aV-m8E"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wwr-1h-7l1" customClass="UTextField" customModule="Urgence" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="210.00000000000003" width="335" height="49.999999999999972"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="K4D-3U-Qay"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct-icon" translatesAutoresizingMaskIntoConstraints="NO" id="E8U-i5-Ucc">
+                                <rect key="frame" x="310" y="388.33333333333331" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="RHh-8k-BV1"/>
+                                    <constraint firstAttribute="height" constant="25" id="UDn-dX-lyd"/>
+                                </constraints>
+                            </imageView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Nhw-hh-9bt">
+                                <rect key="frame" x="310" y="318.33333333333331" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="PzU-4C-arT"/>
+                                    <constraint firstAttribute="height" constant="25" id="yWu-wI-34b"/>
+                                </constraints>
+                            </imageView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct-icon" translatesAutoresizingMaskIntoConstraints="NO" id="sXy-7d-Gnc">
+                                <rect key="frame" x="310" y="248.33333333333337" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="FUS-zh-qA0"/>
+                                    <constraint firstAttribute="height" constant="25" id="Zbb-7u-81m"/>
+                                </constraints>
+                            </imageView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Bpz-fj-Erh">
+                                <rect key="frame" x="310" y="178.33333333333334" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="L91-4P-uAg"/>
+                                    <constraint firstAttribute="height" constant="25" id="gLp-sg-RLg"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dots" translatesAutoresizingMaskIntoConstraints="NO" id="jyv-OG-BB0">
+                                <rect key="frame" x="184" y="437.66666666666669" width="7" height="31"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X10-UJ-dVW" customClass="UButton" customModule="Urgence" customModuleProvider="target">
+                                <rect key="frame" x="20" y="480.66666666666669" width="335" height="60.000000000000057"/>
+                                <color key="backgroundColor" name="UPrimary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="osG-LP-k17"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Enter the House">
+                                    <color key="titleColor" name="UText"/>
+                                </state>
+                                <connections>
+                                    <action selector="enterHouseClicked:" destination="Ehf-Vo-f28" eventType="touchUpInside" id="WZg-AM-lSc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5IZ-x8-PTF">
+                                <rect key="frame" x="50.666666666666657" y="552.66666666666663" width="274" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Already a member? Enter the house">
+                                    <color key="titleColor" name="UText"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" name="UBackground"/>
+                        <constraints>
+                            <constraint firstItem="Bpz-fj-Erh" firstAttribute="centerY" secondItem="jMC-d8-cdh" secondAttribute="centerY" id="1EE-y1-LT3"/>
+                            <constraint firstItem="jyv-OG-BB0" firstAttribute="centerX" secondItem="ks3-me-PYR" secondAttribute="centerX" id="7cI-GV-1R1"/>
+                            <constraint firstItem="XVf-Rz-mOE" firstAttribute="top" secondItem="rMh-A8-9sQ" secondAttribute="top" constant="20" id="8MP-3q-bvz"/>
+                            <constraint firstItem="Nhw-hh-9bt" firstAttribute="trailing" secondItem="f3V-58-jYk" secondAttribute="trailing" constant="-20" id="8eV-hi-EtP"/>
+                            <constraint firstItem="XVf-Rz-mOE" firstAttribute="leading" secondItem="rMh-A8-9sQ" secondAttribute="leading" constant="20" id="8qL-fl-fjw"/>
+                            <constraint firstItem="DyF-JN-tvS" firstAttribute="leading" secondItem="rMh-A8-9sQ" secondAttribute="leading" constant="20" id="9oR-JT-Gzl"/>
+                            <constraint firstItem="E8U-i5-Ucc" firstAttribute="centerY" secondItem="Wwr-1h-7l1" secondAttribute="centerY" id="BhM-sr-LhV"/>
+                            <constraint firstItem="pjc-Ih-Tms" firstAttribute="centerX" secondItem="34v-rv-34p" secondAttribute="centerX" id="Bxg-AL-dpN"/>
+                            <constraint firstItem="rMh-A8-9sQ" firstAttribute="trailing" secondItem="X10-UJ-dVW" secondAttribute="trailing" constant="20" id="Eeg-ff-SV5"/>
+                            <constraint firstItem="sXy-7d-Gnc" firstAttribute="centerY" secondItem="740-WY-GEF" secondAttribute="centerY" id="GI0-TJ-4yw"/>
+                            <constraint firstItem="jyv-OG-BB0" firstAttribute="top" secondItem="ks3-me-PYR" secondAttribute="bottom" constant="12" id="OM5-A6-gvW"/>
+                            <constraint firstItem="Bpz-fj-Erh" firstAttribute="trailing" secondItem="jMC-d8-cdh" secondAttribute="trailing" constant="-20" id="Qhg-rD-u6K"/>
+                            <constraint firstItem="ks3-me-PYR" firstAttribute="leading" secondItem="rMh-A8-9sQ" secondAttribute="leading" constant="20" id="SLq-Ka-uCj"/>
+                            <constraint firstItem="X10-UJ-dVW" firstAttribute="leading" secondItem="rMh-A8-9sQ" secondAttribute="leading" constant="20" id="Uv5-tI-uOe"/>
+                            <constraint firstItem="5IZ-x8-PTF" firstAttribute="top" secondItem="X10-UJ-dVW" secondAttribute="bottom" constant="12" id="VrL-Y5-3pn"/>
+                            <constraint firstItem="Nhw-hh-9bt" firstAttribute="centerY" secondItem="f3V-58-jYk" secondAttribute="centerY" id="YkK-bc-3zG"/>
+                            <constraint firstItem="DyF-JN-tvS" firstAttribute="top" secondItem="XVf-Rz-mOE" secondAttribute="bottom" constant="20" id="d36-fW-JeT"/>
+                            <constraint firstItem="5IZ-x8-PTF" firstAttribute="centerX" secondItem="X10-UJ-dVW" secondAttribute="centerX" id="jd3-ml-VAO"/>
+                            <constraint firstItem="X10-UJ-dVW" firstAttribute="top" secondItem="jyv-OG-BB0" secondAttribute="bottom" constant="12" id="ka4-Kh-xMS"/>
+                            <constraint firstItem="pjc-Ih-Tms" firstAttribute="top" secondItem="DyF-JN-tvS" secondAttribute="bottom" constant="20" id="lm1-v2-SaQ"/>
+                            <constraint firstItem="E8U-i5-Ucc" firstAttribute="trailing" secondItem="Wwr-1h-7l1" secondAttribute="trailing" constant="-20" id="qBl-ei-MR5"/>
+                            <constraint firstItem="sXy-7d-Gnc" firstAttribute="trailing" secondItem="740-WY-GEF" secondAttribute="trailing" constant="-20" id="ted-Mf-8if"/>
+                            <constraint firstItem="ks3-me-PYR" firstAttribute="top" secondItem="pjc-Ih-Tms" secondAttribute="bottom" constant="20" id="xaG-PO-mCm"/>
+                            <constraint firstItem="rMh-A8-9sQ" firstAttribute="trailing" secondItem="ks3-me-PYR" secondAttribute="trailing" constant="20" id="yG0-Sh-Q2f"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="rMh-A8-9sQ"/>
                     </view>
                     <navigationItem key="navigationItem" id="z5q-zB-Nc8"/>
@@ -155,6 +290,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.left" catalog="system" width="64" height="48"/>
+        <image name="correct-icon" width="25" height="25"/>
         <image name="dots" width="7" height="31"/>
         <image name="logo" width="214" height="172"/>
         <namedColor name="UBackground">
