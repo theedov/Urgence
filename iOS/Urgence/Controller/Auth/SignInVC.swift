@@ -32,8 +32,17 @@ class SignInVC: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
             //check if there is an error
             if let error = error {
-                debugPrint(error.localizedDescription)
                 self?.activityIndicator.stopAnimating()
+                debugPrint(error.localizedDescription)
+                return
+            }
+            
+            //check if signed in and if user has email verified
+            if result != nil && !(result?.user.isEmailVerified)! {
+                self?.activityIndicator.stopAnimating()
+                // User is available, but their email is not verified.
+                // Let the user know by an alert, preferably with an option to re-send the verification mail.
+                debugPrint("User is available, but their email is not verified.")
                 return
             }
             
