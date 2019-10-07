@@ -68,30 +68,37 @@
                                         <state key="normal" title="New Residet">
                                             <color key="titleColor" name="UPrimary"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="4sl-kr-jUx" kind="show" id="eB6-zK-6hX"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot password? Click here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghZ-Jj-Tol">
-                                <rect key="frame" x="79" y="715" width="217" height="20.333333333333371"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ork-zF-Cwn">
+                                <rect key="frame" x="79" y="715" width="217" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="USecondary"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Forgot password? Click here">
+                                    <color key="titleColor" name="UText"/>
+                                </state>
+                                <connections>
+                                    <segue destination="jTk-UJ-Ua8" kind="show" id="yHa-cJ-Vge"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" name="UBackground"/>
                         <constraints>
                             <constraint firstItem="fqx-fo-gij" firstAttribute="trailing" secondItem="T2T-lN-j1y" secondAttribute="trailing" constant="20" id="3XC-SD-0EG"/>
                             <constraint firstItem="T2T-lN-j1y" firstAttribute="top" secondItem="BVG-mO-2Dl" secondAttribute="bottom" constant="80" id="4Td-QB-4wk"/>
+                            <constraint firstItem="Ork-zF-Cwn" firstAttribute="centerX" secondItem="3e8-yM-13Q" secondAttribute="centerX" id="B6C-ib-brq"/>
                             <constraint firstItem="3e8-yM-13Q" firstAttribute="top" secondItem="SgV-v7-I0T" secondAttribute="bottom" constant="12" id="HuW-JB-PeA"/>
                             <constraint firstItem="3e8-yM-13Q" firstAttribute="leading" secondItem="fqx-fo-gij" secondAttribute="leading" constant="20" id="MZY-Bc-C7x"/>
                             <constraint firstItem="T2T-lN-j1y" firstAttribute="leading" secondItem="fqx-fo-gij" secondAttribute="leading" constant="20" id="Ng0-Qz-IX2"/>
                             <constraint firstItem="BVG-mO-2Dl" firstAttribute="top" secondItem="fqx-fo-gij" secondAttribute="top" constant="100" id="hAw-fE-gQN"/>
-                            <constraint firstItem="ghZ-Jj-Tol" firstAttribute="centerX" secondItem="3e8-yM-13Q" secondAttribute="centerX" id="n15-JZ-STb"/>
                             <constraint firstItem="BVG-mO-2Dl" firstAttribute="centerX" secondItem="jpi-js-UpH" secondAttribute="centerX" id="nz2-2P-u2y"/>
                             <constraint firstItem="SgV-v7-I0T" firstAttribute="centerX" secondItem="T2T-lN-j1y" secondAttribute="centerX" id="t8X-Bx-IRe"/>
                             <constraint firstItem="SgV-v7-I0T" firstAttribute="top" secondItem="T2T-lN-j1y" secondAttribute="bottom" constant="12" id="twn-WW-pZM"/>
-                            <constraint firstItem="ghZ-Jj-Tol" firstAttribute="top" secondItem="3e8-yM-13Q" secondAttribute="bottom" constant="12" id="wIK-vL-UfP"/>
                             <constraint firstItem="fqx-fo-gij" firstAttribute="trailing" secondItem="3e8-yM-13Q" secondAttribute="trailing" constant="20" id="yog-Io-Bts"/>
+                            <constraint firstItem="Ork-zF-Cwn" firstAttribute="top" secondItem="3e8-yM-13Q" secondAttribute="bottom" constant="12" id="zeW-cH-k8K"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fqx-fo-gij"/>
                     </view>
@@ -105,30 +112,32 @@
             <objects>
                 <viewController id="4sl-kr-jUx" customClass="SignUpVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="34v-rv-34p">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="UBackground"/>
                         <viewLayoutGuide key="safeArea" id="rMh-A8-9sQ"/>
                     </view>
+                    <navigationItem key="navigationItem" id="z5q-zB-Nc8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpc-qX-iJG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="659" y="153"/>
+            <point key="canvasLocation" x="716" y="-165"/>
         </scene>
         <!--Forgot PasswordVC-->
         <scene sceneID="qdb-rf-nxP">
             <objects>
                 <viewController id="jTk-UJ-Ua8" customClass="ForgotPasswordVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fPC-3l-hcg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="UBackground"/>
                         <viewLayoutGuide key="safeArea" id="N60-nw-eJr"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Bf1-TE-hHo"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGk-u1-Xc0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1372" y="153"/>
+            <point key="canvasLocation" x="716" y="548"/>
         </scene>
     </scenes>
     <resources>
