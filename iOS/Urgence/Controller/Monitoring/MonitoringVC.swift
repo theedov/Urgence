@@ -14,9 +14,14 @@ class MonitoringVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         presentSignInVC()
     }
+    
     
     private func presentSignInVC(){
         let storyboard = UIStoryboard(name: Storyboard.AuthStoryboard, bundle: nil)
