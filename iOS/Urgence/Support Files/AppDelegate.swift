@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,8 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //firebase config
         FirebaseApp.configure()
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
+        let pushManager = PushNotificationManager(userID: "BBeNcE5fN5aU4TCOkhbTXPrO0Dm2")
+        pushManager.registerForPushNotifications()
+
+//        let sender = PushNotificationSender()
+//        sender.sendPushNotification(to: "token", title: "Notification title", body: "Notification body")
+                
+        
         return true
     }
+    
     
     // MARK: UISceneSession Lifecycle
     @available(iOS 13.0, *)
