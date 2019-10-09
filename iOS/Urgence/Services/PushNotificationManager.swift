@@ -43,18 +43,24 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
         if let token = Messaging.messaging().fcmToken {
             let usersRef = Firestore.firestore().collection("users_table").document(userID)
             usersRef.setData(["fcmToken": token], merge: true)
+            
+            
         }
     }
+    
+    
 
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        print(remoteMessage.appData) // or do whatever
+        print("APPDATA: \(remoteMessage.appData)") // or do whatever
     }
+    
 
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         updateFirestorePushTokenIfNeeded()
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print(response)
+        print("RESPONSE: \(response)")
     }
+    
 }
