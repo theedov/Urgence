@@ -29,8 +29,8 @@ class SignUpVC: UIViewController {
     }
     
     @IBAction func newResidentClicked(_ sender: Any) {
-        guard let email = emailTxt.text, email.isNotEmpty, let password = passwordTxt.text, password.isNotEmpty else {
-            debugPrint("Email or password is empty")
+        guard let email = emailTxt.text, email.isNotEmpty, let password = passwordTxt.text, password.isNotEmpty, let fullName = fullNameTxt.text, fullName.isNotEmpty else {
+            debugPrint("All fields are required")
             return
         }
         activityIndicator.startAnimating()
@@ -42,34 +42,47 @@ class SignUpVC: UIViewController {
                 return
             }
             
+            guard let fireUser = result?.user else {return}
+            let user = UUser.init(id: fireUser.uid, email: email, fullName: fullName)
+            
+            //upload user details to firestore
+            self?.createFirestoreUser(user: user)
+            
             //send verification email to confirm the account
-            self?.sendVerificationEmail(completion: { [weak self] (success, error) in
-                if !success {
-                    self?.activityIndicator.stopAnimating()
-                    debugPrint("User is not available, or has been already verified")
-                }
-                
-                self?.activityIndicator.stopAnimating()
-            })
+            self?.sendVerificationEmail()
         }
     }
     
-    private func sendVerificationEmail(completion: @escaping (Bool, Error?) -> Void) {
+    fileprivate func sendVerificationEmail() {
         //check if user has email verified
         if self.authUser != nil && !self.authUser!.isEmailVerified {
-            self.authUser?.sendEmailVerification(completion: { [weak self] (error) in
+            self.authUser?.sendEmailVerification(completion: { (error) in
                 // Notify the user that the mail has sent or couldn't because of an error.
                 if let error = error {
                     debugPrint(error)
-                    return completion(false, error)
+                    return
                 }
                 debugPrint("Email has been sent")
-                return completion(true, nil)
             })
         } else {
             // Either the user is not available, or the user is already verified.
             debugPrint("User is not available, or has been already verified")
-            return completion(false, "User is not available, or has been already verified" as? Error)
+        }
+    }
+    
+    fileprivate func createFirestoreUser(user: UUser) {
+        let ref = Firestore.firestore().collection("users").document(user.id)
+        let data = UUser.modelToData(user: user)
+        
+        ref.setData(data) { [weak self] (error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+            }else {
+                self?.dismiss(animated: true, completion: nil)
+
+            }
+            
+            self?.activityIndicator.stopAnimating()
         }
     }
     
