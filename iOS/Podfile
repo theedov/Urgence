@@ -18,6 +18,4 @@ target 'Urgence' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'IQKeyboardManagerSwift'
-
-
 end

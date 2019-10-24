@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6F4A9E79234B6FF900E040B2 /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4A9E78234B6FF900E040B2 /* PushNotificationManager.swift */; };
+		6F809E262361E7A700F1F9BA /* UUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F809E252361E7A700F1F9BA /* UUser.swift */; };
 		6FB9A16F23485569005D8855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A16E23485569005D8855 /* AppDelegate.swift */; };
 		6FB9A17123485569005D8855 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A17023485569005D8855 /* SceneDelegate.swift */; };
 		6FB9A17323485569005D8855 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A17223485569005D8855 /* SignInVC.swift */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		39D08D2C9BFAE8E409377655 /* Pods-Urgence.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urgence.release.xcconfig"; path = "Pods/Target Support Files/Pods-Urgence/Pods-Urgence.release.xcconfig"; sourceTree = "<group>"; };
 		6F4A9E78234B6FF900E040B2 /* PushNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
+		6F809E252361E7A700F1F9BA /* UUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUser.swift; sourceTree = "<group>"; };
 		6FB9A16B23485569005D8855 /* Urgence.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Urgence.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB9A16E23485569005D8855 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FB9A17023485569005D8855 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 		6FB9A18723485E4E005D8855 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6F809E252361E7A700F1F9BA /* UUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				6FB9A1B8234B19AF005D8855 /* Extensions.swift in Sources */,
 				6FB9A19523488EFC005D8855 /* UButton.swift in Sources */,
 				6FB9A1B0234A1F77005D8855 /* NotificationVC.swift in Sources */,
+				6F809E262361E7A700F1F9BA /* UUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,7 +565,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 727Q9XPG67;
 				INFOPLIST_FILE = "Urgence/Support Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -584,7 +588,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 727Q9XPG67;
 				INFOPLIST_FILE = "Urgence/Support Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
