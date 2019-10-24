@@ -16,20 +16,18 @@ class MonitoringVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         isSignedIn()
     }
     
     fileprivate func isSignedIn() {
-        if let user = self.authUser {
-            //user logged in
-            debugPrint(user.email)
-        } else {
-            //user not logged in
-            //present SignInVC
-            presentSignInVC()
+        Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
+            if user == nil || user?.isEmailVerified == false {
+                //user not logged in or not verified
+                //present SignInVC
+                self?.presentSignInVC()
+            }
         }
     }
     
