@@ -1,56 +1,213 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="edk-Ga-e9E">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--MonitoringVC-->
+        <!--Monitoring-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MonitoringVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MonitoringVC" id="BYZ-38-t0r" customClass="MonitoringVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xpz-sF-pRq" customClass="UButton" customModule="Urgence" customModuleProvider="target">
-                                <rect key="frame" x="20" y="762" width="374" height="60"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2N-yr-ImT" customClass="UView" customModule="Urgence" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="128" width="414" height="685"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IKT-IE-Ekv">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="685"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lqt-83-GeH">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="20" minY="30" maxX="20" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7WH-T4-fmS">
+                                                <rect key="frame" x="20" y="30" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="iqt-ld-gLW">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </collectionViewCellContentView>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" name="UBackground2"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="IKT-IE-Ekv" secondAttribute="bottom" id="Epd-Ob-lNv"/>
+                                    <constraint firstAttribute="trailing" secondItem="IKT-IE-Ekv" secondAttribute="trailing" id="Kcz-kK-Bvo"/>
+                                    <constraint firstItem="IKT-IE-Ekv" firstAttribute="leading" secondItem="K2N-yr-ImT" secondAttribute="leading" id="khy-TK-Vmq"/>
+                                    <constraint firstItem="IKT-IE-Ekv" firstAttribute="top" secondItem="K2N-yr-ImT" secondAttribute="top" id="oTc-wc-tKB"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" name="UBackground"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="K2N-yr-ImT" secondAttribute="bottom" id="C4s-nL-gvQ"/>
+                            <constraint firstItem="K2N-yr-ImT" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Cva-sc-kdf"/>
+                            <constraint firstItem="K2N-yr-ImT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oR4-QJ-uMv"/>
+                            <constraint firstItem="K2N-yr-ImT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="yNp-tA-xZb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Monitoring" id="Hws-YL-F02">
+                        <barButtonItem key="rightBarButtonItem" image="add" id="YpF-e1-Whd"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1847.826086956522" y="-595.3125"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="3cz-u4-4WZ">
+            <objects>
+                <viewController storyboardIdentifier="SettingsVC" id="9aL-pC-wpf" customClass="SettingsVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AZs-48-jX4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpt-5a-QjE" customClass="UButton" customModule="Urgence" customModuleProvider="target">
+                                <rect key="frame" x="20" y="713" width="374" height="60"/>
                                 <color key="backgroundColor" name="UPrimary"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="tov-Az-jVz"/>
+                                    <constraint firstAttribute="height" constant="60" id="6fc-cs-B8o"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Logout">
+                                <state key="normal" title="NOTIFICATION">
                                     <color key="titleColor" name="UText"/>
                                 </state>
                                 <connections>
-                                    <action selector="logoutClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3NR-TQ-0bh"/>
+                                    <action selector="backBtn:" destination="9aL-pC-wpf" eventType="touchUpInside" id="Cvd-f6-eTc"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" name="UBackground"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Xpz-sF-pRq" secondAttribute="bottom" constant="40" id="5u3-42-ffc"/>
-                            <constraint firstItem="Xpz-sF-pRq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="fKO-fH-LZg"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Xpz-sF-pRq" secondAttribute="trailing" constant="20" id="smk-87-A55"/>
+                            <constraint firstItem="VPW-tl-V4s" firstAttribute="bottom" secondItem="Zpt-5a-QjE" secondAttribute="bottom" constant="40" id="1q2-7a-9YC"/>
+                            <constraint firstItem="Zpt-5a-QjE" firstAttribute="leading" secondItem="VPW-tl-V4s" secondAttribute="leading" constant="20" id="6wT-8R-zuV"/>
+                            <constraint firstItem="VPW-tl-V4s" firstAttribute="trailing" secondItem="Zpt-5a-QjE" secondAttribute="trailing" constant="20" id="RKJ-ky-Hau"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="VPW-tl-V4s"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" selectedImage="settings" id="Xo6-bK-723"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9zp-4N-qhJ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="115.84821428571428"/>
+            <point key="canvasLocation" x="938" y="828"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="9yY-P2-bSn">
+            <objects>
+                <tabBarController storyboardIdentifier="MainTabBar" automaticallyAdjustsScrollViewInsets="NO" id="edk-Ga-e9E" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" itemPositioning="fill" id="YrV-fM-DGU">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="UTabBarBG"/>
+                        <color key="barTintColor" name="UTabBarBG"/>
+                        <color key="selectedImageTintColor" name="UText"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Luc-cd-L2q" kind="relationship" relationship="viewControllers" id="d4s-qU-mJL"/>
+                        <segue destination="LWa-zq-4hs" kind="relationship" relationship="viewControllers" id="ngU-2y-PuM"/>
+                        <segue destination="9aL-pC-wpf" kind="relationship" relationship="viewControllers" id="a3y-7Z-trC"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KyH-CS-HZC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-288.40579710144931" y="107.8125"/>
+        </scene>
+        <!--Notification-->
+        <scene sceneID="Y9D-by-ODd">
+            <objects>
+                <viewController storyboardIdentifier="NotificationVC" id="LWa-zq-4hs" customClass="NotificationVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CfB-NU-ldI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="scj-6c-bf8" customClass="UButton" customModule="Urgence" customModuleProvider="target">
+                                <rect key="frame" x="20" y="713" width="374" height="60"/>
+                                <color key="backgroundColor" name="UPrimary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="FVO-gQ-gWT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="NOTIFICATION">
+                                    <color key="titleColor" name="UText"/>
+                                </state>
+                                <connections>
+                                    <action selector="backBtn:" destination="LWa-zq-4hs" eventType="touchUpInside" id="M8D-tW-eL1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="UBackground"/>
+                        <constraints>
+                            <constraint firstItem="jMA-bK-4aM" firstAttribute="bottom" secondItem="scj-6c-bf8" secondAttribute="bottom" constant="40" id="0IP-LX-990"/>
+                            <constraint firstItem="scj-6c-bf8" firstAttribute="leading" secondItem="jMA-bK-4aM" secondAttribute="leading" constant="20" id="EGr-tW-A7b"/>
+                            <constraint firstItem="jMA-bK-4aM" firstAttribute="trailing" secondItem="scj-6c-bf8" secondAttribute="trailing" constant="20" id="FUJ-bf-OoT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jMA-bK-4aM"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Notification" image="notification" selectedImage="notification" id="iCg-mK-pm7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Coy-hW-bcj" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="938" y="108"/>
+        </scene>
+        <!--Monitoring-->
+        <scene sceneID="zKg-Tr-zm5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Luc-cd-L2q" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Monitoring" image="monitoring" selectedImage="monitoring" id="FYT-CF-Wq9"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="VgO-Wg-EwY">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="UBackground"/>
+                        <color key="tintColor" name="UText"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" name="UText"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="v1T-vo-nQJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vhb-mW-q4Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="937.68115942028987" y="-595.3125"/>
         </scene>
     </scenes>
     <resources>
+        <image name="add" width="25" height="25"/>
+        <image name="monitoring" width="24" height="24"/>
+        <image name="notification" width="24" height="24"/>
+        <image name="settings" width="24" height="24"/>
         <namedColor name="UBackground">
-            <color red="0.14100000262260437" green="0.16099999845027924" blue="0.19200000166893005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.12549019607843137" green="0.14117647058823529" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="UBackground2">
+            <color red="0.15686274509803921" green="0.1764705882352941" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="UPrimary">
             <color red="0.21600000560283661" green="0.24300000071525574" blue="0.28600001335144043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="UTabBarBG">
+            <color red="0.12549019607843137" green="0.14117647058823529" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="UText">
             <color red="0.80800002813339233" green="0.80800002813339233" blue="0.80800002813339233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

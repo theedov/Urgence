@@ -9,9 +9,18 @@
 import Foundation
 
 enum Storyboard {
+    static let MainStoryboard = "Main"
     static let AuthStoryboard = "Auth"
 }
 
 enum StoryboardId {
     static let Auth = "auth"
+}
+
+enum Identifiers {
+    static let DeviceCell = "DeviceCell"
+}
+
+enum Segues {
+    
 }

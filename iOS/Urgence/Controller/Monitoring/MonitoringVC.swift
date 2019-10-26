@@ -14,11 +14,17 @@ class MonitoringVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         isSignedIn()
+        //reset notification badge number
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        print("MONITORING WINDOWS COUNT: \(UIApplication.shared.windows.count)")
+
     }
     
     fileprivate func isSignedIn() {

@@ -13,23 +13,26 @@ import IQKeyboardManagerSwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         //firebase config
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
-        let pushManager = PushNotificationManager(userID: "BBeNcE5fN5aU4TCOkhbTXPrO0Dm2")
-        pushManager.registerForPushNotifications()
-
-//        let sender = PushNotificationSender()
-//        sender.sendPushNotification(to: "token", title: "Notification title", body: "Notification body")
-                
         
+        let pushNotifications = PushNotificationManager()
+        pushNotifications.registerForPushNotifications()
+        
+        changeTabBarAppearance()
         return true
     }
     
+    fileprivate func changeTabBarAppearance() {
+        UITabBar.appearance().clipsToBounds = true
+        UITabBar.appearance().layer.borderWidth = 0
+    }
     
     // MARK: UISceneSession Lifecycle
     @available(iOS 13.0, *)
@@ -38,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
+    
     @available(iOS 13.0, *)
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
@@ -46,4 +49,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 }
-
