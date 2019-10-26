@@ -9,10 +9,20 @@
 import UIKit
 
 class DeviceCell: UICollectionViewCell {
-
+    
+    //MARK: - Variables
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var name: UIImageView!
+    
+    //MARK: - Overrides
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    //MARK: - Config
+    func configureCell() {
+        
     }
 
 }

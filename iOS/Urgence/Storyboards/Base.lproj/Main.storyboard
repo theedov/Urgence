@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="edk-Ga-e9E">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,31 +13,22 @@
             <objects>
                 <viewController storyboardIdentifier="MonitoringVC" id="BYZ-38-t0r" customClass="MonitoringVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2N-yr-ImT" customClass="UView" customModule="Urgence" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="128" width="414" height="685"/>
+                                <rect key="frame" x="0.0" y="128" width="375" height="601"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IKT-IE-Ekv">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="685"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="601"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lqt-83-GeH">
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="20" minimumInteritemSpacing="20" id="Lqt-83-GeH">
                                             <size key="itemSize" width="50" height="50"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="20" minY="30" maxX="20" maxY="0.0"/>
                                         </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7WH-T4-fmS">
-                                                <rect key="frame" x="20" y="30" width="50" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="iqt-ld-gLW">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </collectionViewCellContentView>
-                                            </collectionViewCell>
-                                        </cells>
+                                        <cells/>
                                     </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" name="UBackground2"/>
@@ -67,6 +57,9 @@
                     <navigationItem key="navigationItem" title="Monitoring" id="Hws-YL-F02">
                         <barButtonItem key="rightBarButtonItem" image="add" id="YpF-e1-Whd"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="IKT-IE-Ekv" id="zrq-rY-dPF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -77,11 +70,11 @@
             <objects>
                 <viewController storyboardIdentifier="SettingsVC" id="9aL-pC-wpf" customClass="SettingsVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AZs-48-jX4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpt-5a-QjE" customClass="UButton" customModule="Urgence" customModuleProvider="target">
-                                <rect key="frame" x="20" y="713" width="374" height="60"/>
+                                <rect key="frame" x="20" y="629" width="335" height="60"/>
                                 <color key="backgroundColor" name="UPrimary"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="6fc-cs-B8o"/>
@@ -135,11 +128,11 @@
             <objects>
                 <viewController storyboardIdentifier="NotificationVC" id="LWa-zq-4hs" customClass="NotificationVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CfB-NU-ldI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="scj-6c-bf8" customClass="UButton" customModule="Urgence" customModuleProvider="target">
-                                <rect key="frame" x="20" y="713" width="374" height="60"/>
+                                <rect key="frame" x="20" y="629" width="335" height="60"/>
                                 <color key="backgroundColor" name="UPrimary"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="FVO-gQ-gWT"/>
@@ -174,7 +167,7 @@
                     <tabBarItem key="tabBarItem" title="Monitoring" image="monitoring" selectedImage="monitoring" id="FYT-CF-Wq9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="VgO-Wg-EwY">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="UBackground"/>
                         <color key="tintColor" name="UText"/>
@@ -208,6 +201,9 @@
         </namedColor>
         <namedColor name="UTabBarBG">
             <color red="0.12549019607843137" green="0.14117647058823529" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="UText">
+            <color red="0.80800002813339233" green="0.80800002813339233" blue="0.80800002813339233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="UText">
             <color red="0.80800002813339233" green="0.80800002813339233" blue="0.80800002813339233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

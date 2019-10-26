@@ -11,9 +11,11 @@ import Firebase
 
 class MonitoringVC: UIViewController {
 
+    @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        setupCollectionView()
         
         
     }
@@ -22,9 +24,14 @@ class MonitoringVC: UIViewController {
         super.viewWillAppear(animated)
         isSignedIn()
         //reset notification badge number
-        UIApplication.shared.applicationIconBadgeNumber = 0
-        print("MONITORING WINDOWS COUNT: \(UIApplication.shared.windows.count)")
+        
 
+    }
+    
+    func setupCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(UINib(nibName: Identifiers.DeviceCell, bundle: nil), forCellWithReuseIdentifier: Identifiers.DeviceCell)
     }
     
     fileprivate func isSignedIn() {
@@ -52,4 +59,31 @@ class MonitoringVC: UIViewController {
         present(controller, animated: false, completion: nil) 
     }
 
+}
+
+extension MonitoringVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.DeviceCell, for: indexPath) as? DeviceCell {
+            cell.configureCell()
+            return cell
+        }
+        return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let width = view.frame.width
+        let cellWidth = (width - 70) / 2
+        let cellHeight = cellWidth
+        
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    
+    
 }
