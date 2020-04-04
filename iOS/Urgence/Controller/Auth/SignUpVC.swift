@@ -25,28 +25,36 @@ class SignUpVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     @IBAction func newResidentClicked(_ sender: Any) {
         guard let email = emailTxt.text, email.isNotEmpty, let password = passwordTxt.text, password.isNotEmpty, let fullName = fullNameTxt.text, fullName.isNotEmpty else {
-            debugPrint("All fields are required")
+            AlertService.alert(state: .error, title: "Cannot register", body: "In order to sing up, all fields are required", actionName: "I understand", vc: self, completion: nil)
             return
         }
+        
         activityIndicator.startAnimating()
         //register user
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] (result, error) in
             if let error = error {
                 self?.activityIndicator.stopAnimating()
-                debugPrint(error.localizedDescription)
+                AlertService.alert(state: .error, title: "Cannot register", body: error.localizedDescription, actionName: "I understand", vc: self!, completion: nil)
                 return
             }
             
+            //get user
             guard let fireUser = result?.user else {return}
             let user = UUser.init(id: fireUser.uid, email: email, fullName: fullName)
             
             //upload user details to firestore
             self?.createFirestoreUser(user: user)
+            
+            //Register user-specific notification group
+            FcmTokenHandler.registerNotificationGroup(uid: fireUser.uid, tokens: [Messaging.messaging().fcmToken ?? ""]) { (key) in
+                let usersRef = Firestore.firestore().collection("users").document(fireUser.uid)
+                usersRef.setData(["key": key ?? ""], merge: true)
+            }
             
             //send verification email to confirm the account
             self?.sendVerificationEmail()
@@ -79,7 +87,7 @@ class SignUpVC: UIViewController {
                 debugPrint(error.localizedDescription)
             }else {
                 self?.dismiss(animated: true, completion: nil)
-
+                
             }
             
             self?.activityIndicator.stopAnimating()
@@ -93,5 +101,5 @@ class SignUpVC: UIViewController {
     @IBAction func backClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-
+    
 }

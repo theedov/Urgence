@@ -10,31 +10,53 @@ import UIKit
 import Firebase
 
 class MonitoringVC: UIViewController {
-
+    
+    //Outlets
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    //Variables
+    var listener: ListenerRegistration!
+    var db: Firestore!
+    var devices = [Device]()
+    var selectedDevice: Device!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.db = Firestore.firestore()
         setupCollectionView()
         
         
+//        devices.append(Device(id: "1", room: "test", userId: "dddd"))
+//        devices.append(Device(id: "2", room: "test2", userId: "dddd2"))
+//        devices.append(Device(id: "3", room: "test3", userId: "dddd3"))
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         isSignedIn()
-        //reset notification badge number
-        
-
+        setDevicesListener()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        listener.remove()
+        devices.removeAll()
+        collectionView.reloadData()
     }
     
     func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UINib(nibName: Identifiers.DeviceCell, bundle: nil), forCellWithReuseIdentifier: Identifiers.DeviceCell)
+        collectionView.register(UINib(nibName: CellIDs.DeviceCell, bundle: nil), forCellWithReuseIdentifier: CellIDs.DeviceCell)
     }
     
-    fileprivate func isSignedIn() {
+    func isSignedIn() {
         Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
             if user == nil || user?.isEmailVerified == false {
                 //user not logged in or not verified
@@ -44,32 +66,77 @@ class MonitoringVC: UIViewController {
         }
     }
     
-    @IBAction func logoutClicked(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-            isSignedIn()
-        } catch let error as NSError  {
-            debugPrint(error.localizedDescription)
-        }
+    func setDevicesListener() {
+        
+        listener = db.collection("devices").whereField("userId", isEqualTo: self.authUser!.uid).addSnapshotListener({ (snap, error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                return
+            }
+            
+            snap?.documentChanges.forEach({ (change) in
+                let data = change.document.data()
+                let device = Device.init(data: data)
+                
+                switch change.type {
+                case .added:
+                    self.onDocumentAdded(change: change, device: device)
+                case .modified:
+                    self.onDocumentModified(change: change, device: device)
+                case .removed:
+                    self.onDocumentRemoved(change: change)
+                }
+                
+            })
+        })
     }
     
-    fileprivate func presentSignInVC(){
-        let storyboard = UIStoryboard(name: Storyboard.AuthStoryboard, bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: StoryboardId.Auth)
+    func presentSignInVC(){
+        let storyboard = UIStoryboard(name: StoryboardIDs.AuthStoryboard, bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: VCIDs.SignInVC)
         present(controller, animated: false, completion: nil) 
     }
-
+    
 }
 
 extension MonitoringVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    func onDocumentAdded(change: DocumentChange, device: Device) {
+        let newIndex = Int(change.newIndex)
+        devices.insert(device, at: newIndex)
+        collectionView.insertItems(at: [IndexPath(item: newIndex, section: 0)])
+    }
+    
+    func onDocumentModified(change: DocumentChange, device: Device) {
+        if change.newIndex == change.oldIndex {
+            //item changed but remained in the same position
+            let index = Int(change.newIndex)
+            devices[index] = device
+            collectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
+        } else {
+            //item changed and changed position
+            let oldIndex = Int(change.oldIndex)
+            let newIndex = Int(change.newIndex)
+            devices.remove(at: oldIndex)
+            devices.insert(device, at: newIndex)
+            
+            collectionView.moveItem(at: IndexPath(item: oldIndex, section: 0), to: IndexPath(item: newIndex, section: 0))
+        }
+    }
+    
+    func onDocumentRemoved(change: DocumentChange) {
+        let oldIndex = Int(change.oldIndex)
+        devices.remove(at: oldIndex)
+        collectionView.deleteItems(at: [IndexPath(item: oldIndex, section: 0)])
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return devices.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.DeviceCell, for: indexPath) as? DeviceCell {
-            cell.configureCell()
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIDs.DeviceCell, for: indexPath) as? DeviceCell {
+            cell.configureCell(device: devices[indexPath.row])
             return cell
         }
         return UICollectionViewCell()
@@ -77,13 +144,34 @@ extension MonitoringVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let width = view.frame.width
-        let cellWidth = (width - 70) / 2
-        let cellHeight = cellWidth
+        let numOfColumns: CGFloat = 2
         
-        return CGSize(width: cellWidth, height: cellHeight)
+        let spaceBetweenCells: CGFloat = 10
+        let padding: CGFloat = 40
+        let cellDimension = ((collectionView.bounds.width - padding) - (numOfColumns) * spaceBetweenCells) / numOfColumns
+                
+        return CGSize(width: cellDimension, height: cellDimension)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedDevice = self.devices[indexPath.item]
+        performSegue(withIdentifier: SegueIDs.ToDeviceVC, sender: self)
+    }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 30,left: 20,bottom: 0,right: 20);
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SegueIDs.ToDeviceVC {
+            if let destination = segue.destination as? DeviceVC {
+                destination.device = selectedDevice
+            }
+        }
+    }
     
 }

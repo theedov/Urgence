@@ -6,16 +6,16 @@
 //  Copyright © 2019 Instamobile. All rights reserved.
 //
 
-import Firebase
-import FirebaseFirestore
-import FirebaseMessaging
 import UIKit
+import CoreData
+import Firebase
 import UserNotifications
 
 class PushNotificationManager: NSObject {
     let gcmMessageIDKey = "gcm.message_id"
     
     func registerForPushNotifications() {
+        //        debugPrint("Notofication registration started")
         // [START set_messaging_delegate]
         Messaging.messaging().delegate = self
         // [END set_messaging_delegate]
@@ -37,6 +37,7 @@ class PushNotificationManager: NSObject {
         }
         
         UIApplication.shared.registerForRemoteNotifications()
+        //        debugPrint("Notofication registration finished")
         
         // [END register_for_notifications]
     }
@@ -54,18 +55,10 @@ extension PushNotificationManager : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        let userInfo = notification.request.content.userInfo
+        //        debugPrint("Notification received in foreground")
         
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        
-        // Print full message.
-        print("IN FOREGROUND \(userInfo)")
-        print("IN FOREGROUND")
+        //save notification to coredata
+        self.saveNotification(notification: notification)
         
         // Change this to your preferred presentation option
         completionHandler(.alert)
@@ -74,69 +67,72 @@ extension PushNotificationManager : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
+        //        debugPrint("Notification received in background")
         
-        
-        if UIApplication.shared.applicationState == .inactive {
-            //app is transitioning from background to foreground (user taps notification), do what you need when user taps here
-            presentNotificationVC()
-        } else if UIApplication.shared.applicationState == .active {
-            //app is currently active, can update badges count here
-            presentNotificationVC()
-            
-        } else if UIApplication.shared.applicationState == .background {
-            //app is in background, if content-available key of your notification is set to 1, poll to your backend to retrieve data and update your interface here
-            presentNotificationVC()
-        }
-        
-        let userInfo = response.notification.request.content.userInfo
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        
-        // Print full message.
-        print("TAPPED \(userInfo)")
-        print("TAPPED")
+        //save notification to coredata
+        self.saveNotification(notification: response.notification)
         
         completionHandler()
     }
     
-    fileprivate func presentNotificationVC() {
+    fileprivate func saveNotification(notification: UNNotification) {
+        
+        //get notification data
+        let notification = notification.request.content
+        let userInfo = notification.userInfo
+        
+        //clear entity
+        CoreDataHelper.deleteEntity(entityName: "Notification")
+        
+        //get context
+        let context = CoreDataHelper.getContext()
+        
+        //add new data
+        let entity = NSEntityDescription.entity(forEntityName: "Notification", in: context)
+        let newNotification = NSManagedObject(entity: entity!, insertInto: context)
+        newNotification.setValue(notification.title, forKey: "title")
+        newNotification.setValue(notification.subtitle, forKey: "subtitle")
+        newNotification.setValue(notification.body, forKey: "body")
+        newNotification.setValue(userInfo["image"], forKey: "image")
+        
+        //save coredata
+        do {
+            try context.save()
+            if let deeplink = userInfo["dl"] as? String, let url = URL(string: deeplink), UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        } catch {
+            print("Failed saving")
+        }
+    }
+    
+    static func presentNotificationVC() {
         let window = UIApplication.shared.windows.first
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard : UIStoryboard = UIStoryboard(name: StoryboardIDs.MainStoryboard, bundle: nil)
         let vc : UITabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController
         vc.selectedIndex = 1
-//        sceneDeleage?.window?.makeKeyAndVisible()
-//        sceneDeleage?.window?.rootViewController = vc
         window?.makeKeyAndVisible()
         window?.rootViewController = vc
     }
+    
 }
 // [END ios_10_message_handling]
 
 extension PushNotificationManager : MessagingDelegate {
     // [START refresh_token]
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        let dataDict:[String: String] = ["token": fcmToken]
-        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
-        // TODO: If necessary send token to application server.
-        // Note: This callback is fired at each app startup and whenever a new token is generated.
-        updateFirestorePushTokenIfNeeded(data: dataDict)
+        //        debugPrint("New token received: \(fcmToken)")
+        updateFirestorePushTokenIfNeeded(token: fcmToken)
     }
     
     
-    func updateFirestorePushTokenIfNeeded(data: [String: Any]) {
-        if Auth.auth().currentUser != nil {
-            let usersRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
-            usersRef.setData(data, merge: true)
+    func updateFirestorePushTokenIfNeeded(token: String) {
+        if let uid = Auth.auth().currentUser?.uid {
+            FcmTokenHandler.getUserGroupKey(uid: uid) { (key) in
+                if key != nil {
+                    FcmTokenHandler.updateToken(token: token, uid: uid, key: key!)
+                }
+            }
         }
     }
-    // [END refresh_token]
-    // [START ios_10_data_message]
-    // Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
-    // To enable direct data messages, you can set Messaging.messaging().shouldEstablishDirectChannel to true.
-    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        print("FCM FOREGROUND data message: \(remoteMessage.appData)")
-    }
-    // [END ios_10_data_message]
 }

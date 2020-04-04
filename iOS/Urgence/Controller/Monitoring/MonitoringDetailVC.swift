@@ -8,8 +8,11 @@
 
 import UIKit
 
-class MonitoringDetailVC: UIViewController {
+class DeviceVC: UIViewController {
 
+    //Variablse
+    var device: Device!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -12,17 +12,19 @@ class DeviceCell: UICollectionViewCell {
     
     //MARK: - Variables
     @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var name: UIImageView!
+    @IBOutlet weak var room: UILabel!
     
     //MARK: - Overrides
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
     }
     
     //MARK: - Config
-    func configureCell() {
-        
+    func configureCell(device: Device) {
+        self.room.text = device.room
+        self.image.image = DeviceHelper.getDeviceIcon(device: device)
     }
 
 }

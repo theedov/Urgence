@@ -27,6 +27,16 @@ class UView: UIView {
     
     //MARK: - Overrides
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+    
     override func prepareForInterfaceBuilder() {
         setup()
     }

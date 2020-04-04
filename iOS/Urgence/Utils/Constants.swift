@@ -7,20 +7,31 @@
 //
 
 import Foundation
+import CoreData
+import UIKit
 
-enum Storyboard {
+enum StoryboardIDs {
     static let MainStoryboard = "Main"
     static let AuthStoryboard = "Auth"
+    static let AlertStoryboard = "Alert"
 }
 
-enum StoryboardId {
-    static let Auth = "auth"
+enum VCIDs {
+    static let AlertVC = "AlertVC"
+    static let SignInVC = "SignInVC"
+    static let QRDeviceScannerVC = "QRDeviceScannerVC"
+    static let DeviceVC = "DeviceVC"
+    static let NotificationVC = "NotificationVC"
 }
 
-enum Identifiers {
+enum CellIDs {
     static let DeviceCell = "DeviceCell"
 }
 
-enum Segues {
-    
+enum SegueIDs {
+    static let ToDeviceVC = "toDeviceVC"
+}
+
+enum CoreDataEntities {
+    static let Notification = "Notification"
 }

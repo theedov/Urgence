@@ -7,16 +7,48 @@
 //
 
 import UIKit
+import Firebase
 
 class SettingsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func didTapSignOutBtn(_ sender: Any) {
+        do {
+            //get fcm token
+            let token = Messaging.messaging().fcmToken ?? "nil"
+            let uid = self.authUser!.uid
+            
+            //Remove user token from notification group
+            FcmTokenHandler.getUserGroupKey(uid: uid) { (key) in
+                if key != nil {
+                    FcmTokenHandler.removeTokenFromGroup(uid: uid, key: key!, tokens: [token])
+                }
+            }
+            
+            //remove fcmtoken from database
+            let tokensRef = Firestore.firestore().collection("users").document(uid).collection("tokens")
+            tokensRef.whereField("token", isEqualTo: token).getDocuments { (snap, error) in
+                if let error = error {
+                    return
+                }
+                
+                snap!.documents.first?.reference.delete()
+            }
+            
+            //sign out
+            try Auth.auth().signOut()
+            //redirect to MonitoringVC
+            self.tabBarController?.selectedIndex = 0
+        } catch let error as NSError  {
+            AlertService.alert(state: .error, title: "Cannot register", body: error.localizedDescription, actionName: "I understand", vc: self, completion: nil)
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
