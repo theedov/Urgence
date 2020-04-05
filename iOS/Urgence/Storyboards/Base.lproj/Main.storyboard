@@ -66,14 +66,68 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpt-5a-QjE" customClass="UButton" customModule="Urgence" customModuleProvider="target">
-                                <rect key="frame" x="20" y="629" width="335" height="60"/>
-                                <color key="backgroundColor" name="UPrimary"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-cc-ugj" userLabel="BGView" customClass="UView" customModule="Urgence" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="172.33333333333331" width="375" height="556.66666666666674"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6ks-hV-llb">
+                                        <rect key="frame" x="20" y="30" width="335" height="140"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7g6-fR-hby" customClass="UButton" customModule="Urgence" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="60"/>
+                                                <color key="backgroundColor" name="UPrimary"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="sAj-nj-6TE"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="Change Password">
+                                                    <color key="titleColor" name="UText"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="22"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapSignOutBtn:" destination="9aL-pC-wpf" eventType="touchUpInside" id="Ns7-Te-9vZ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMy-Mg-uo2" customClass="UButton" customModule="Urgence" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="79.999999999999972" width="335" height="60"/>
+                                                <color key="backgroundColor" name="UPrimary"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="mDl-Qx-WB4"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="Support">
+                                                    <color key="titleColor" name="UText"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="22"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapSignOutBtn:" destination="9aL-pC-wpf" eventType="touchUpInside" id="JPa-G1-zRa"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" name="UBackground2"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="6fc-cs-B8o"/>
+                                    <constraint firstAttribute="trailing" secondItem="6ks-hV-llb" secondAttribute="trailing" constant="20" id="CHN-AU-QeF"/>
+                                    <constraint firstItem="6ks-hV-llb" firstAttribute="top" secondItem="C0l-cc-ugj" secondAttribute="top" constant="30" id="aey-sC-C4u"/>
+                                    <constraint firstItem="6ks-hV-llb" firstAttribute="leading" secondItem="C0l-cc-ugj" secondAttribute="leading" constant="20" id="ePZ-ep-DpC"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpt-5a-QjE" customClass="UButton" customModule="Urgence" customModuleProvider="target">
+                                <rect key="frame" x="20" y="639" width="335" height="60"/>
+                                <color key="backgroundColor" name="UDanger"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="ijp-NF-NCF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Logout">
+                                <state key="normal" title="Sign Out">
                                     <color key="titleColor" name="UText"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -85,12 +139,82 @@
                                     <action selector="didTapSignOutBtn:" destination="9aL-pC-wpf" eventType="touchUpInside" id="MBY-eJ-GxF"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="leO-Hs-8lE">
+                                <rect key="frame" x="0.0" y="43.999999999999993" width="375" height="98.333333333333314"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cgr-J3-6yY">
+                                        <rect key="frame" x="20" y="0.0" width="335" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" name="UText"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NHV-O3-iTf" customClass="UImageView" customModule="Urgence" customModuleProvider="target">
+                                        <rect key="frame" x="325" y="54" width="30" height="30"/>
+                                        <color key="backgroundColor" name="UPrimary"/>
+                                        <color key="tintColor" name="UText"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="8AE-53-zCu"/>
+                                            <constraint firstAttribute="width" constant="30" id="zAV-Lq-hpq"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="radiusToAllCorners" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="FAH-SA-4BW">
+                                        <rect key="frame" x="20" y="38.333333333333329" width="204" height="60"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Cxe-vj-cGv" customClass="UImageView" customModule="Urgence" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="1" width="60" height="57.666666666666671"/>
+                                                <color key="backgroundColor" name="UPrimary"/>
+                                                <color key="tintColor" name="UText"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="TOW-Ky-Mp4"/>
+                                                    <constraint firstAttribute="width" constant="60" id="eRi-OR-mzF"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="30"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="radiusToAllCorners" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bogdan Dovgopol" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qex-ch-fop">
+                                                <rect key="frame" x="75" y="21" width="129" height="18"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <color key="textColor" name="UText"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="FAH-SA-4BW" firstAttribute="leading" secondItem="leO-Hs-8lE" secondAttribute="leading" constant="20" id="3bo-IT-pln"/>
+                                    <constraint firstAttribute="trailing" secondItem="NHV-O3-iTf" secondAttribute="trailing" constant="20" id="P0Z-Sy-uIb"/>
+                                    <constraint firstItem="FAH-SA-4BW" firstAttribute="top" secondItem="Cgr-J3-6yY" secondAttribute="bottom" constant="18" id="UVs-pb-yiz"/>
+                                    <constraint firstItem="Cgr-J3-6yY" firstAttribute="leading" secondItem="leO-Hs-8lE" secondAttribute="leading" constant="20" id="Wb6-Hk-kOH"/>
+                                    <constraint firstAttribute="bottom" secondItem="FAH-SA-4BW" secondAttribute="bottom" id="n2o-ri-uQK"/>
+                                    <constraint firstItem="NHV-O3-iTf" firstAttribute="centerY" secondItem="FAH-SA-4BW" secondAttribute="centerY" id="tco-3H-hwx"/>
+                                    <constraint firstAttribute="trailing" secondItem="Cgr-J3-6yY" secondAttribute="trailing" constant="20" id="xcj-df-epR"/>
+                                    <constraint firstItem="Cgr-J3-6yY" firstAttribute="top" secondItem="leO-Hs-8lE" secondAttribute="top" id="zWV-B1-y9Z"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="UBackground"/>
                         <constraints>
-                            <constraint firstItem="VPW-tl-V4s" firstAttribute="bottom" secondItem="Zpt-5a-QjE" secondAttribute="bottom" constant="40" id="1q2-7a-9YC"/>
-                            <constraint firstItem="Zpt-5a-QjE" firstAttribute="leading" secondItem="VPW-tl-V4s" secondAttribute="leading" constant="20" id="6wT-8R-zuV"/>
-                            <constraint firstItem="VPW-tl-V4s" firstAttribute="trailing" secondItem="Zpt-5a-QjE" secondAttribute="trailing" constant="20" id="RKJ-ky-Hau"/>
+                            <constraint firstItem="C0l-cc-ugj" firstAttribute="leading" secondItem="VPW-tl-V4s" secondAttribute="leading" id="1qu-zF-ape"/>
+                            <constraint firstItem="C0l-cc-ugj" firstAttribute="bottom" secondItem="VPW-tl-V4s" secondAttribute="bottom" id="3jX-2X-Bpc"/>
+                            <constraint firstItem="leO-Hs-8lE" firstAttribute="trailing" secondItem="VPW-tl-V4s" secondAttribute="trailing" id="3xd-cf-mWX"/>
+                            <constraint firstItem="leO-Hs-8lE" firstAttribute="top" secondItem="VPW-tl-V4s" secondAttribute="top" id="4is-Rj-Qc8"/>
+                            <constraint firstItem="C0l-cc-ugj" firstAttribute="trailing" secondItem="VPW-tl-V4s" secondAttribute="trailing" id="9DS-5U-IuW"/>
+                            <constraint firstItem="Zpt-5a-QjE" firstAttribute="leading" secondItem="VPW-tl-V4s" secondAttribute="leading" constant="20" id="En0-S4-Xfd"/>
+                            <constraint firstItem="VPW-tl-V4s" firstAttribute="trailing" secondItem="Zpt-5a-QjE" secondAttribute="trailing" constant="20" id="KRI-y5-wLT"/>
+                            <constraint firstItem="C0l-cc-ugj" firstAttribute="top" secondItem="leO-Hs-8lE" secondAttribute="bottom" constant="30" id="Wzb-hx-sn8"/>
+                            <constraint firstItem="leO-Hs-8lE" firstAttribute="leading" secondItem="VPW-tl-V4s" secondAttribute="leading" id="fpq-qZ-PH2"/>
+                            <constraint firstItem="VPW-tl-V4s" firstAttribute="bottom" secondItem="Zpt-5a-QjE" secondAttribute="bottom" constant="30" id="qYT-u8-B03"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VPW-tl-V4s"/>
                     </view>
@@ -98,7 +222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9zp-4N-qhJ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="938" y="828"/>
+            <point key="canvasLocation" x="936.79999999999995" y="827.58620689655174"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9yY-P2-bSn">
@@ -516,11 +640,13 @@
     <resources>
         <image name="add" width="25" height="25"/>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
+        <image name="camera" catalog="system" width="128" height="96"/>
         <image name="check" width="50" height="50"/>
         <image name="cross" width="50" height="50"/>
         <image name="dots" width="7" height="31"/>
         <image name="monitoring" width="24" height="24"/>
         <image name="notification" width="24" height="24"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="qr-scanner" width="1125" height="2436"/>
         <image name="qrcode.viewfinder" catalog="system" width="128" height="114"/>
         <image name="settings" width="24" height="24"/>
