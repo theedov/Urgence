@@ -17,7 +17,7 @@ class SettingsVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func didTapSignOutBtn(_ sender: Any) {
+    @IBAction func onSignOutPressed(_ sender: Any) {
         do {
             //get fcm token
             let token = Messaging.messaging().fcmToken ?? "nil"
