@@ -19,29 +19,33 @@ class SettingsVC: UIViewController {
     }
     
     @IBAction func onSignOutPressed(_ sender: Any) {
+        signOut()
+    }
+    
+    func signOut() {
+        //get fcm token
+        let token = Messaging.messaging().fcmToken ?? "nil"
+        let uid = self.authUser!.uid
+        
+        //Remove user token from notification group
+        FcmTokenHandler.getUserGroupKey(uid: uid) { (key) in
+            if key != nil {
+                FcmTokenHandler.removeTokenFromGroup(uid: uid, key: key!, tokens: [token])
+            }
+        }
+        
+        //remove fcmtoken from database
+        let tokensRef = Firestore.firestore().collection("users").document(uid).collection("tokens")
+        tokensRef.whereField("token", isEqualTo: token).getDocuments { (snap, error) in
+            if let error = error {
+                return
+            }
+            
+            snap!.documents.first?.reference.delete()
+        }
+        
         do {
-            //get fcm token
-            let token = Messaging.messaging().fcmToken ?? "nil"
-            let uid = self.authUser!.uid
-            
-            //Remove user token from notification group
-            FcmTokenHandler.getUserGroupKey(uid: uid) { (key) in
-                if key != nil {
-                    FcmTokenHandler.removeTokenFromGroup(uid: uid, key: key!, tokens: [token])
-                }
-            }
-            
-            //remove fcmtoken from database
-            let tokensRef = Firestore.firestore().collection("users").document(uid).collection("tokens")
-            tokensRef.whereField("token", isEqualTo: token).getDocuments { (snap, error) in
-                if let error = error {
-                    return
-                }
-                
-                snap!.documents.first?.reference.delete()
-            }
-            
-            //sign out
+            //try to sign out
             try Auth.auth().signOut()
             //redirect to MonitoringVC
             self.tabBarController?.selectedIndex = 0
