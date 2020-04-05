@@ -37,7 +37,7 @@ class SettingsVC: UIViewController {
         //remove fcmtoken from database
         let tokensRef = Firestore.firestore().collection("users").document(uid).collection("tokens")
         tokensRef.whereField("token", isEqualTo: token).getDocuments { (snap, error) in
-            if let error = error {
+        if let error = error {
                 return
             }
             
