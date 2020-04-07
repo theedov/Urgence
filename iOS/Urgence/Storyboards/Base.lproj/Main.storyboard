@@ -88,8 +88,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="onSignOutPressed:" destination="9aL-pC-wpf" eventType="touchUpInside" id="Ns7-Te-9vZ"/>
-                                                    <segue destination="597-WJ-eWz" kind="show" id="SuS-Fz-eHQ"/>
+                                                    <segue destination="597-WJ-eWz" kind="show" animates="NO" id="0DD-T9-15v"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMy-Mg-uo2" customClass="UButton" customModule="Urgence" customModuleProvider="target">
@@ -656,6 +655,7 @@
                                 <state key="normal" image="arrow.left" catalog="system"/>
                                 <connections>
                                     <action selector="onBackPressed:" destination="wBb-oo-be9" eventType="touchUpInside" id="8Nv-55-8jV"/>
+                                    <action selector="onBackPressed:" destination="597-WJ-eWz" eventType="touchUpInside" id="SzE-RR-mo4"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJm-5N-x8c">

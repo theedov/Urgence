@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ChangePasswordVC: UIViewController {
     
@@ -55,28 +56,53 @@ class ChangePasswordVC: UIViewController {
     }
     
     @IBAction func onSavePressed(_ sender: Any) {
-        changePassword()
+        beginPasswordChange()
     }
     
-    func changePassword() {
+    func beginPasswordChange() {
+        self.activityIndicator.startAnimating()
+        validateFileds()
+        
+        let credential = EmailAuthProvider.credential(withEmail: authUser!.email!, password: currentPasswordTxt.text!)
+        authUser!.reauthenticate(with: credential) { (result, error) in
+            if let _ = error {
+                self.activityIndicator.stopAnimating()
+                AlertService.alert(state: .error, title: "Cannot change password", body: "There was an error reauthenticating user. Wrong current password.", actionName: "I understand", vc: self, completion: nil)
+                return
+            }
+            //start changing user password
+            self.changePassword()
+        }
+    }
+    
+    func changePassword(){
         self.authUser?.updatePassword(to: passwordTxt.text!, completion: { (error) in
+            self.activityIndicator.stopAnimating()
             if let _ = error {
                 AlertService.alert(state: .error, title: "Cannot change password", body: "There was an error changing your password. Please try again later or contact us directly: info@urgence.com.au", actionName: "I understand", vc: self, completion: nil)
+                return
             }
+            self.dismiss(animated: false, completion: nil)
         })
     }
     
     func validateFileds(){
         //check if fields are empty
         guard let currentPassword = currentPasswordTxt.text, currentPassword.isNotEmpty, let password = passwordTxt.text, password.isNotEmpty, let confirmPassword = confirmPasswordTxt.text, confirmPassword.isNotEmpty else {
+            self.activityIndicator.stopAnimating()
             AlertService.alert(state: .error, title: "Cannot change password", body: "In order to change passwords, all fields are required", actionName: "I understand", vc: self, completion: nil)
             return
         }
         //check if password & confirmPassword match
         guard let confirmPass = confirmPasswordTxt.text, confirmPass == password else {
+            self.activityIndicator.stopAnimating()
             AlertService.alert(state: .error, title: "Cannot change password", body: "Passwords do not match", actionName: "I understand", vc: self, completion: nil)
             return
         }
     }
     
+    
+    @IBAction func onBackPressed(_ sender: Any) {
+        dismiss(animated: false, completion: nil)
+    }
 }
