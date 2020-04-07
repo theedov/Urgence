@@ -15,7 +15,7 @@ class PushNotificationManager: NSObject {
     let gcmMessageIDKey = "gcm.message_id"
     
     func registerForPushNotifications() {
-        //        debugPrint("Notofication registration started")
+//                debugPrint("Notofication registration started")
         // [START set_messaging_delegate]
         Messaging.messaging().delegate = self
         // [END set_messaging_delegate]
@@ -37,7 +37,7 @@ class PushNotificationManager: NSObject {
         }
         
         UIApplication.shared.registerForRemoteNotifications()
-        //        debugPrint("Notofication registration finished")
+//                debugPrint("Notofication registration finished")
         
         // [END register_for_notifications]
     }
@@ -55,23 +55,23 @@ extension PushNotificationManager : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        //        debugPrint("Notification received in foreground")
-        
+//                debugPrint("Notification received in foreground")
+
         //save notification to coredata
         self.saveNotification(notification: notification)
-        
+
         // Change this to your preferred presentation option
         completionHandler(.alert)
     }
-    
+
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        //        debugPrint("Notification received in background")
-        
+//                debugPrint("Notification received in background")
+
         //save notification to coredata
         self.saveNotification(notification: response.notification)
-        
+
         completionHandler()
     }
     
@@ -135,4 +135,6 @@ extension PushNotificationManager : MessagingDelegate {
             }
         }
     }
+    
+    
 }
