@@ -28,7 +28,11 @@ class SettingsVC: UIViewController {
     }
     
     func updateProfileView(){
-        
+        loadFullName()
+        loadProfilePicture()
+    }
+    
+    func loadFullName(){
         Firestore.firestore().collection("users").document(authUser!.uid).getDocument { (document, error) in
             if let document = document, document.exists {
                 let user = document.data()
@@ -36,6 +40,18 @@ class SettingsVC: UIViewController {
             } else {
                 print("Document does not exist")
             }
+        }
+    }
+    
+    func loadProfilePicture(){
+        let filePath = "\(authUser!.uid)/profile/profile-picture"
+        Storage.storage().reference().child(filePath).downloadURL { (url, error) in
+            if let error = error {
+                debugPrint("Error getting downloadURL: \(error)")
+                return
+            }
+            //present profile picture
+            self.profilePicture.load(url: url!)
         }
     }
     
@@ -122,6 +138,6 @@ extension SettingsVC: MFMailComposeViewControllerDelegate {
             }
         }
         
-//        controller.dismiss(animated: true, completion: nil)
+        //        controller.dismiss(animated: true, completion: nil)
     }
 }
