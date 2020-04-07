@@ -1,0 +1,147 @@
+//
+//  UpdateProfileVC.swift
+//  Urgence
+//
+//  Created by Bogdan on 7/4/20.
+//  Copyright © 2020 Urgence. All rights reserved.
+//
+
+import UIKit
+import Firebase
+
+class UpdateProfileVC: UIViewController {
+    
+    //Outlets
+    @IBOutlet weak var fullNameTxt: UTextField!
+    @IBOutlet weak var emailTxt: UTextField!
+    @IBOutlet weak var profilePicture: UImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+        //enable tap gesture for profilePicture
+        profilePicture.isUserInteractionEnabled = true
+        profilePicture.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.loadPhotoLibrary(tapGestureRecognizer:))))
+    }
+    
+    @objc func loadPhotoLibrary(tapGestureRecognizer: UITapGestureRecognizer) {
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.allowsEditing = false
+        vc.delegate = self
+        present(vc, animated: true)
+    }
+    
+    @IBAction func onSavePressed(_ sender: Any) {
+        self.activityIndicator.startAnimating()
+        updateProfileDetails()
+    }
+    
+    func updateProfileDetails(){
+        validateFields()
+        updateFirestoreDetails()
+        updateProfilePicture()
+    }
+    
+    func validateFields(){
+        //check if all fields are filled in
+        guard let fullName = fullNameTxt.text, fullName.isNotEmpty, let email = emailTxt.text, email.isNotEmpty else {
+            self.activityIndicator.stopAnimating()
+            AlertService.alert(state: .error, title: "Cannot update profile details", body: "In order to update profile details, all fields must be filled in", actionName: "I understand", vc: self, completion: nil)
+            return
+        }
+        
+        //check if provided email is valid
+        guard email.isEmailNotValid else {
+            self.activityIndicator.stopAnimating()
+            AlertService.alert(state: .error, title: "Cannot update profile details", body: "Provided email is not valid, please provide valid email address.", actionName: "I understand", vc: self, completion: nil)
+            return
+        }
+    }
+    
+    func updateFirestoreDetails(){
+        //update firestore details
+        let fields = ["fullName":fullNameTxt.text!, "email":emailTxt.text!]
+        
+        Firestore.firestore().collection("users").document(authUser!.uid).updateData(fields) { (error) in
+            if let _ = error {
+                self.activityIndicator.stopAnimating()
+                AlertService.alert(state: .error, title: "Cannot update profile details", body: "Please try it later or contact us directly: info@urgence.com.au", actionName: "I understand", vc: self, completion: nil)
+                return
+            }
+        }
+    }
+    
+    func updateProfilePicture(){
+        //check if user has picked new profile picture
+        guard let _ = profilePicture.image else {
+            return
+        }
+        
+        //delete current image
+        deleteImage(path: "\(authUser!.uid)/profile/profile-picture")
+        //upload new profile picture to the storage
+        uploadImage(image: profilePicture.image!)
+    }
+    
+    func uploadImage(image: UIImage){
+        // Data in memory
+        var data = Data()
+        data = image.jpegData(compressionQuality: 0.8)!
+        //set upload path
+        let filePath = "\(authUser!.uid)/profile/profile-picture" //path to save image in storage
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        
+        
+        // Create a reference to the file you want to upload
+        Storage.storage().reference().child(filePath).putData(data, metadata: metaData) { (metadata, error) in
+            if let _ = error {
+                self.activityIndicator.stopAnimating()
+                AlertService.alert(state: .error, title: "Cannot upload an image", body: "", actionName: "I understand", vc: self, completion: nil)
+                return
+            }
+            
+            self.activityIndicator.stopAnimating()
+        }
+        
+    }
+    
+    func deleteImage(path: String){
+        // Delete the file
+        Storage.storage().reference().child(path).delete { error in
+            self.activityIndicator.stopAnimating()
+            if let error = error {
+                debugPrint("Error deleting the file: \(error)")
+                return
+            }
+        }
+    }
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+}
+
+extension UpdateProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        //get selected image
+        guard let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            return
+        }
+        
+        //load picked image into the profilePicture
+        self.profilePicture.image = pickedImage
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
