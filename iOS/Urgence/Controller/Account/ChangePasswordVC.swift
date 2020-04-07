@@ -70,6 +70,11 @@ class ChangePasswordVC: UIViewController {
             AlertService.alert(state: .error, title: "Cannot change password", body: "In order to change passwords, all fields are required", actionName: "I understand", vc: self, completion: nil)
             return
         }
+        //check if password & confirmPassword match
+        guard let confirmPass = confirmPasswordTxt.text, confirmPass == password else {
+            AlertService.alert(state: .error, title: "Cannot change password", body: "Passwords do not match", actionName: "I understand", vc: self, completion: nil)
+            return
+        }
     }
     
 }
