@@ -13,7 +13,7 @@
             <objects>
                 <viewController storyboardIdentifier="MonitoringVC" id="BYZ-38-t0r" customClass="MonitoringVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IKT-IE-Ekv" customClass="UCollectionViev" customModule="Urgence" customModuleProvider="target">
@@ -63,7 +63,7 @@
             <objects>
                 <viewController storyboardIdentifier="SettingsVC" id="9aL-pC-wpf" customClass="SettingsVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AZs-48-jX4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-cc-ugj" userLabel="BGView" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -148,21 +148,6 @@
                                         <color key="textColor" name="UText"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NHV-O3-iTf" customClass="UImageView" customModule="Urgence" customModuleProvider="target">
-                                        <rect key="frame" x="325" y="55.333333333333329" width="30" height="30"/>
-                                        <color key="backgroundColor" name="UPrimary"/>
-                                        <color key="tintColor" name="UText"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="8AE-53-zCu"/>
-                                            <constraint firstAttribute="width" constant="30" id="zAV-Lq-hpq"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="15"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="radiusToAllCorners" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="FAH-SA-4BW">
                                         <rect key="frame" x="20" y="39.666666666666671" width="204" height="60"/>
                                         <subviews>
@@ -189,16 +174,33 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uFP-Wz-jdy" customClass="UButton">
+                                        <rect key="frame" x="325" y="54.666666666666671" width="30" height="30"/>
+                                        <color key="backgroundColor" name="UPrimary"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="21q-9i-OcC"/>
+                                            <constraint firstAttribute="height" constant="30" id="9bs-4n-YBA"/>
+                                        </constraints>
+                                        <color key="tintColor" name="UText"/>
+                                        <state key="normal" image="pencil" catalog="system">
+                                            <color key="titleColor" name="UText"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="FAH-SA-4BW" firstAttribute="leading" secondItem="leO-Hs-8lE" secondAttribute="leading" constant="20" id="3bo-IT-pln"/>
-                                    <constraint firstAttribute="trailing" secondItem="NHV-O3-iTf" secondAttribute="trailing" constant="20" id="P0Z-Sy-uIb"/>
+                                    <constraint firstAttribute="trailing" secondItem="uFP-Wz-jdy" secondAttribute="trailing" constant="20" id="IcI-Z0-oin"/>
                                     <constraint firstItem="FAH-SA-4BW" firstAttribute="top" secondItem="Cgr-J3-6yY" secondAttribute="bottom" constant="18" id="UVs-pb-yiz"/>
                                     <constraint firstItem="Cgr-J3-6yY" firstAttribute="leading" secondItem="leO-Hs-8lE" secondAttribute="leading" constant="20" id="Wb6-Hk-kOH"/>
                                     <constraint firstAttribute="bottom" secondItem="FAH-SA-4BW" secondAttribute="bottom" id="n2o-ri-uQK"/>
-                                    <constraint firstItem="NHV-O3-iTf" firstAttribute="centerY" secondItem="FAH-SA-4BW" secondAttribute="centerY" id="tco-3H-hwx"/>
                                     <constraint firstAttribute="trailing" secondItem="Cgr-J3-6yY" secondAttribute="trailing" constant="20" id="xcj-df-epR"/>
+                                    <constraint firstItem="uFP-Wz-jdy" firstAttribute="centerY" secondItem="FAH-SA-4BW" secondAttribute="centerY" id="ybC-Jb-Gml"/>
                                     <constraint firstItem="Cgr-J3-6yY" firstAttribute="top" secondItem="leO-Hs-8lE" secondAttribute="top" id="zWV-B1-y9Z"/>
                                 </constraints>
                             </view>
@@ -219,6 +221,10 @@
                         <viewLayoutGuide key="safeArea" id="VPW-tl-V4s"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" selectedImage="settings" id="Xo6-bK-723"/>
+                    <connections>
+                        <outlet property="fullNameTxt" destination="Qex-ch-fop" id="faw-S0-93g"/>
+                        <outlet property="profilePicture" destination="Cxe-vj-cGv" id="MsN-hX-tJi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9zp-4N-qhJ" sceneMemberID="firstResponder"/>
             </objects>
@@ -251,7 +257,7 @@
             <objects>
                 <viewController storyboardIdentifier="NotificationVC" id="LWa-zq-4hs" customClass="NotificationVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CfB-NU-ldI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CKt-9w-b1H" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -399,7 +405,7 @@
             <objects>
                 <viewController storyboardIdentifier="AddDeviceVC" id="OV7-0R-x8S" customClass="AddDeviceVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sa6-hB-jrn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRo-0w-dow" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -511,7 +517,7 @@
             <objects>
                 <viewController storyboardIdentifier="QRDeviceScannerVC" title="QRScanner" id="wBb-oo-be9" customClass="QRDeviceScannerVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UTF-ZL-nnf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mQ6-sb-3hW">
@@ -574,7 +580,7 @@
             <objects>
                 <viewController storyboardIdentifier="MonitoringDetailVC" id="WbS-OJ-RXw" customClass="DeviceVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xj3-AW-FtO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3n-ei-dzL" customClass="UView" customModule="Urgence" customModuleProvider="target">
