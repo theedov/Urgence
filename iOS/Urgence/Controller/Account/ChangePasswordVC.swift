@@ -16,6 +16,8 @@ class ChangePasswordVC: UIViewController {
     @IBOutlet weak var confirmPasswordTxt: UTextField!
     @IBOutlet weak var passwordCheckImg: UIImageView!
     @IBOutlet weak var confirmPasswordCheckImg: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     
 
     override func viewDidLoad() {

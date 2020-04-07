@@ -792,6 +792,7 @@
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" selectedImage="settings" id="l1k-Zl-yLS"/>
                     <navigationItem key="navigationItem" id="Als-Ly-ALT"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="KK9-N2-GuZ" id="YUh-TK-WDg"/>
                         <outlet property="confirmPasswordCheckImg" destination="3rb-0T-Oxi" id="La4-2Q-yfp"/>
                         <outlet property="confirmPasswordTxt" destination="skU-Ve-nHn" id="3R8-vi-xB4"/>
                         <outlet property="currentPasswordTxt" destination="bbR-Wj-2Rs" id="gcI-wn-TVw"/>
