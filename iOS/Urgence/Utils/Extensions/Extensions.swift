@@ -15,15 +15,15 @@ extension String {
         return !isEmpty
     }
     
-    var isEmailValid: Bool {
+    var isEmailNotValid: Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPred = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         
         return emailPred.evaluate(with: self)
     }
     
-    var isEmailNotValid: Bool {
-        return !isEmailValid
+    var isEmailValid: Bool {
+        return !isEmailNotValid
     }
 }
 
@@ -40,5 +40,19 @@ extension UIView {
         let mask = CAShapeLayer()
         mask.path = path.cgPath
         layer.mask = mask
+    }
+}
+
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
     }
 }
