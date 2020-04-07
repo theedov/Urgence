@@ -668,7 +668,7 @@
                                 <rect key="frame" x="0.0" y="119" width="375" height="659"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hP5-LQ-4g5" customClass="UButton" customModule="Urgence" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="195" width="335" height="60"/>
+                                        <rect key="frame" x="20" y="255" width="335" height="60"/>
                                         <color key="backgroundColor" name="UPrimary"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="ra4-2G-0VH"/>
@@ -683,14 +683,28 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
+                                            <action selector="onSavePressed:" destination="597-WJ-eWz" eventType="touchUpInside" id="hW8-5Q-B79"/>
                                             <action selector="onSignOutPressed:" destination="9aL-pC-wpf" eventType="touchUpInside" id="Lxz-T6-Qbv"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jkR-aR-DCe" userLabel="Inputs">
-                                        <rect key="frame" x="20" y="30" width="335" height="110"/>
+                                        <rect key="frame" x="20" y="30" width="335" height="170"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D61-lQ-eyE" customClass="UTextField" customModule="Urgence" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Current password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bbR-Wj-2Rs" customClass="UTextField" customModule="Urgence" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="cd8-Kp-cZe"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" name="UPrimary"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D61-lQ-eyE" customClass="UTextField" customModule="Urgence" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="60" width="335" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Pnc-6a-eTh"/>
                                                 </constraints>
@@ -703,7 +717,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="skU-Ve-nHn" customClass="UTextField" customModule="Urgence" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="60" width="335" height="50"/>
+                                                <rect key="frame" x="0.0" y="120" width="335" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="FF4-U2-Eeo"/>
                                                 </constraints>
@@ -718,21 +732,21 @@
                                         </subviews>
                                     </stackView>
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct-icon" translatesAutoresizingMaskIntoConstraints="NO" id="kBG-hf-zhb">
-                                        <rect key="frame" x="310" y="42.666666666666657" width="25" height="25"/>
+                                        <rect key="frame" x="310" y="102.66666666666666" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="FJb-lf-OY3"/>
                                             <constraint firstAttribute="width" constant="25" id="fut-hs-3ow"/>
                                         </constraints>
                                     </imageView>
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct-icon" translatesAutoresizingMaskIntoConstraints="NO" id="3rb-0T-Oxi">
-                                        <rect key="frame" x="310" y="102.66666666666666" width="25" height="25"/>
+                                        <rect key="frame" x="310" y="162.66666666666669" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="HBc-4X-66Y"/>
                                             <constraint firstAttribute="height" constant="25" id="ZHp-Nq-euZ"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dots" translatesAutoresizingMaskIntoConstraints="NO" id="r5W-ss-AYP">
-                                        <rect key="frame" x="184" y="152" width="7" height="31"/>
+                                        <rect key="frame" x="184" y="212" width="7" height="31"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" name="UBackground2"/>
@@ -751,18 +765,24 @@
                                     <constraint firstItem="kBG-hf-zhb" firstAttribute="centerY" secondItem="D61-lQ-eyE" secondAttribute="centerY" id="wQ2-wZ-Sr3"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="KK9-N2-GuZ">
+                                <rect key="frame" x="177.66666666666666" y="85.666666666666671" width="20" height="20"/>
+                                <color key="color" name="UText"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" name="UBackground"/>
                         <constraints>
                             <constraint firstItem="RwO-8a-CpX" firstAttribute="trailing" secondItem="7da-xv-4ld" secondAttribute="trailing" id="3x1-QH-EEw"/>
                             <constraint firstItem="FJm-5N-x8c" firstAttribute="top" secondItem="7da-xv-4ld" secondAttribute="top" constant="10" id="5Nk-ph-3bH"/>
                             <constraint firstItem="iyG-BN-WWn" firstAttribute="leading" secondItem="7da-xv-4ld" secondAttribute="leading" constant="20" id="6ZC-1T-iLV"/>
+                            <constraint firstItem="KK9-N2-GuZ" firstAttribute="top" secondItem="FJm-5N-x8c" secondAttribute="bottom" constant="10" id="BKe-t6-T7C"/>
                             <constraint firstItem="iyG-BN-WWn" firstAttribute="top" secondItem="7da-xv-4ld" secondAttribute="top" constant="10" id="QWg-H0-fgO"/>
                             <constraint firstItem="RwO-8a-CpX" firstAttribute="top" secondItem="iyG-BN-WWn" secondAttribute="bottom" constant="40" id="Zqc-Rg-RAd"/>
                             <constraint firstItem="RwO-8a-CpX" firstAttribute="leading" secondItem="7da-xv-4ld" secondAttribute="leading" id="cNd-ee-AQI"/>
                             <constraint firstItem="RwO-8a-CpX" firstAttribute="bottom" secondItem="7da-xv-4ld" secondAttribute="bottom" id="iC9-hW-nDq"/>
                             <constraint firstItem="RwO-8a-CpX" firstAttribute="leading" secondItem="7da-xv-4ld" secondAttribute="leading" id="kFc-1e-Tsc"/>
                             <constraint firstItem="FJm-5N-x8c" firstAttribute="centerX" secondItem="7da-xv-4ld" secondAttribute="centerX" id="ptc-uv-4XB"/>
+                            <constraint firstItem="KK9-N2-GuZ" firstAttribute="centerX" secondItem="FJm-5N-x8c" secondAttribute="centerX" id="rPK-ua-joN"/>
                             <constraint firstItem="RwO-8a-CpX" firstAttribute="bottom" secondItem="7da-xv-4ld" secondAttribute="bottom" id="slP-Pe-qUi"/>
                             <constraint firstItem="RwO-8a-CpX" firstAttribute="trailing" secondItem="7da-xv-4ld" secondAttribute="trailing" id="wk8-Oh-pMy"/>
                             <constraint firstItem="RwO-8a-CpX" firstAttribute="bottom" secondItem="7da-xv-4ld" secondAttribute="bottom" id="yiA-zp-KMO"/>
@@ -774,6 +794,7 @@
                     <connections>
                         <outlet property="confirmPasswordCheckImg" destination="3rb-0T-Oxi" id="La4-2Q-yfp"/>
                         <outlet property="confirmPasswordTxt" destination="skU-Ve-nHn" id="3R8-vi-xB4"/>
+                        <outlet property="currentPasswordTxt" destination="bbR-Wj-2Rs" id="gcI-wn-TVw"/>
                         <outlet property="passwordCheckImg" destination="kBG-hf-zhb" id="SId-AZ-Bw0"/>
                         <outlet property="passwordTxt" destination="D61-lQ-eyE" id="hr3-oB-EOI"/>
                     </connections>
