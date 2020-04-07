@@ -17,6 +17,9 @@ class UpdateProfileVC: UIViewController {
     @IBOutlet weak var profilePicture: UImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    //Variables
+    var profileImageChanged = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,22 +97,30 @@ class UpdateProfileVC: UIViewController {
     
     func updateProfilePicture(){
         //check if user has picked new profile picture
-        if let profilePicture = profilePicture.image {
-            let emptyData = UIImage(systemName: "camera")?.jpegData(compressionQuality: 1)
-            let profilePictureData = profilePicture.jpegData(compressionQuality: 0.8)
-            
-            if let empty = emptyData, let compareTo = profilePictureData {
-                if empty == compareTo {
-                    self.activityIndicator.stopAnimating()
-                    return
-                }
-            }
-            
-            //delete current image
-            deleteImage(path: "\(authUser!.uid)/profile/profile-picture")
-            //upload new profile picture to the storage
-            uploadImage(image: profilePicture)
+        //        if let profilePicture = profilePicture.image {
+        //            let emptyData = UIImage(systemName: "camera")?.jpegData(compressionQuality: 1)
+        //            let profilePictureData = profilePicture.jpegData(compressionQuality: 0.8)
+        //
+        //            if let empty = emptyData, let compareTo = profilePictureData {
+        //                if empty == compareTo {
+        //                    self.activityIndicator.stopAnimating()
+        //                    return
+        //                }
+        //            }
+        //
+        //
+        //        }
+        
+        //check if user has picked new profile picture
+        activityIndicator.stopAnimating()
+        if profileImageChanged == false {
+            return
         }
+        
+        //delete current image
+        deleteImage(path: "\(authUser!.uid)/profile/profile-picture")
+        //upload new profile picture to the storage
+        uploadImage(image: profilePicture.image!)
     }
     
     func uploadImage(image: UIImage){
@@ -145,7 +156,7 @@ class UpdateProfileVC: UIViewController {
             }
         }
     }
-   
+    
     @IBAction func onBackPressed(_ sender: Any) {
         dismiss(animated: false, completion: nil)
     }
@@ -162,6 +173,7 @@ extension UpdateProfileVC: UINavigationControllerDelegate, UIImagePickerControll
         
         //load picked image into the profilePicture
         self.profilePicture.image = pickedImage
+        self.profileImageChanged = true
         picker.dismiss(animated: true, completion: nil)
     }
 }
