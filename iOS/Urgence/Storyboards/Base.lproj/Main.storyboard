@@ -13,7 +13,7 @@
             <objects>
                 <viewController storyboardIdentifier="MonitoringVC" id="BYZ-38-t0r" customClass="MonitoringVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IKT-IE-Ekv" customClass="UCollectionViev" customModule="Urgence" customModuleProvider="target">
@@ -63,7 +63,7 @@
             <objects>
                 <viewController storyboardIdentifier="SettingsVC" id="9aL-pC-wpf" customClass="SettingsVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AZs-48-jX4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-cc-ugj" userLabel="BGView" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -260,7 +260,7 @@
             <objects>
                 <viewController storyboardIdentifier="NotificationVC" id="LWa-zq-4hs" customClass="NotificationVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CfB-NU-ldI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CKt-9w-b1H" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -408,7 +408,7 @@
             <objects>
                 <viewController storyboardIdentifier="AddDeviceVC" id="OV7-0R-x8S" customClass="AddDeviceVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sa6-hB-jrn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRo-0w-dow" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -520,7 +520,7 @@
             <objects>
                 <viewController storyboardIdentifier="QRDeviceScannerVC" title="QRScanner" id="wBb-oo-be9" customClass="QRDeviceScannerVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UTF-ZL-nnf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mQ6-sb-3hW">
@@ -583,7 +583,7 @@
             <objects>
                 <viewController storyboardIdentifier="MonitoringDetailVC" id="WbS-OJ-RXw" customClass="DeviceVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xj3-AW-FtO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3n-ei-dzL" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -829,7 +829,7 @@
                                 <color key="tintColor" name="USecondary"/>
                                 <state key="normal" image="arrow.left" catalog="system"/>
                                 <connections>
-                                    <action selector="onBackPressed:" destination="JIK-ZY-CfA" eventType="touchUpInside" id="3df-5d-ewW"/>
+                                    <action selector="onBackPressed:" destination="JIK-ZY-CfA" eventType="touchUpInside" id="1bl-V3-stg"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeC-ib-Xy2">
@@ -998,7 +998,7 @@
             <color red="0.125" green="0.14100000262260437" blue="0.16899999976158142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="UText">
-            <color red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.80800002813339233" green="0.80800002813339233" blue="0.80800002813339233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -25,6 +25,8 @@ class UpdateProfileVC: UIViewController {
         //enable tap gesture for profilePicture
         profilePicture.isUserInteractionEnabled = true
         profilePicture.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.loadPhotoLibrary(tapGestureRecognizer:))))
+        
+        loadProfilePicture()
     }
     
     @objc func loadPhotoLibrary(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -33,6 +35,18 @@ class UpdateProfileVC: UIViewController {
         vc.allowsEditing = false
         vc.delegate = self
         present(vc, animated: true)
+    }
+    
+    func loadProfilePicture(){
+        let filePath = "\(authUser!.uid)/profile/profile-picture"
+        Storage.storage().reference().child(filePath).downloadURL { (url, error) in
+            if let error = error {
+                debugPrint("Error getting downloadURL: \(error)")
+                return
+            }
+            //present profile picture
+            self.profilePicture.load(url: url!)
+        }
     }
     
     @IBAction func onSavePressed(_ sender: Any) {
@@ -77,14 +91,22 @@ class UpdateProfileVC: UIViewController {
     
     func updateProfilePicture(){
         //check if user has picked new profile picture
-        guard let _ = profilePicture.image else {
-            return
+        if let profilePicture = profilePicture.image {
+            let emptyData = UIImage(systemName: "camera")?.jpegData(compressionQuality: 1)
+            let profilePictureData = profilePicture.jpegData(compressionQuality: 0.8)
+            
+            if let empty = emptyData, let compareTo = profilePictureData {
+                if empty == compareTo {
+                    self.activityIndicator.stopAnimating()
+                    return
+                }
+            }
+            
+            //delete current image
+            deleteImage(path: "\(authUser!.uid)/profile/profile-picture")
+            //upload new profile picture to the storage
+            uploadImage(image: profilePicture)
         }
-        
-        //delete current image
-        deleteImage(path: "\(authUser!.uid)/profile/profile-picture")
-        //upload new profile picture to the storage
-        uploadImage(image: profilePicture.image!)
     }
     
     func uploadImage(image: UIImage){
@@ -120,15 +142,10 @@ class UpdateProfileVC: UIViewController {
             }
         }
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+   
+    @IBAction func onBackPressed(_ sender: Any) {
+        dismiss(animated: false, completion: nil)
+    }
     
 }
 
