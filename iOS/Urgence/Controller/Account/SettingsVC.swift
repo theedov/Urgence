@@ -12,10 +12,31 @@ import MessageUI
 
 class SettingsVC: UIViewController {
     
+    //Outlets
+    @IBOutlet weak var profilePicture: UImageView!
+    @IBOutlet weak var fullNameTxt: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateProfileView()
+    }
+    
+    func updateProfileView(){
+        
+        Firestore.firestore().collection("users").document(authUser!.uid).getDocument { (document, error) in
+            if let document = document, document.exists {
+                let user = document.data()
+                self.fullNameTxt.text = user!["fullName"] as? String
+            } else {
+                print("Document does not exist")
+            }
+        }
     }
     
     @IBAction func onSignOutPressed(_ sender: Any) {
@@ -37,7 +58,7 @@ class SettingsVC: UIViewController {
         //remove fcmtoken from database
         let tokensRef = Firestore.firestore().collection("users").document(uid).collection("tokens")
         tokensRef.whereField("token", isEqualTo: token).getDocuments { (snap, error) in
-        if let error = error {
+            if let error = error {
                 return
             }
             
@@ -84,15 +105,23 @@ extension SettingsVC: MFMailComposeViewControllerDelegate {
         
         switch result {
         case .cancelled:
-            AlertService.alert(state: .warning, title: "Email cancelled", body: "It seems you have cancelled your your email ticked", actionName: "I understand", vc: self, completion: nil)
+            controller.dismiss(animated: false) {
+                AlertService.alert(state: .warning, title: "Email cancelled", body: "It seems you have cancelled your your email ticked", actionName: "I understand", vc: self, completion: nil)
+            }
         case .failed:
-            AlertService.alert(state: .error, title: "Email failed", body: "It seems your email ticked has not been send. Please try it later or contact use directly via email support@urgence.com.au", actionName: "I understand", vc: self, completion: nil)
+            controller.dismiss(animated: false) {
+                AlertService.alert(state: .error, title: "Email failed", body: "It seems your email ticked has not been send. Please try it later or contact use directly via email support@urgence.com.au", actionName: "I understand", vc: self, completion: nil)
+            }
         case .saved:
-            AlertService.alert(state: .warning, title: "Email saved", body: "Your email ticked has been saved.", actionName: "I understand", vc: self, completion: nil)
+            controller.dismiss(animated: false) {
+                AlertService.alert(state: .warning, title: "Email saved", body: "Your email ticked has been saved.", actionName: "I understand", vc: self, completion: nil)
+            }
         case .sent:
-            AlertService.alert(state: .success, title: "Email sent", body: "Your email ticked has been sent. We will be in touch shortly.", actionName: "I understand", vc: self, completion: nil)
+            controller.dismiss(animated: false) {
+                AlertService.alert(state: .success, title: "Email sent", body: "Your email ticked has been sent. We will be in touch shortly.", actionName: "I understand", vc: self, completion: nil)
+            }
         }
         
-        controller.dismiss(animated: true, completion: nil)
+//        controller.dismiss(animated: true, completion: nil)
     }
 }

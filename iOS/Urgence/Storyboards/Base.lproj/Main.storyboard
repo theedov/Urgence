@@ -222,8 +222,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" selectedImage="settings" id="Xo6-bK-723"/>
                     <connections>
-                        <outlet property="fullNameTxt" destination="Qex-ch-fop" id="faw-S0-93g"/>
-                        <outlet property="profilePicture" destination="Cxe-vj-cGv" id="MsN-hX-tJi"/>
+                        <outlet property="fullNameTxt" destination="Qex-ch-fop" id="yjz-47-GnE"/>
+                        <outlet property="profilePicture" destination="Cxe-vj-cGv" id="HkM-FS-0U1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9zp-4N-qhJ" sceneMemberID="firstResponder"/>
