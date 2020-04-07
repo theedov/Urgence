@@ -25,7 +25,10 @@ class UpdateProfileVC: UIViewController {
         //enable tap gesture for profilePicture
         profilePicture.isUserInteractionEnabled = true
         profilePicture.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.loadPhotoLibrary(tapGestureRecognizer:))))
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         loadProfilePicture()
     }
     
