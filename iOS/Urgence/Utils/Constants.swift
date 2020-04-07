@@ -35,3 +35,9 @@ enum SegueIDs {
 enum CoreDataEntities {
     static let Notification = "Notification"
 }
+
+enum AppImages {
+    static let Correct = "correct"
+    static let Incorrect = "incorrect"
+}
+

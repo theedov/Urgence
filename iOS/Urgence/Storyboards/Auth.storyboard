@@ -204,28 +204,28 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct-icon" translatesAutoresizingMaskIntoConstraints="NO" id="E8U-i5-Ucc">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct" translatesAutoresizingMaskIntoConstraints="NO" id="E8U-i5-Ucc">
                                 <rect key="frame" x="310" y="338.33333333333331" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="RHh-8k-BV1"/>
                                     <constraint firstAttribute="height" constant="25" id="UDn-dX-lyd"/>
                                 </constraints>
                             </imageView>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Nhw-hh-9bt">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct" translatesAutoresizingMaskIntoConstraints="NO" id="Nhw-hh-9bt">
                                 <rect key="frame" x="310" y="278.33333333333331" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="PzU-4C-arT"/>
                                     <constraint firstAttribute="height" constant="25" id="yWu-wI-34b"/>
                                 </constraints>
                             </imageView>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct-icon" translatesAutoresizingMaskIntoConstraints="NO" id="sXy-7d-Gnc">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct" translatesAutoresizingMaskIntoConstraints="NO" id="sXy-7d-Gnc">
                                 <rect key="frame" x="310" y="218.33333333333334" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="FUS-zh-qA0"/>
                                     <constraint firstAttribute="height" constant="25" id="Zbb-7u-81m"/>
                                 </constraints>
                             </imageView>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Bpz-fj-Erh">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct" translatesAutoresizingMaskIntoConstraints="NO" id="Bpz-fj-Erh">
                                 <rect key="frame" x="310" y="158.33333333333334" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="L91-4P-uAg"/>
@@ -419,7 +419,7 @@
     </scenes>
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
-        <image name="correct-icon" width="25" height="25"/>
+        <image name="correct" width="25" height="25"/>
         <image name="dots" width="7" height="31"/>
         <image name="logo" width="250" height="250"/>
         <namedColor name="UBackground">

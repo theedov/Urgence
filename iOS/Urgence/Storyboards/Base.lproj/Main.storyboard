@@ -13,7 +13,7 @@
             <objects>
                 <viewController storyboardIdentifier="MonitoringVC" id="BYZ-38-t0r" customClass="MonitoringVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IKT-IE-Ekv" customClass="UCollectionViev" customModule="Urgence" customModuleProvider="target">
@@ -63,7 +63,7 @@
             <objects>
                 <viewController storyboardIdentifier="SettingsVC" id="9aL-pC-wpf" customClass="SettingsVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AZs-48-jX4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-cc-ugj" userLabel="BGView" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -253,7 +253,7 @@
             <objects>
                 <viewController storyboardIdentifier="NotificationVC" id="LWa-zq-4hs" customClass="NotificationVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CfB-NU-ldI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CKt-9w-b1H" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -401,7 +401,7 @@
             <objects>
                 <viewController storyboardIdentifier="AddDeviceVC" id="OV7-0R-x8S" customClass="AddDeviceVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sa6-hB-jrn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRo-0w-dow" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -513,7 +513,7 @@
             <objects>
                 <viewController storyboardIdentifier="QRDeviceScannerVC" title="QRScanner" id="wBb-oo-be9" customClass="QRDeviceScannerVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UTF-ZL-nnf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mQ6-sb-3hW">
@@ -576,7 +576,7 @@
             <objects>
                 <viewController storyboardIdentifier="MonitoringDetailVC" id="WbS-OJ-RXw" customClass="DeviceVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xj3-AW-FtO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3n-ei-dzL" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -731,14 +731,14 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct-icon" translatesAutoresizingMaskIntoConstraints="NO" id="kBG-hf-zhb">
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct" translatesAutoresizingMaskIntoConstraints="NO" id="kBG-hf-zhb">
                                         <rect key="frame" x="310" y="102.66666666666666" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="FJb-lf-OY3"/>
                                             <constraint firstAttribute="width" constant="25" id="fut-hs-3ow"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct-icon" translatesAutoresizingMaskIntoConstraints="NO" id="3rb-0T-Oxi">
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct" translatesAutoresizingMaskIntoConstraints="NO" id="3rb-0T-Oxi">
                                         <rect key="frame" x="310" y="162.66666666666669" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="HBc-4X-66Y"/>
@@ -809,7 +809,7 @@
         <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="camera" catalog="system" width="128" height="96"/>
         <image name="check" width="50" height="50"/>
-        <image name="correct-icon" width="25" height="25"/>
+        <image name="correct" width="25" height="25"/>
         <image name="cross" width="50" height="50"/>
         <image name="dots" width="7" height="31"/>
         <image name="monitoring" width="24" height="24"/>
