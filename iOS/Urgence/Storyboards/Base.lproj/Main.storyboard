@@ -67,7 +67,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-cc-ugj" userLabel="BGView" customClass="UView" customModule="Urgence" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="183.66666666666669" width="375" height="545.33333333333326"/>
+                                <rect key="frame" x="0.0" y="179.66666666666669" width="375" height="549.33333333333326"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6ks-hV-llb">
                                         <rect key="frame" x="20" y="30" width="335" height="140"/>
@@ -223,7 +223,7 @@
                             <constraint firstItem="9Yy-l1-ZLb" firstAttribute="centerX" secondItem="Cxe-vj-cGv" secondAttribute="centerX" id="BbR-Lm-TZx"/>
                             <constraint firstItem="Zpt-5a-QjE" firstAttribute="leading" secondItem="VPW-tl-V4s" secondAttribute="leading" constant="20" id="En0-S4-Xfd"/>
                             <constraint firstItem="VPW-tl-V4s" firstAttribute="trailing" secondItem="Zpt-5a-QjE" secondAttribute="trailing" constant="20" id="KRI-y5-wLT"/>
-                            <constraint firstItem="C0l-cc-ugj" firstAttribute="top" secondItem="leO-Hs-8lE" secondAttribute="bottom" constant="30" id="Wzb-hx-sn8"/>
+                            <constraint firstItem="C0l-cc-ugj" firstAttribute="top" secondItem="leO-Hs-8lE" secondAttribute="bottom" constant="26" id="Wzb-hx-sn8"/>
                             <constraint firstItem="leO-Hs-8lE" firstAttribute="leading" secondItem="VPW-tl-V4s" secondAttribute="leading" id="fpq-qZ-PH2"/>
                             <constraint firstItem="VPW-tl-V4s" firstAttribute="bottom" secondItem="Zpt-5a-QjE" secondAttribute="bottom" constant="30" id="qYT-u8-B03"/>
                         </constraints>
