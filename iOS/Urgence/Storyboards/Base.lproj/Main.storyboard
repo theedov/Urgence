@@ -207,7 +207,7 @@
                                     <constraint firstItem="Cgr-J3-6yY" firstAttribute="top" secondItem="leO-Hs-8lE" secondAttribute="top" id="zWV-B1-y9Z"/>
                                 </constraints>
                             </view>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="9Yy-l1-ZLb">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="9Yy-l1-ZLb">
                                 <rect key="frame" x="40" y="113.66666666666667" width="20" height="20.000000000000014"/>
                                 <color key="color" name="UText"/>
                             </activityIndicatorView>
