@@ -16,6 +16,8 @@ class UpdateProfileVC: UIViewController {
     @IBOutlet weak var emailTxt: UTextField!
     @IBOutlet weak var profilePicture: UImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var imageActivityIndicator: UIActivityIndicatorView!
+    
     
     //Variables
     var profileImageChanged = false
@@ -44,12 +46,15 @@ class UpdateProfileVC: UIViewController {
     }
     
     func loadProfilePicture(){
+        imageActivityIndicator.startAnimating()
         let filePath = "\(authUser!.uid)/profile/profile-picture"
         Storage.storage().reference().child(filePath).downloadURL { (url, error) in
             if let error = error {
+                self.imageActivityIndicator.stopAnimating()
                 debugPrint("Error getting downloadURL: \(error)")
                 return
             }
+            self.imageActivityIndicator.stopAnimating()
             //present profile picture
             self.profilePicture.load(url: url!)
         }

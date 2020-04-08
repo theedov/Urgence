@@ -151,8 +151,8 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="FAH-SA-4BW">
                                         <rect key="frame" x="20" y="39.666666666666671" width="204" height="60"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Cxe-vj-cGv" customClass="UImageView" customModule="Urgence" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="1" width="60" height="57.666666666666671"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-profile" translatesAutoresizingMaskIntoConstraints="NO" id="Cxe-vj-cGv" customClass="UImageView" customModule="Urgence" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                 <color key="backgroundColor" name="UPrimary"/>
                                                 <color key="tintColor" name="UText"/>
                                                 <constraints>
@@ -841,8 +841,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kmx-ct-tdN" userLabel="BGView" customClass="UView" customModule="Urgence" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="119" width="375" height="659"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TRb-fz-pye" customClass="UImageView" customModule="Urgence" customModuleProvider="target">
-                                        <rect key="frame" x="112.66666666666669" y="31" width="150" height="147.66666666666669"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="TRb-fz-pye" customClass="UImageView" customModule="Urgence" customModuleProvider="target">
+                                        <rect key="frame" x="112.66666666666669" y="30" width="150" height="150"/>
                                         <color key="backgroundColor" name="UPrimary"/>
                                         <color key="tintColor" name="UText"/>
                                         <constraints>
@@ -909,11 +909,17 @@
                                             <action selector="onSavePressed:" destination="JIK-ZY-CfA" eventType="touchUpInside" id="aDX-GW-LQx"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="right" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="F7P-wH-3DV">
+                                        <rect key="frame" x="170" y="88.666666666666657" width="37" height="37"/>
+                                        <color key="color" name="UText"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" name="UBackground2"/>
                                 <constraints>
+                                    <constraint firstItem="F7P-wH-3DV" firstAttribute="centerX" secondItem="TRb-fz-pye" secondAttribute="centerX" constant="1" id="29f-EP-JYZ"/>
                                     <constraint firstItem="f7t-ky-NnL" firstAttribute="leading" secondItem="kmx-ct-tdN" secondAttribute="leading" constant="20" id="AGb-xg-3r5"/>
                                     <constraint firstAttribute="trailing" secondItem="Z77-et-pCy" secondAttribute="trailing" constant="20" id="CsM-xi-Hvr"/>
+                                    <constraint firstItem="F7P-wH-3DV" firstAttribute="centerY" secondItem="TRb-fz-pye" secondAttribute="centerY" constant="2" id="Fm0-nI-62R"/>
                                     <constraint firstItem="Joy-sD-msL" firstAttribute="top" secondItem="Z77-et-pCy" secondAttribute="bottom" constant="12" id="Hg8-Pb-Qlf"/>
                                     <constraint firstAttribute="trailing" secondItem="f7t-ky-NnL" secondAttribute="trailing" constant="20" id="Keu-TC-SNv"/>
                                     <constraint firstItem="TRb-fz-pye" firstAttribute="top" secondItem="kmx-ct-tdN" secondAttribute="top" constant="30" id="Msa-fA-i9a"/>
@@ -954,6 +960,7 @@
                         <outlet property="activityIndicator" destination="W23-a7-QyG" id="8ja-Xx-cQx"/>
                         <outlet property="emailTxt" destination="Mvg-X0-4WZ" id="EXx-Qb-gvD"/>
                         <outlet property="fullNameTxt" destination="wp4-3y-H8e" id="4Y9-ZI-zby"/>
+                        <outlet property="imageActivityIndicator" destination="F7P-wH-3DV" id="Ra4-18-Dfi"/>
                         <outlet property="profilePicture" destination="TRb-fz-pye" id="hRE-2s-g6H"/>
                     </connections>
                 </viewController>
@@ -965,11 +972,12 @@
     <resources>
         <image name="add" width="25" height="25"/>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
-        <image name="camera" catalog="system" width="128" height="96"/>
+        <image name="camera" width="150" height="150"/>
         <image name="check" width="50" height="50"/>
         <image name="correct" width="25" height="25"/>
         <image name="cross" width="50" height="50"/>
         <image name="dots" width="7" height="31"/>
+        <image name="empty-profile" width="150" height="150"/>
         <image name="monitoring" width="24" height="24"/>
         <image name="notification" width="24" height="24"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
@@ -998,7 +1006,7 @@
             <color red="0.125" green="0.14100000262260437" blue="0.16899999976158142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="UText">
-            <color red="0.80800002813339233" green="0.80800002813339233" blue="0.80800002813339233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
