@@ -63,6 +63,8 @@ class UpdateProfileVC: UIViewController {
     @IBAction func onSavePressed(_ sender: Any) {
         self.activityIndicator.startAnimating()
         updateProfileDetails()
+        
+        dismiss(animated: false, completion: nil)
     }
     
     func updateProfileDetails(){
