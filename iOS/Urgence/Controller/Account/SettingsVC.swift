@@ -15,6 +15,7 @@ class SettingsVC: UIViewController {
     //Outlets
     @IBOutlet weak var profilePicture: UImageView!
     @IBOutlet weak var fullNameTxt: UILabel!
+    @IBOutlet weak var profilePictureActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,14 +45,22 @@ class SettingsVC: UIViewController {
     }
     
     func loadProfilePicture(){
+        self.profilePictureActivityIndicator.startAnimating()
         let filePath = "\(authUser!.uid)/profile/profile-picture"
         Storage.storage().reference().child(filePath).downloadURL { (url, error) in
             if let error = error {
+                self.profilePictureActivityIndicator.stopAnimating()
                 debugPrint("Error getting downloadURL: \(error)")
                 return
             }
-            //present profile picture
-            self.profilePicture.load(url: url!)
+            self.profilePictureActivityIndicator.stopAnimating()
+            if let url = url {
+                //present profile picture
+                self.profilePicture.load(url: url)
+            } else {
+                //present profile placeholder
+                self.profilePicture.image = UIImage(named: "empty-profile")
+            }
         }
     }
     

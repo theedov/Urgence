@@ -13,7 +13,7 @@
             <objects>
                 <viewController storyboardIdentifier="MonitoringVC" id="BYZ-38-t0r" customClass="MonitoringVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IKT-IE-Ekv" customClass="UCollectionViev" customModule="Urgence" customModuleProvider="target">
@@ -63,7 +63,7 @@
             <objects>
                 <viewController storyboardIdentifier="SettingsVC" id="9aL-pC-wpf" customClass="SettingsVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AZs-48-jX4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-cc-ugj" userLabel="BGView" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -151,7 +151,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="FAH-SA-4BW">
                                         <rect key="frame" x="20" y="39.666666666666671" width="204" height="60"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-profile" translatesAutoresizingMaskIntoConstraints="NO" id="Cxe-vj-cGv" customClass="UImageView" customModule="Urgence" customModuleProvider="target">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cxe-vj-cGv" customClass="UImageView" customModule="Urgence" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                 <color key="backgroundColor" name="UPrimary"/>
                                                 <color key="tintColor" name="UText"/>
@@ -207,14 +207,20 @@
                                     <constraint firstItem="Cgr-J3-6yY" firstAttribute="top" secondItem="leO-Hs-8lE" secondAttribute="top" id="zWV-B1-y9Z"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="9Yy-l1-ZLb">
+                                <rect key="frame" x="40" y="113.66666666666667" width="20" height="20.000000000000014"/>
+                                <color key="color" name="UText"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" name="UBackground"/>
                         <constraints>
                             <constraint firstItem="C0l-cc-ugj" firstAttribute="leading" secondItem="VPW-tl-V4s" secondAttribute="leading" id="1qu-zF-ape"/>
+                            <constraint firstItem="9Yy-l1-ZLb" firstAttribute="centerY" secondItem="Cxe-vj-cGv" secondAttribute="centerY" id="2Xl-xO-BPP"/>
                             <constraint firstItem="C0l-cc-ugj" firstAttribute="bottom" secondItem="VPW-tl-V4s" secondAttribute="bottom" id="3jX-2X-Bpc"/>
                             <constraint firstItem="leO-Hs-8lE" firstAttribute="trailing" secondItem="VPW-tl-V4s" secondAttribute="trailing" id="3xd-cf-mWX"/>
                             <constraint firstItem="leO-Hs-8lE" firstAttribute="top" secondItem="VPW-tl-V4s" secondAttribute="top" constant="10" id="4is-Rj-Qc8"/>
                             <constraint firstItem="C0l-cc-ugj" firstAttribute="trailing" secondItem="VPW-tl-V4s" secondAttribute="trailing" id="9DS-5U-IuW"/>
+                            <constraint firstItem="9Yy-l1-ZLb" firstAttribute="centerX" secondItem="Cxe-vj-cGv" secondAttribute="centerX" id="BbR-Lm-TZx"/>
                             <constraint firstItem="Zpt-5a-QjE" firstAttribute="leading" secondItem="VPW-tl-V4s" secondAttribute="leading" constant="20" id="En0-S4-Xfd"/>
                             <constraint firstItem="VPW-tl-V4s" firstAttribute="trailing" secondItem="Zpt-5a-QjE" secondAttribute="trailing" constant="20" id="KRI-y5-wLT"/>
                             <constraint firstItem="C0l-cc-ugj" firstAttribute="top" secondItem="leO-Hs-8lE" secondAttribute="bottom" constant="30" id="Wzb-hx-sn8"/>
@@ -227,6 +233,7 @@
                     <connections>
                         <outlet property="fullNameTxt" destination="Qex-ch-fop" id="yjz-47-GnE"/>
                         <outlet property="profilePicture" destination="Cxe-vj-cGv" id="HkM-FS-0U1"/>
+                        <outlet property="profilePictureActivityIndicator" destination="9Yy-l1-ZLb" id="F3b-uw-1iJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9zp-4N-qhJ" sceneMemberID="firstResponder"/>
@@ -260,7 +267,7 @@
             <objects>
                 <viewController storyboardIdentifier="NotificationVC" id="LWa-zq-4hs" customClass="NotificationVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CfB-NU-ldI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CKt-9w-b1H" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -408,7 +415,7 @@
             <objects>
                 <viewController storyboardIdentifier="AddDeviceVC" id="OV7-0R-x8S" customClass="AddDeviceVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sa6-hB-jrn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRo-0w-dow" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -520,7 +527,7 @@
             <objects>
                 <viewController storyboardIdentifier="QRDeviceScannerVC" title="QRScanner" id="wBb-oo-be9" customClass="QRDeviceScannerVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UTF-ZL-nnf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mQ6-sb-3hW">
@@ -583,7 +590,7 @@
             <objects>
                 <viewController storyboardIdentifier="MonitoringDetailVC" id="WbS-OJ-RXw" customClass="DeviceVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xj3-AW-FtO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3n-ei-dzL" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -841,7 +848,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kmx-ct-tdN" userLabel="BGView" customClass="UView" customModule="Urgence" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="119" width="375" height="659"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="TRb-fz-pye" customClass="UImageView" customModule="Urgence" customModuleProvider="target">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TRb-fz-pye" customClass="UImageView" customModule="Urgence" customModuleProvider="target">
                                         <rect key="frame" x="112.66666666666669" y="30" width="150" height="150"/>
                                         <color key="backgroundColor" name="UPrimary"/>
                                         <color key="tintColor" name="UText"/>
@@ -972,12 +979,10 @@
     <resources>
         <image name="add" width="25" height="25"/>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
-        <image name="camera" width="150" height="150"/>
         <image name="check" width="50" height="50"/>
         <image name="correct" width="25" height="25"/>
         <image name="cross" width="50" height="50"/>
         <image name="dots" width="7" height="31"/>
-        <image name="empty-profile" width="150" height="150"/>
         <image name="monitoring" width="24" height="24"/>
         <image name="notification" width="24" height="24"/>
         <image name="pencil" catalog="system" width="128" height="113"/>

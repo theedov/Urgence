@@ -55,8 +55,14 @@ class UpdateProfileVC: UIViewController {
                 return
             }
             self.imageActivityIndicator.stopAnimating()
-            //present profile picture
-            self.profilePicture.load(url: url!)
+            
+            if let url = url {
+                //present profile picture
+                self.profilePicture.load(url: url)
+            } else {
+                //present profile placeholder
+                self.profilePicture.image = UIImage(named: "camera")
+            }
         }
     }
     
