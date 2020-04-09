@@ -18,17 +18,13 @@ main.use(bodyParser.urlencoded({extended: false}));
 
 //define google cloud function name
 export const api = functions.https.onRequest(main);
-//
-// app.post('/camera1', async (req, res) => {
-//
-// });
 
 // Receive camera_id & image from a camera and send push notification to user's device
 app.post('/camera', async (req, res) => {
 
     //Authorization
     const tokenId = req.get('Authorization')?.split('Bearer ')[1];
-    if(tokenId != functions.config().api.key){
+    if (tokenId != functions.config().api.key) {
         res.status(403).json({
             error: true,
             errorMessage: 'Unauthorized'
@@ -51,8 +47,8 @@ app.post('/camera', async (req, res) => {
     //Search in devices collection for userId
     db.collection("devices").where("deviceId", "==", camera_id)
         .get()
-        .then(function(querySnapshot) {
-            if(!querySnapshot.empty) {
+        .then(function (querySnapshot) {
+            if (!querySnapshot.empty) {
                 querySnapshot.forEach(function (doc) {
                     let device = doc.data();
                     let userRef = db.collection("users").doc(device.userId);
@@ -63,7 +59,8 @@ app.post('/camera', async (req, res) => {
 
                             //send push notification to users who have a device with the {deviceId} in users db
                             // @ts-ignore
-                            sendNotification(user.key, image_binary);
+                            // sendNotification(user.key, image_binary);
+                            uploadImageToStorageAndPushNotify(image_binary, user.id, user.key);
                             res.status(200).json({
                                 error: false,
                                 message: "Push notification has been sent"
@@ -91,7 +88,7 @@ app.post('/camera', async (req, res) => {
                 });
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             console.log("Error getting devices collection:", error);
             res.status(500).json({
                 error: true,
@@ -100,8 +97,33 @@ app.post('/camera', async (req, res) => {
         });
 
 });
+
+function uploadImageToStorageAndPushNotify(imageBinary: string, userId: string, groupKey: string) {
+    const bucket = admin.storage().bucket();
+    const imageBuffer = Buffer.from(imageBinary, 'base64');
+    const imageByteArray = new Uint8Array(imageBuffer);
+    const file = bucket.file(`${userId}/notifications/${Date.now().toString()}.jpg`);
+    const options = {resumable: false, metadata: {contentType: "image/jpg"}};
+
+    //options may not be necessary
+    return file.save(imageByteArray, options)
+        .then(stuff => {
+            return file.getSignedUrl({
+                action: 'read',
+                expires: '03-09-2500'
+            })
+        })
+        .then(urls => {
+            const url = urls[0];
+            sendNotification(groupKey, url);
+        })
+        .catch(err => {
+            console.log(`Unable to upload image ${err}`, err);
+        })
+}
+
 //
-function sendNotification(groupKey: string, image_binary: string) {
+function sendNotification(groupKey: string, imageUrl: string) {
     const payload = {
         notification: {
             title: '',
@@ -111,8 +133,8 @@ function sendNotification(groupKey: string, image_binary: string) {
             sound: 'default',
         },
         data: {
-            url: image_binary.toString(),
-            image: image_binary.toString(),
+            url: imageUrl,
+            image: imageUrl,
             dl: 'au.com.urgence://notification'
         }
     };
@@ -131,6 +153,6 @@ function sendNotification(groupKey: string, image_binary: string) {
     ).then(r => {
         console.log("Notification has been sent");
     }).catch(e => {
-        console.log("Error sending push notification");
+        console.log("Error sending push notification", e);
     });
 }
