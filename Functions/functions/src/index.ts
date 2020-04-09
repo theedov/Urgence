@@ -18,6 +18,10 @@ main.use(bodyParser.urlencoded({extended: false}));
 
 //define google cloud function name
 export const api = functions.https.onRequest(main);
+//
+// app.post('/camera1', async (req, res) => {
+//
+// });
 
 // Receive camera_id & image from a camera and send push notification to user's device
 app.post('/camera', async (req, res) => {
@@ -119,11 +123,14 @@ function sendNotification(groupKey: string, image_binary: string) {
         contentAvailable: true
     };
 
+
     admin.messaging().sendToDeviceGroup(
         groupKey,
         payload,
         options
     ).then(r => {
         console.log("Notification has been sent");
+    }).catch(e => {
+        console.log("Error sending push notification");
     });
 }
