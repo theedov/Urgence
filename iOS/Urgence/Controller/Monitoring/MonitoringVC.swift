@@ -13,6 +13,7 @@ class MonitoringVC: UIViewController {
     
     //Outlets
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var noDevicesView: UIView!
     
     //Variables
     var listener: ListenerRegistration!
@@ -66,6 +67,17 @@ class MonitoringVC: UIViewController {
         }
     }
     
+    func showAddDeviceTutorial() {
+        //check if there is at least one device registered
+        if devices.count > 0 {
+            noDevicesView.isHidden = true
+            return
+        }
+        
+        //show add device tutorial
+        noDevicesView.isHidden = false
+    }
+    
     func setDevicesListener() {
         listener = db.collection("devices").whereField("userId", isEqualTo: self.authUser?.uid).addSnapshotListener({ (snap, error) in
             if let error = error {
@@ -85,8 +97,10 @@ class MonitoringVC: UIViewController {
                 case .removed:
                     self.onDocumentRemoved(change: change)
                 }
-                
             })
+            
+            //will show a tutorial if there is no devices in devices array
+            self.showAddDeviceTutorial()
         })
     }
     
@@ -121,6 +135,7 @@ extension MonitoringVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
             
             collectionView.moveItem(at: IndexPath(item: oldIndex, section: 0), to: IndexPath(item: newIndex, section: 0))
         }
+        
     }
     
     func onDocumentRemoved(change: DocumentChange) {
