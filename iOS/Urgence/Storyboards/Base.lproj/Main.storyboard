@@ -13,7 +13,7 @@
             <objects>
                 <viewController storyboardIdentifier="MonitoringVC" id="BYZ-38-t0r" customClass="MonitoringVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IKT-IE-Ekv" customClass="UCollectionViev" customModule="Urgence" customModuleProvider="target">
@@ -111,7 +111,7 @@
             <objects>
                 <viewController storyboardIdentifier="SettingsVC" id="9aL-pC-wpf" customClass="SettingsVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AZs-48-jX4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-cc-ugj" userLabel="BGView" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -315,10 +315,19 @@
             <objects>
                 <viewController storyboardIdentifier="NotificationVC" id="LWa-zq-4hs" customClass="NotificationVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CfB-NU-ldI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CKt-9w-b1H" customClass="UView" customModule="Urgence" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no notifications found" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U78-I3-dkV">
+                                <rect key="frame" x="20" y="104" width="335" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="XiW-5z-Bnf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <color key="textColor" name="UText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CKt-9w-b1H" customClass="UView" customModule="Urgence" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="74" width="375" height="655"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HAU-Lx-5Fh" customClass="UImageView" customModule="Urgence" customModuleProvider="target">
@@ -336,7 +345,7 @@
                                             <constraint firstAttribute="height" constant="60" id="VXj-GO-jAl"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" name="UText"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dots" translatesAutoresizingMaskIntoConstraints="NO" id="GUT-5y-o4D">
@@ -369,7 +378,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNY-gq-q8O" customClass="UButton" customModule="Urgence" customModuleProvider="target">
-                                                <rect key="frame" x="172.66666666666663" y="0.0" width="122.33333333333334" height="70"/>
+                                                <rect key="frame" x="172.66666666666666" y="0.0" width="122.33333333333334" height="70"/>
                                                 <color key="backgroundColor" name="UDanger"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="Rg5-Lk-Vor"/>
@@ -414,17 +423,22 @@
                         </subviews>
                         <color key="backgroundColor" name="UBackground"/>
                         <constraints>
+                            <constraint firstItem="U78-I3-dkV" firstAttribute="leading" secondItem="jMA-bK-4aM" secondAttribute="leading" constant="20" id="CYI-Wb-3uI"/>
                             <constraint firstItem="CKt-9w-b1H" firstAttribute="trailing" secondItem="jMA-bK-4aM" secondAttribute="trailing" id="DWM-py-6dS"/>
+                            <constraint firstItem="jMA-bK-4aM" firstAttribute="trailing" secondItem="U78-I3-dkV" secondAttribute="trailing" constant="20" id="LHc-3e-nej"/>
                             <constraint firstItem="CKt-9w-b1H" firstAttribute="leading" secondItem="jMA-bK-4aM" secondAttribute="leading" id="Q1z-UB-7EO"/>
                             <constraint firstItem="CKt-9w-b1H" firstAttribute="top" secondItem="jMA-bK-4aM" secondAttribute="top" constant="30" id="QkV-bu-vhZ"/>
                             <constraint firstItem="CKt-9w-b1H" firstAttribute="bottom" secondItem="jMA-bK-4aM" secondAttribute="bottom" id="nPr-qn-fuO"/>
+                            <constraint firstItem="U78-I3-dkV" firstAttribute="top" secondItem="jMA-bK-4aM" secondAttribute="top" constant="60" id="wAS-eu-FmT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jMA-bK-4aM"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Notification" image="notification" selectedImage="notification" id="iCg-mK-pm7"/>
                     <connections>
+                        <outlet property="emptyNotificationLabel" destination="U78-I3-dkV" id="bFb-hq-xLW"/>
                         <outlet property="headerTxt" destination="l4c-BQ-FUz" id="2Gu-8g-7Db"/>
                         <outlet property="imageView" destination="HAU-Lx-5Fh" id="6Rl-l5-LmN"/>
+                        <outlet property="notificationView" destination="CKt-9w-b1H" id="yPS-UK-eOh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Coy-hW-bcj" sceneMemberID="firstResponder"/>
@@ -463,7 +477,7 @@
             <objects>
                 <viewController storyboardIdentifier="AddDeviceVC" id="OV7-0R-x8S" customClass="AddDeviceVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sa6-hB-jrn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRo-0w-dow" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -541,7 +555,7 @@
                                 </constraints>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Ktk-1Y-mV8">
-                                <rect key="frame" x="177.66666666666663" y="145" width="20" height="20"/>
+                                <rect key="frame" x="177.66666666666666" y="145" width="20" height="20"/>
                                 <color key="color" name="UText"/>
                             </activityIndicatorView>
                         </subviews>
@@ -575,7 +589,7 @@
             <objects>
                 <viewController storyboardIdentifier="QRDeviceScannerVC" title="QRScanner" id="wBb-oo-be9" customClass="QRDeviceScannerVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UTF-ZL-nnf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mQ6-sb-3hW">
@@ -638,7 +652,7 @@
             <objects>
                 <viewController storyboardIdentifier="MonitoringDetailVC" id="WbS-OJ-RXw" customClass="DeviceVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xj3-AW-FtO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3n-ei-dzL" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -722,7 +736,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJm-5N-x8c">
-                                <rect key="frame" x="110" y="53.999999999999993" width="155.33333333333337" height="21.666666666666664"/>
+                                <rect key="frame" x="110.00000000000001" y="53.999999999999993" width="155.33333333333337" height="21.666666666666664"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" name="UText"/>
                                 <nil key="highlightedColor"/>
@@ -829,7 +843,7 @@
                                 </constraints>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="KK9-N2-GuZ">
-                                <rect key="frame" x="177.66666666666663" y="85.666666666666671" width="20" height="20"/>
+                                <rect key="frame" x="177.66666666666666" y="85.666666666666671" width="20" height="20"/>
                                 <color key="color" name="UText"/>
                             </activityIndicatorView>
                         </subviews>
@@ -985,7 +999,7 @@
                                 </constraints>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="W23-a7-QyG">
-                                <rect key="frame" x="177.66666666666663" y="85.666666666666671" width="20" height="20"/>
+                                <rect key="frame" x="177.66666666666666" y="85.666666666666671" width="20" height="20"/>
                                 <color key="color" name="UText"/>
                             </activityIndicatorView>
                         </subviews>

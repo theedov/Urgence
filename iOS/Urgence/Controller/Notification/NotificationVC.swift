@@ -14,7 +14,10 @@ class NotificationVC: UIViewController {
     //Outlets
     @IBOutlet weak var imageView: UImageView!
     @IBOutlet weak var headerTxt: UILabel!
-        
+    @IBOutlet weak var notificationView: UView!
+    @IBOutlet weak var emptyNotificationLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         headerTxt.isHidden = false
@@ -31,10 +34,10 @@ class NotificationVC: UIViewController {
             request.returnsObjectsAsFaults = false
             
             do {
-                print("AAAAAAAAA: \(try context.fetch(request).count)")
                 if let result = try context.fetch(request).first as? NSManagedObject {
                     if let imageUrl = URL(string:result.value(forKey: "image") as! String){
                         let imageData = try Data(contentsOf: imageUrl)
+                        self.showNotificationIfAvailable(available: true)
                         DispatchQueue.main.async {
                             let image = UIImage(data: imageData)
                             self.imageView.image = image
@@ -48,24 +51,39 @@ class NotificationVC: UIViewController {
         }
     }
     
+    
+    func showNotificationIfAvailable(available: Bool) {
+        if available {
+            notificationView.isHidden = false
+            emptyNotificationLabel.isHidden = true
+            return
+        }
+        
+        notificationView.isHidden = true
+        emptyNotificationLabel.isHidden = false
+        
+    }
+    
     @IBAction func onAcceptPressed(_ sender: Any) {
+        showNotificationIfAvailable(available: false)
     }
     
     @IBAction func onDeclinePressed(_ sender: Any) {
-//        //save to core data model
-        let context = CoreDataHelper.getContext()
-
+        //        //save to core data model
+//        let context = CoreDataHelper.getContext()
+        
         //remove all data from entity
-//        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Notification")
-//        let request = NSBatchDeleteRequest(fetchRequest: fetch)
-//        do{
-//            try context.execute(request)
-//
-//        } catch {
-//            print("Failed cleaning up the Notification entity")
-//        }
+        //        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Notification")
+        //        let request = NSBatchDeleteRequest(fetchRequest: fetch)
+        //        do{
+        //            try context.execute(request)
+        //
+        //        } catch {
+        //            print("Failed cleaning up the Notification entity")
+        //        }
         
         if CoreDataHelper.deleteEntity(entityName: "Notification"){
+            showNotificationIfAvailable(available: false)
             self.tabBarController?.selectedIndex = 0
         }
     }
