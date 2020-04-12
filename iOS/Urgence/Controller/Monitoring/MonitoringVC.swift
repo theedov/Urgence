@@ -14,6 +14,7 @@ class MonitoringVC: UIViewController {
     //Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var noDevicesView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     //Variables
     var listener: ListenerRegistration!
@@ -41,6 +42,9 @@ class MonitoringVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         isSignedIn()
+        //will show a tutorial if there is no devices in devices array
+        self.showAddDeviceTutorial()
+        //listen to devices changes in firestore
         setDevicesListener()
     }
     
@@ -84,7 +88,6 @@ class MonitoringVC: UIViewController {
                 debugPrint(error.localizedDescription)
                 return
             }
-            
             snap?.documentChanges.forEach({ (change) in
                 let data = change.document.data()
                 let device = Device.init(data: data)
