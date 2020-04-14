@@ -30,7 +30,10 @@ class AddDeviceVC: UIViewController {
         let storyboard = UIStoryboard(name: StoryboardIDs.MainStoryboard, bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: VCIDs.QRDeviceScannerVC) as! QRDeviceScannerVC
         controller.deviceName = deviceNameTxt.text
-        self.navigationController?.pushViewController(controller, animated: true)
+        controller.presentingVC = self
+//        self.navigationController?.pushViewController(controller, animated: true)
+        self.navigationController?.present(controller, animated: true, completion: nil)
+        
         
     }
     

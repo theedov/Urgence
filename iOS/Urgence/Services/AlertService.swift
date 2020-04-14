@@ -15,7 +15,7 @@ enum AlertState {
 }
 
 class AlertService {
-    static func alert(state: AlertState, title: String, body: String, actionName: String, vc: UIViewController, completion: (() -> Void)?) {
+    static func alert(state: AlertState, title: String, body: String, actionName: String?, vc: UIViewController, completion: (() -> Void)?) {
         let storyboard = UIStoryboard(name: StoryboardIDs.AlertStoryboard, bundle: .main)
         let alertVC = storyboard.instantiateViewController(identifier: VCIDs.AlertVC) as! AlertVC
         

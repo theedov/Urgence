@@ -18,14 +18,14 @@ class AlertVC: UIViewController {
     
     var alertTitle = String()
     var alertBody = String()
-    var actionBtnTitle = String()
+    var actionBtnTitle: String?
     var btnAction: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        actionBtn.isHidden = true
         setupView()
-        
         //add gesture recognizer to dismiss alert on background tap
         bgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissOnTap)))
     }
@@ -37,7 +37,14 @@ class AlertVC: UIViewController {
     fileprivate func setupView() {
         titleLbl.text = alertTitle
         bodyLbl.text = alertBody
+        actionBtn.isHidden = false
         actionBtn.setTitle(actionBtnTitle, for: .normal)
+        if let action = actionBtnTitle, action.isNotEmpty {
+            actionBtn.isHidden = false
+            actionBtn.setTitle(action, for: .normal)
+        } else {
+            actionBtn.isHidden = true
+        }
     }
     
     @IBAction func didTapActionBtn(_ sender: Any) {

@@ -19,10 +19,11 @@ class QRDeviceScannerVC: UIViewController {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     var deviceName: String!
+    var presentingVC: UIViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadScanner()
+        self.loadScanner()  
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,29 +110,31 @@ extension QRDeviceScannerVC: AVCaptureMetadataOutputObjectsDelegate {
     
     func createFirestoreDevice(deviceId: String) {
         let uid = authUser!.uid
-        let deviceRef = Firestore.firestore().collection("devices").whereField("deviceId", isEqualTo: deviceId)
+        let deviceRef = Firestore.firestore().collection("devices").whereField("deviceId", isEqualTo: deviceId).whereField("userId", isEqualTo: uid)
         
-        deviceRef.getDocuments { [weak self] (snap, error) in
+        deviceRef.getDocuments { (snap, error) in
             if let error = error {
                 debugPrint("ERROR: \(error.localizedDescription)")
-                self?.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
                 return
             }
             
             if snap!.documents.isEmpty {
-                let data = ["room": self?.deviceName, "deviceId" : deviceId, "userId" : uid]
-                Firestore.firestore().collection("devices").addDocument(data: data as [String : Any]) { [weak self] (error) in
+                let data = ["room": self.deviceName, "deviceId" : deviceId, "userId" : uid]
+                Firestore.firestore().collection("devices").addDocument(data: data as [String : Any]) { (error) in
                     if let error = error {
                         debugPrint(error.localizedDescription)
-                        self?.dismiss(animated: true, completion: nil)
+                        self.dismiss(animated: true, completion: nil)
                     }else {
                         //Successfully added a device. Redirect back to MonitoringVC
-                        self?.navigationController?.popToRootViewController(animated: true)
+                        self.dismiss(animated: true, completion: nil)
+                        self.presentingVC.navigationController?.popToRootViewController(animated: false)
                     }
                 }
             } else {
-                self!.dismiss(animated: true) {
-                    AlertService.alert(state: .error, title: "Cannot add a device", body: "This device id is already in use", actionName: "I understand", vc: self!, completion: nil)
+                self.dismiss(animated: true) {
+                    self.captureSession = nil
+                    AlertService.alert(state: .error, title: "Cannot add a device", body: "This device is already added.", actionName: "I understand", vc: self.presentingVC, completion: nil)
                 }
             }
         }
