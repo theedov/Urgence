@@ -60,7 +60,7 @@ app.post('/camera', async (req, res) => {
                             //send push notification to users who have a device with the {deviceId} in users db
                             // @ts-ignore
                             // sendNotification(user.key, image_binary);
-                            uploadImageToStorageAndPushNotify(image_binary, user.id, user.key);
+                            uploadImageToStorageAndPushNotify(image_binary, camera_id, user.id, user.key);
                             res.status(200).json({
                                 error: false,
                                 message: "Push notification has been sent"
@@ -98,11 +98,11 @@ app.post('/camera', async (req, res) => {
 
 });
 
-function uploadImageToStorageAndPushNotify(imageBinary: string, userId: string, groupKey: string) {
+function uploadImageToStorageAndPushNotify(imageBinary: string, deviceId: string, userId: string, groupKey: string) {
     const bucket = admin.storage().bucket();
     const imageBuffer = Buffer.from(imageBinary, 'base64');
     const imageByteArray = new Uint8Array(imageBuffer);
-    const file = bucket.file(`${userId}/notifications/${Date.now().toString()}.jpg`);
+    const file = bucket.file(`${userId}/devices/${deviceId}/notifications/${Date.now().toString()}.jpg`);
     const options = {resumable: false, metadata: {contentType: "image/jpg"}};
 
     //options may not be necessary
