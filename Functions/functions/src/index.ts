@@ -10,6 +10,8 @@ admin.initializeApp(functions.config().firebase);
 //initialize express server
 const app = express();
 const main = express();
+var error = false;
+var errorMessage = "";
 
 //add the path to receive request and set json as bodyParser to process the body
 main.use('/v1', app);
@@ -61,40 +63,36 @@ app.post('/camera', async (req, res) => {
                             // @ts-ignore
                             // sendNotification(user.key, image_binary);
                             uploadImageToStorageAndPushNotify(image_binary, camera_id, user.id, user.key);
-                            res.status(200).json({
-                                error: false,
-                                message: "Push notification has been sent"
-                            });
-
-                        } else {
-                            console.log("No user document found");
-                            res.status(400).json({
-                                error: true,
-                                errorMessage: "No user found"
-                            });
                         }
                     }).catch(function (error) {
                         console.log("Error getting user document:", error);
-                        res.status(500).json({
-                            error: true,
-                            errorMessage: "Error getting user document: " + error
-                        });
+                        error = true;
+                        errorMessage = error
                     });
                 });
             } else {
-                res.status(400).json({
-                    error: true,
-                    message: "No devices found"
-                });
+                console.log("No device found");
+                error = true;
+                errorMessage = "No device found";
             }
         })
         .catch(function (error) {
             console.log("Error getting devices collection:", error);
-            res.status(500).json({
-                error: true,
-                errorMessage: "Error getting devices collection" + error
-            });
+            error = true;
+            errorMessage = error;
         });
+
+    if (error) {
+        res.status(500).json({
+            error: true,
+            errorMessage: errorMessage
+        });
+    } else {
+        res.status(200).json({
+            error: false,
+            errorMessage: "ok"
+        });
+    }
 
 });
 
@@ -102,7 +100,7 @@ function uploadImageToStorageAndPushNotify(imageBinary: string, deviceId: string
     const bucket = admin.storage().bucket();
     const imageBuffer = Buffer.from(imageBinary, 'base64');
     const imageByteArray = new Uint8Array(imageBuffer);
-    const file = bucket.file(`${userId}/devices/${deviceId}/notifications/${Date.now().toString()}.jpg`);
+    const file = bucket.file(`users/${userId}/devices/${deviceId}/notifications/${Date.now().toString()}.jpg`);
     const options = {resumable: false, metadata: {contentType: "image/jpg"}};
 
     //options may not be necessary
