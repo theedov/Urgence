@@ -29,7 +29,7 @@ app.post('/camera', async (req, res) => {
     if (tokenId != functions.config().api.key) {
         res.status(403).json({
             error: true,
-            errorMessage: 'Unauthorized'
+            errorMessage: '/camera: Unauthorized'
         });
     }
 
@@ -40,7 +40,7 @@ app.post('/camera', async (req, res) => {
     if (!device_id || !image_binary) {
         res.status(400).json({
             error: true,
-            errorMessage: 'Data should contain device_id, image_binary!'
+            errorMessage: '/camera: Data should contain device_id, image_binary!'
         });
     }
 
@@ -64,19 +64,19 @@ app.post('/camera', async (req, res) => {
                             uploadImageToStorageAndPushNotify(image_binary, device_id, user.id, user.key);
                         }
                     }).catch(function (error) {
-                        console.log("Error getting user document:", error);
+                        console.log("/camera: Error getting user document:", error);
                         error = true;
                         errorMessage = error
                     });
                 });
             } else {
-                console.log("No device found");
+                console.log("/camera: No device found");
                 error = true;
                 errorMessage = "No device found";
             }
         })
         .catch(function (error) {
-            console.log("Error getting devices collection:", error);
+            console.log("/camera: Error getting devices collection:", error);
             error = true;
             errorMessage = error;
         });
