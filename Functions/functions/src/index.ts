@@ -21,7 +21,7 @@ main.use(bodyParser.urlencoded({extended: false}));
 //define google cloud function name
 export const api = functions.https.onRequest(main);
 
-// Receive camera_id & image from a camera and send push notification to user's device
+// Receive device_id & image from a camera and send push notification to user's device
 app.post('/camera', async (req, res) => {
 
     //Authorization
@@ -34,20 +34,19 @@ app.post('/camera', async (req, res) => {
     }
 
     //Variables checking
-    const camera_id = req.body['camera_id'];
+    const device_id = req.body['device_id'];
     const image_binary = req.body['image_binary'];
-    // const errors: any[] = [];
 
-    if (!camera_id || !image_binary) {
+    if (!device_id || !image_binary) {
         res.status(400).json({
             error: true,
-            errorMessage: 'Data should contain camera_id, image_binary!'
+            errorMessage: 'Data should contain device_id, image_binary!'
         });
     }
 
     let db = admin.firestore();
     //Search in devices collection for userId
-    db.collection("devices").where("deviceId", "==", camera_id)
+    db.collection("devices").where("deviceId", "==", device_id)
         .get()
         .then(function (querySnapshot) {
             if (!querySnapshot.empty) {
@@ -62,7 +61,7 @@ app.post('/camera', async (req, res) => {
                             //send push notification to users who have a device with the {deviceId} in users db
                             // @ts-ignore
                             // sendNotification(user.key, image_binary);
-                            uploadImageToStorageAndPushNotify(image_binary, camera_id, user.id, user.key);
+                            uploadImageToStorageAndPushNotify(image_binary, device_id, user.id, user.key);
                         }
                     }).catch(function (error) {
                         console.log("Error getting user document:", error);
@@ -96,7 +95,7 @@ app.post('/camera', async (req, res) => {
 
 });
 
-// Receive camera_id & image from a camera and send push notification to user's device
+// Receive device_id & image from a camera and send push notification to user's device
 app.post('/version', async (req, res) => {
 
     //Authorization
