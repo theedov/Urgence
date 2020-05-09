@@ -96,6 +96,75 @@ app.post('/camera', async (req, res) => {
 
 });
 
+// Receive camera_id & image from a camera and send push notification to user's device
+app.post('/version', async (req, res) => {
+
+    //Authorization
+    const tokenId = req.get('Authorization')?.split('Bearer ')[1];
+    if (tokenId != functions.config().api.key) {
+        res.status(403).json({
+            error: true,
+            errorMessage: 'Unauthorized'
+        });
+    }
+
+    //Variables checking
+    const device_id = req.body['device_id'];
+
+    if (!device_id) {
+        res.status(400).json({
+            error: true,
+            errorMessage: 'Data should contain device_id!'
+        });
+    }
+
+    let db = admin.firestore();
+
+    //find latest added version id DB
+    db.collection("versions").orderBy("releaseDate", "desc").limit(1)
+        .get()
+        .then(snap => {
+            if (!snap.empty) {
+                let latestVersion = snap.docs[0].data().versionId;
+                let storage = admin.storage();
+
+                //find device by its id in DB
+                db.collection("devices").where("deviceId", "==", device_id).limit(1)
+                    .get()
+                    .then(snap => {
+                        if (!snap.empty) {
+                            let device = snap.docs[0].data();
+                            //check if device version is out of date and if updates are enabled
+                            if (device.versionId != latestVersion && device.update == true) {
+                                //find version file in storage, and get URL to download
+                                let file = storage.bucket().file("versions/" + latestVersion + ".zip");
+                                file.getSignedUrl({
+                                    action: 'read',
+                                    expires: '01-01-2125'
+                                }).then(results => {
+                                    console.info("version: Version file found");
+                                    res.status(200).json({
+                                        version_id: latestVersion,
+                                        file_url: results[0]
+                                    });
+                                }).catch(error => {
+                                    console.error("/version: " + error);
+                                });
+                            } else {
+                                console.info("/version: Device is up to date or updates are disabled");
+                                res.status(200).json({
+                                    message: "Device is up to date or updates are disabled"
+                                });
+                            }
+                        }
+                    });
+            }
+        })
+        .catch(error => {
+            console.error("/version: " + error);
+        });
+});
+
 function uploadImageToStorageAndPushNotify(imageBinary: string, deviceId: string, userId: string, groupKey: string) {
     const bucket = admin.storage().bucket();
     const imageBuffer = Buffer.from(imageBinary, 'base64');
@@ -120,7 +189,6 @@ function uploadImageToStorageAndPushNotify(imageBinary: string, deviceId: string
         })
 }
 
-//
 function sendNotification(groupKey: string, imageUrl: string) {
     const payload = {
         notification: {
