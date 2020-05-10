@@ -164,6 +164,73 @@ app.post('/version', async (req, res) => {
         });
 });
 
+app.post('/updated', async (req, res) => {
+
+    //Authorization
+    const tokenId = req.get('Authorization')?.split('Bearer ')[1];
+    if (tokenId != functions.config().api.key) {
+        res.status(403).json({
+            error: true,
+            errorMessage: 'Unauthorized'
+        });
+    }
+
+    //Variables
+    const device_id = req.body['device_id'];
+    const version_id = req.body['version_id'];
+
+    //Variables checking
+    if (!device_id || !version_id) {
+        res.status(400).json({
+            error: true,
+            errorMessage: 'Data should contain device_id & version_id!'
+        });
+    }
+
+    let db = admin.firestore();
+    //find devices with deviceId in DB
+    db.collection("devices").where("deviceId", "==", device_id)
+        .get()
+        .then(snap => {
+            if (!snap.empty) {
+                snap.forEach(doc => {
+                    //check if device updates are enabled
+                    if (doc.data().update == true) {
+                        //update device document(set new versionId)
+                        db.collection("devices").doc(doc.id).update({versionId: version_id})
+                            .then(_ => {
+                                console.info("/updated: Device versionId has been updated.");
+                                res.status(200).json({
+                                    error: false,
+                                    errorMessage: "ok"
+                                });
+                            })
+                            .catch(error => {
+                                console.error("/updated: " + error);
+                                res.status(500).json({
+                                    error: true,
+                                    errorMessage: error
+                                });
+                            });
+                    } else {
+                        console.error("/updated: Updates are disabled");
+                        res.status(500).json({
+                            error: true,
+                            errorMessage: "Updates are disabled"
+                        });
+                    }
+                });
+            }
+        })
+        .catch(error => {
+            console.error("/updated: " + error);
+            res.status(500).json({
+                error: true,
+                errorMessage: error
+            });
+        });
+});
+
 function uploadImageToStorageAndPushNotify(imageBinary: string, deviceId: string, userId: string, groupKey: string) {
     const bucket = admin.storage().bucket();
     const imageBuffer = Buffer.from(imageBinary, 'base64');
