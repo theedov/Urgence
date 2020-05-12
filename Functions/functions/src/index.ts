@@ -143,15 +143,24 @@ app.post('/version', async (req, res) => {
                                 }).then(results => {
                                     console.info("version: Version file found");
                                     res.status(200).json({
-                                        version_id: latestVersion,
+                                        error: false,
+                                        require_update: true,
+                                        new_version: latestVersion,
                                         file_url: results[0]
                                     });
                                 }).catch(error => {
                                     console.error("/version: " + error);
+                                    res.status(500).json({
+                                        error: true,
+                                        require_update: false,
+                                        message: error
+                                    });
                                 });
                             } else {
                                 console.info("/version: Device is up to date or updates are disabled");
                                 res.status(200).json({
+                                    error: false,
+                                    require_update: false,
                                     message: "Device is up to date or updates are disabled"
                                 });
                             }
@@ -161,6 +170,10 @@ app.post('/version', async (req, res) => {
         })
         .catch(error => {
             console.error("/version: " + error);
+            res.status(500).json({
+                error: true,
+                message: error
+            });
         });
 });
 
