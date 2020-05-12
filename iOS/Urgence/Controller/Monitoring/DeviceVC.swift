@@ -33,7 +33,7 @@ class DeviceVC: UIViewController {
         self.title = device.room
         self.db = Firestore.firestore()
         
-        updateView()
+        updateUI()
     }
     
     override func viewDidAppear(_ animated : Bool) {
@@ -48,7 +48,7 @@ class DeviceVC: UIViewController {
         UIView.setAnimationsEnabled(true)
     }
     
-    func updateView(){
+    func updateUI(){
         automaticUpdatesSwitch.isOn = device.update
         versionTxt.text = device.versionId
     }
@@ -65,7 +65,7 @@ class DeviceVC: UIViewController {
                 
                 switch change.type {
                 case .modified:
-                    self.updateView()
+                    self.updateUI()
                     break
                 case .added:
                     break
