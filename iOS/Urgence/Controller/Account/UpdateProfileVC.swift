@@ -47,7 +47,7 @@ class UpdateProfileVC: UIViewController {
     
     func loadProfilePicture(){
         imageActivityIndicator.startAnimating()
-        let filePath = "\(authUser!.uid)/profile/profile-picture"
+        let filePath = "users/\(authUser!.uid)/profile/profile-picture"
         Storage.storage().reference().child(filePath).downloadURL { (url, error) in
             if let error = error {
                 self.imageActivityIndicator.stopAnimating()
@@ -131,7 +131,7 @@ class UpdateProfileVC: UIViewController {
         }
         
         //delete current image
-        deleteImage(path: "\(authUser!.uid)/profile/profile-picture")
+        deleteImage(path: "users/\(authUser!.uid)/profile/profile-picture")
         //upload new profile picture to the storage
         uploadImage(image: profilePicture.image!)
     }
@@ -141,7 +141,7 @@ class UpdateProfileVC: UIViewController {
         var data = Data()
         data = image.jpegData(compressionQuality: 0.8)!
         //set upload path
-        let filePath = "\(authUser!.uid)/profile/profile-picture" //path to save image in storage
+        let filePath = "users/\(authUser!.uid)/profile/profile-picture" //path to save image in storage
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         
