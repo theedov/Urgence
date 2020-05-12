@@ -11,9 +11,20 @@ import Firebase
 
 class DeviceVC: UIViewController {
     
-    //Variablse
+    //Outlets
+    @IBOutlet weak var versionTxt: UILabel!
+    @IBOutlet weak var automaticUpdatesSwitch: UISwitch!
+    
+    
+    //Variables
+    var listener: ListenerRegistration!
     var device: Device!
     var db: Firestore!
+    var isUpdateEnabled = false {
+        didSet{
+            changeUpdateState(isEnabled: isUpdateEnabled)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +32,47 @@ class DeviceVC: UIViewController {
         // Do any additional setup after loading the view.
         self.title = device.room
         self.db = Firestore.firestore()
+        
+        updateView()
     }
     
-    override func viewWillDisappear(_ animated : Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidAppear(_ animated : Bool) {
+        super.viewDidAppear(animated)
         UIView.setAnimationsEnabled(false)
+        
+        setDeviceListener()
     }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         UIView.setAnimationsEnabled(true)
+    }
+    
+    func setDeviceListener() {
+        listener = db.collection("devices").whereField("deviceId", isEqualTo: device.id).whereField("userId", isEqualTo: self.authUser!.uid).limit(to: 1).addSnapshotListener({ (snap, error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                return
+            }
+            snap?.documentChanges.forEach({ (change) in
+                let data = change.document.data()
+                self.device = Device.init(data: data)
+                
+                switch change.type {
+                case .modified:
+                    self.updateView()
+                    break
+                case .added:
+                    break
+                case .removed:
+                    break
+                }
+            })
+        })
+    }
+    
+    func updateView(){
+        automaticUpdatesSwitch.isOn = device.update
     }
     
     @IBAction func onDisconnectDevicePressed(_ sender: Any) {
@@ -51,6 +94,34 @@ class DeviceVC: UIViewController {
                     //go back to MonitoringVC
                     self.navigationController?.popViewController(animated: false)
                 }
+        }
+    }
+    
+    @IBAction func onAutoUpdatesSwitchPressed(_ sender: UISwitch) {
+        isUpdateEnabled.toggle()
+    }
+    
+    func changeUpdateState(isEnabled: Bool){
+        //search for all devices with provided device.id
+        db.collection("devices").whereField("deviceId", isEqualTo: device.id).getDocuments { (snap, error) in
+            //notify when error occurs
+            if let _ = error {
+                AlertService.alert(state: .error, title: "Enabling updates", body: "Updates cannot be enabled right now. Please try later or contact use directly.", actionName: nil, vc: self, completion: nil)
+            }
+            
+            if let snap = snap {
+                //loop through the all results
+                for document in snap.documents {
+                    let deviceRef = document.reference
+                    //enable device updates in DB
+                    deviceRef.updateData(["update": isEnabled]) { (error) in
+                        //notify when error occurs
+                        if let _ = error {
+                            AlertService.alert(state: .error, title: "Enabling updates", body: "Updates cannot be enabled right now. Please try later or contact use directly.", actionName: nil, vc: self, completion: nil)
+                        }
+                    }
+                }
+            }
         }
     }
 }
