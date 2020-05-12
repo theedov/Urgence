@@ -48,6 +48,11 @@ class DeviceVC: UIViewController {
         UIView.setAnimationsEnabled(true)
     }
     
+    func updateView(){
+        automaticUpdatesSwitch.isOn = device.update
+        versionTxt.text = device.versionId
+    }
+    
     func setDeviceListener() {
         listener = db.collection("devices").whereField("deviceId", isEqualTo: device.id).whereField("userId", isEqualTo: self.authUser!.uid).limit(to: 1).addSnapshotListener({ (snap, error) in
             if let error = error {
@@ -69,10 +74,6 @@ class DeviceVC: UIViewController {
                 }
             })
         })
-    }
-    
-    func updateView(){
-        automaticUpdatesSwitch.isOn = device.update
     }
     
     @IBAction func onDisconnectDevicePressed(_ sender: Any) {
