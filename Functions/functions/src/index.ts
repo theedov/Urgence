@@ -134,7 +134,7 @@ app.post('/version', async (req, res) => {
                         if (!snap.empty) {
                             let device = snap.docs[0].data();
                             //check if device version is out of date and if updates are enabled
-                            if (device.versionId != latestVersion && device.update == true) {
+                            if ((device.versionId != latestVersion) && (device.versionId < latestVersion) && (device.update == true)) {
                                 //find version file in storage, and get URL to download
                                 let file = storage.bucket().file("versions/" + latestVersion + ".zip");
                                 file.getSignedUrl({
@@ -164,6 +164,12 @@ app.post('/version', async (req, res) => {
                                     message: "Device is up to date or updates are disabled"
                                 });
                             }
+                        } else {
+                            console.error("/version: Device not found");
+                            res.status(500).json({
+                                error: true,
+                                message: "Device not found"
+                            });
                         }
                     });
             }
@@ -232,6 +238,12 @@ app.post('/updated', async (req, res) => {
                             errorMessage: "Updates are disabled"
                         });
                     }
+                });
+            } else {
+                console.error("/version: Device not found");
+                res.status(500).json({
+                    error: true,
+                    message: "Device not found"
                 });
             }
         })
