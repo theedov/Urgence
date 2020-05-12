@@ -15,14 +15,6 @@ struct Device {
     var userId: String
     var update: Bool
     
-    init(id: String, versionId: String, room: String, userId: String, update: Bool) {
-        self.id = id
-        self.versionId = versionId
-        self.room = room
-        self.userId = userId
-        self.update = update
-    }
-    
     init(data: [String: Any]) {
         self.id = data["deviceId"] as? String ?? ""
         self.versionId = data["versionId"] as? String ?? "1.0"
