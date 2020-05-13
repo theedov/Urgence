@@ -20,11 +20,6 @@ class DeviceVC: UIViewController {
     var listener: ListenerRegistration!
     var device: Device!
     var db: Firestore!
-    var isUpdateEnabled = false {
-        didSet{
-            changeUpdateState(isEnabled: isUpdateEnabled)
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +60,7 @@ class DeviceVC: UIViewController {
                 
                 switch change.type {
                 case .modified:
+                    self.changeUpdateState(isEnabled: self.device.update)
                     self.updateUI()
                     break
                 case .added:
@@ -99,7 +95,11 @@ class DeviceVC: UIViewController {
     }
     
     @IBAction func onAutoUpdatesSwitchPressed(_ sender: UISwitch) {
-        isUpdateEnabled.toggle()
+        if sender.isOn == true {
+            changeUpdateState(isEnabled: true)
+        } else {
+            changeUpdateState(isEnabled: false)
+        }
     }
     
     func changeUpdateState(isEnabled: Bool){
