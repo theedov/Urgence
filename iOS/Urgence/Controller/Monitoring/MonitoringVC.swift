@@ -18,14 +18,13 @@ class MonitoringVC: UIViewController {
     
     //Variables
     var listener: ListenerRegistration!
-    var db: Firestore!
+    lazy var db = Firestore.firestore()
     var devices = [Device]()
     var selectedDevice: Device!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.db = Firestore.firestore()
         setupCollectionView()
         
         
