@@ -9,6 +9,11 @@
 import Foundation
 import CoreData
 import UIKit
+import Firebase
+
+//shared variables
+var db = Firestore.firestore()
+var functions = Functions.functions()
 
 enum StoryboardIDs {
     static let MainStoryboard = "Main"
