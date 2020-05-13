@@ -19,14 +19,14 @@ class DeviceVC: UIViewController {
     //Variables
     var listener: ListenerRegistration!
     var device: Device!
-    var db: Firestore!
+    lazy var db = Firestore.firestore()
+    lazy var functions = Functions.functions()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         self.title = device.room
-        self.db = Firestore.firestore()
         
         updateUI()
     }
