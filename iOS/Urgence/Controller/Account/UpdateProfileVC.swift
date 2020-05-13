@@ -99,7 +99,7 @@ class UpdateProfileVC: UIViewController {
         //update firestore details
         let fields = ["fullName":fullNameTxt.text!, "email":emailTxt.text!]
         
-        Firestore.firestore().collection("users").document(authUser!.uid).updateData(fields) { (error) in
+        db.collection("users").document(authUser!.uid).updateData(fields) { (error) in
             if let _ = error {
                 self.activityIndicator.stopAnimating()
                 AlertService.alert(state: .error, title: "Cannot update profile details", body: "Please try it later or contact us directly: info@urgence.com.au", actionName: "I understand", vc: self, completion: nil)

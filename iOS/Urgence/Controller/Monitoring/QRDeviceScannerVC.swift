@@ -8,7 +8,6 @@
 
 import UIKit
 import AVFoundation
-import Firebase
 
 class QRDeviceScannerVC: UIViewController {
     
@@ -110,7 +109,7 @@ extension QRDeviceScannerVC: AVCaptureMetadataOutputObjectsDelegate {
     
     func createFirestoreDevice(deviceId: String) {
         let uid = authUser!.uid
-        let deviceRef = Firestore.firestore().collection("devices").whereField("deviceId", isEqualTo: deviceId).whereField("userId", isEqualTo: uid)
+        let deviceRef = db.collection("devices").whereField("deviceId", isEqualTo: deviceId).whereField("userId", isEqualTo: uid)
         
         deviceRef.getDocuments { (snap, error) in
             if let error = error {
@@ -121,7 +120,7 @@ extension QRDeviceScannerVC: AVCaptureMetadataOutputObjectsDelegate {
             
             if snap!.documents.isEmpty {
                 let data = ["room": self.deviceName, "deviceId" : deviceId, "userId" : uid]
-                Firestore.firestore().collection("devices").addDocument(data: data as [String : Any]) { (error) in
+                db.collection("devices").addDocument(data: data as [String : Any]) { (error) in
                     if let error = error {
                         debugPrint(error.localizedDescription)
                         self.dismiss(animated: true, completion: nil)

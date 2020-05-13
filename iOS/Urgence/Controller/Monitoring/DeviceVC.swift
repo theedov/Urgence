@@ -19,7 +19,6 @@ class DeviceVC: UIViewController {
     //Variables
     var listener: ListenerRegistration!
     var device: Device!
-    lazy var db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()

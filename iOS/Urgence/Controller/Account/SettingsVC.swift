@@ -34,7 +34,7 @@ class SettingsVC: UIViewController {
     }
     
     func loadFullName(){
-        Firestore.firestore().collection("users").document(authUser!.uid).getDocument { (document, error) in
+        db.collection("users").document(authUser!.uid).getDocument { (document, error) in
             if let document = document, document.exists {
                 let user = document.data()
                 self.fullNameTxt.text = user!["fullName"] as? String
@@ -81,7 +81,7 @@ class SettingsVC: UIViewController {
         }
         
         //remove fcmtoken from database
-        let tokensRef = Firestore.firestore().collection("users").document(uid).collection("tokens")
+        let tokensRef = db.collection("users").document(uid).collection("tokens")
         tokensRef.whereField("token", isEqualTo: token).getDocuments { (snap, error) in
             if let error = error {
                 return

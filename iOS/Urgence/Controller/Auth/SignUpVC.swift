@@ -52,7 +52,7 @@ class SignUpVC: UIViewController {
             
             //Register user-specific notification group
             FcmTokenHandler.registerNotificationGroup(uid: fireUser.uid, tokens: [Messaging.messaging().fcmToken ?? ""]) { (key) in
-                let usersRef = Firestore.firestore().collection("users").document(fireUser.uid)
+                let usersRef = db.collection("users").document(fireUser.uid)
                 usersRef.setData(["key": key ?? ""], merge: true)
             }
             
@@ -79,7 +79,7 @@ class SignUpVC: UIViewController {
     }
     
     fileprivate func createFirestoreUser(user: UUser) {
-        let ref = Firestore.firestore().collection("users").document(user.id)
+        let ref = db.collection("users").document(user.id)
         let data = UUser.modelToData(user: user)
         
         ref.setData(data) { [weak self] (error) in

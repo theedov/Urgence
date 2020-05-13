@@ -18,7 +18,6 @@ class MonitoringVC: UIViewController {
     
     //Variables
     var listener: ListenerRegistration!
-    lazy var db = Firestore.firestore()
     var devices = [Device]()
     var selectedDevice: Device!
     
