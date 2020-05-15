@@ -10,8 +10,9 @@ admin.initializeApp(functions.config().firebase);
 //initialize express server
 const app = express();
 const main = express();
-var error = false;
-var errorMessage = "";
+const db = admin.firestore();
+let error = false;
+let errorMessage = "";
 
 //add the path to receive request and set json as bodyParser to process the body
 main.use('/v1', app);
@@ -44,42 +45,83 @@ app.post('/camera', async (req, res) => {
         });
     }
 
-    let db = admin.firestore();
-    //Search in devices collection for userId
-    db.collection("devices").where("deviceId", "==", device_id)
-        .get()
-        .then(function (querySnapshot) {
-            if (!querySnapshot.empty) {
-                querySnapshot.forEach(function (doc) {
-                    let device = doc.data();
-                    let userRef = db.collection("users").doc(device.userId);
+    //Config for upload to storage
+    const bucket = admin.storage().bucket();
+    const imageBuffer = Buffer.from(image_binary, 'base64');
+    const imageByteArray = new Uint8Array(imageBuffer);
+    const path = `notifications/${Date.now().toString()}.jpg`;
+    const file = bucket.file(path);
+    const options = {resumable: false, metadata: {contentType: "image/jpg"}};
 
-                    userRef.get().then(function (doc) {
-                        if (doc.exists) {
-                            let user = doc.data();
-
-                            //send push notification to users who have a device with the {deviceId} in users db
-                            // @ts-ignore
-                            // sendNotification(user.key, image_binary);
-                            uploadImageToStorageAndPushNotify(image_binary, device_id, user.id, user.key);
-                        }
-                    }).catch(function (error) {
-                        console.log("/camera: Error getting user document:", error);
-                        error = true;
-                        errorMessage = error
-                    });
-                });
-            } else {
-                console.log("/camera: No device found");
-                error = true;
-                errorMessage = "No device found";
-            }
+    //upload to storage and get URL
+    let url = await file.save(imageByteArray, options)
+        .then(_ => {
+            return file.getSignedUrl({
+                action: 'read',
+                expires: '03-09-2500'
+            });
         })
-        .catch(function (error) {
-            console.log("/camera: Error getting devices collection:", error);
-            error = true;
-            errorMessage = error;
+        .then(urls => {
+            return urls[0];
+        })
+        .catch(err => {
+            console.log(`Unable to upload image`, err);
+            return null;
         });
+
+    // Find all registered devices with device_id,
+    // then add notification to the database for each user who has device with device_id added in their app,
+    // and then send a push notification to all these users
+    if (url != null) {
+        db.collection("devices").where("deviceId", "==", device_id)
+            .get()
+            .then(snap => {
+                if (!snap.empty) {
+                    snap.forEach(doc => {
+                        let device = doc.data();
+
+                        //find user by userId
+                        db.collection("users").doc(device.userId)
+                            .get()
+                            .then(doc => {
+                                if (doc.exists) {
+                                    let user = doc.data();
+
+                                    //add notification to DB
+                                    db.collection("notifications").add({
+                                        userId: user!.id,
+                                        deviceId: device_id,
+                                        title: `Notification - ${device.name}`,
+                                        imageUrl: url,
+                                        imagePath: path,
+                                        active: true,
+                                        accepted: false,
+                                        declined: false,
+                                        createdAt: admin.firestore.FieldValue.serverTimestamp()
+                                    }).then(_ => {
+                                        //send push notification
+                                        sendNotification(user!.key, url ?? "");
+                                        console.log("notification added to the database");
+                                    }).catch(error => {
+                                        console.error(`Unable to add notification to db`, error);
+                                        error = true;
+                                        errorMessage = error;
+                                    })
+                                }
+                            }).catch(function (error) {
+                            console.error("/camera: Error getting user document:", error);
+                            error = true;
+                            errorMessage = error;
+                        });
+                    });
+                }
+            })
+            .catch(function (error) {
+                console.error("/camera: Error getting devices collection:", error);
+                error = true;
+                errorMessage = error;
+            });
+    }
 
     if (error) {
         res.status(500).json({
@@ -255,30 +297,6 @@ app.post('/updated', async (req, res) => {
             });
         });
 });
-
-function uploadImageToStorageAndPushNotify(imageBinary: string, deviceId: string, userId: string, groupKey: string) {
-    const bucket = admin.storage().bucket();
-    const imageBuffer = Buffer.from(imageBinary, 'base64');
-    const imageByteArray = new Uint8Array(imageBuffer);
-    const file = bucket.file(`users/${userId}/devices/${deviceId}/notifications/${Date.now().toString()}.jpg`);
-    const options = {resumable: false, metadata: {contentType: "image/jpg"}};
-
-    //options may not be necessary
-    return file.save(imageByteArray, options)
-        .then(stuff => {
-            return file.getSignedUrl({
-                action: 'read',
-                expires: '03-09-2500'
-            })
-        })
-        .then(urls => {
-            const url = urls[0];
-            sendNotification(groupKey, url);
-        })
-        .catch(err => {
-            console.log(`Unable to upload image ${err}`, err);
-        })
-}
 
 function sendNotification(groupKey: string, imageUrl: string) {
     const payload = {
