@@ -80,7 +80,7 @@ app.post('/camera', async (req, res) => {
             .then(snap => {
                 if (!snap.empty) {
                     snap.forEach(doc => {
-                        let device = doc.data();
+                        const device = doc.data();
                         const uniqueId = uuidv4();
 
                         //find user by userId
@@ -88,7 +88,7 @@ app.post('/camera', async (req, res) => {
                             .get()
                             .then(doc => {
                                 if (doc.exists) {
-                                    let user = doc.data();
+                                    const user = doc.data();
 
                                     //add notification to DB
                                     db.collection("notifications").doc(uniqueId).set({
@@ -141,7 +141,8 @@ app.post('/camera', async (req, res) => {
 
 });
 
-// Receive device_id & image from a camera and send push notification to user's device
+// This function returns a downloadable URL to new version of ML file,
+// but only if device has enabled automatic updated and there is a higher version available.
 app.post('/version', async (req, res) => {
 
     //Authorization
@@ -229,6 +230,7 @@ app.post('/version', async (req, res) => {
         });
 });
 
+// This function updates versionId of each device where deviceId = posted device_id
 app.post('/updated', async (req, res) => {
 
     //Authorization
@@ -302,6 +304,8 @@ app.post('/updated', async (req, res) => {
         });
 });
 
+// This returns list of urls to images that users "accepted" in the NotificationVC screen
+// Mainly used to retrain the ML model
 app.post('/acceptedFilesList', async (req, res) => {
 
     //Authorization
@@ -312,8 +316,8 @@ app.post('/acceptedFilesList', async (req, res) => {
             errorMessage: 'Unauthorized'
         });
     }
-    let urls: any[] = [];
-    let [files] = await storage.getFiles({directory: 'notifications/accepted'});
+    const urls: any[] = [];
+    const [files] = await storage.getFiles({directory: 'notifications/accepted'});
 
     for (const file of files) {
         let filePath = file.name;
@@ -328,9 +332,10 @@ app.post('/acceptedFilesList', async (req, res) => {
     res.status(200).json({urls});
 });
 
+// This updates a notification active state, when user opens a notification for the first time
 exports.onNotificationOpen = functions.https.onCall((data, context) => {
     //Variables checking
-    let notification_id = data.notification_id;
+    const notification_id = data.notification_id;
     if (!notification_id) {
         return false;
     }
@@ -346,16 +351,18 @@ exports.onNotificationOpen = functions.https.onCall((data, context) => {
     });
 });
 
+// When user accepts a notification in the NotificationVC screen, it copies a notification image to "accepted" folder in storage.
+// Mainly used to retrain ML model by calling /acceptedFilesList request, which returns array of "accepted" images.
 exports.onAcceptPrediction = functions.https.onCall((data, context) => {
     //Variables checking
-    let path = data.path;
-    let notification_id = data.notification_id;
+    const path = data.path;
+    const notification_id = data.notification_id;
     if (!path || !notification_id) {
         return false;
     }
 
     //Copy file
-    let file = storage.file(path);
+    const file = storage.file(path);
     return file.copy(`notifications/accepted/${Date.now().toString()}.jpg`)
         .then(_ => {
             console.log("onAcceptPrediction: Accepted prediction file successfully copied");
@@ -376,9 +383,10 @@ exports.onAcceptPrediction = functions.https.onCall((data, context) => {
 
 });
 
+// When user declines a notification in the NotificationVC screen, it updated the "decline" state in DB
 exports.onDeclinePrediction = functions.https.onCall((data, context) => {
     //Variables checking
-    let notification_id = data.notification_id;
+    const notification_id = data.notification_id;
     if (!notification_id) {
         return false;
     }
@@ -393,6 +401,8 @@ exports.onDeclinePrediction = functions.https.onCall((data, context) => {
     });
 });
 
+
+// Send a push notification
 function sendNotification(groupKey: string, imageUrl: string) {
     const payload = {
         notification: {
@@ -423,6 +433,6 @@ function sendNotification(groupKey: string, imageUrl: string) {
     ).then(r => {
         console.log("Notification has been sent");
     }).catch(e => {
-        console.log("Error sending push notification", e);
+        console.error("Error sending push notification", e);
     });
 }
