@@ -21,10 +21,10 @@
 		6F72391623A2C71400538D3B /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F72391523A2C71400538D3B /* QRCodeGenerator.swift */; };
 		6F72391823A2CA1200538D3B /* WifiInfoAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F72391723A2CA1200538D3B /* WifiInfoAccessor.swift */; };
 		6F809E262361E7A700F1F9BA /* UUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F809E252361E7A700F1F9BA /* UUser.swift */; };
+		6F8218E9246D1A4A00556752 /* UNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8218E8246D1A4A00556752 /* UNotification.swift */; };
 		6F8268872365DE99001994D3 /* FcmTokenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8268862365DE99001994D3 /* FcmTokenHandler.swift */; };
 		6F9EF3D524345F0A00B4FAF7 /* QRDeviceScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9EF3D424345F0A00B4FAF7 /* QRDeviceScannerVC.swift */; };
 		6F9EF3D92434849700B4FAF7 /* Notification.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F9EF3D72434849700B4FAF7 /* Notification.xcdatamodeld */; };
-		6F9EF3FE2434899300B4FAF7 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9EF3FD2434899300B4FAF7 /* CoreDataHelper.swift */; };
 		6F9EF4002434DEF400B4FAF7 /* UImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9EF3FF2434DEF400B4FAF7 /* UImageView.swift */; };
 		6F9EF4022436E18A00B4FAF7 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9EF4012436E18A00B4FAF7 /* Device.swift */; };
 		6F9EF4042436E3CE00B4FAF7 /* DeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9EF4032436E3CE00B4FAF7 /* DeviceHelper.swift */; };
@@ -50,6 +50,9 @@
 		6FB9A1B3234AF6B0005D8855 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A1B2234AF6B0005D8855 /* Constants.swift */; };
 		6FB9A1B6234B14E7005D8855 /* FirebaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A1B5234B14E7005D8855 /* FirebaseExtension.swift */; };
 		6FB9A1B8234B19AF005D8855 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A1B7234B19AF005D8855 /* Extensions.swift */; };
+		6FE7BAAC246D62A70045E169 /* NotificationListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE7BAAB246D62A70045E169 /* NotificationListVC.swift */; };
+		6FE7BAAF246E174A0045E169 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE7BAAD246E174A0045E169 /* NotificationCell.swift */; };
+		6FE7BAB0246E174A0045E169 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FE7BAAE246E174A0045E169 /* NotificationCell.xib */; };
 		6FFACADE2366180D0001F610 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFACADD2366180D0001F610 /* NotificationService.swift */; };
 		6FFACAE22366180D0001F610 /* NotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6FFACADB2366180C0001F610 /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6FFACAED23661A7E0001F610 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FFACAEC23661A7E0001F610 /* UserNotifications.framework */; };
@@ -111,10 +114,10 @@
 		6F72391523A2C71400538D3B /* QRCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
 		6F72391723A2CA1200538D3B /* WifiInfoAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiInfoAccessor.swift; sourceTree = "<group>"; };
 		6F809E252361E7A700F1F9BA /* UUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUser.swift; sourceTree = "<group>"; };
+		6F8218E8246D1A4A00556752 /* UNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNotification.swift; sourceTree = "<group>"; };
 		6F8268862365DE99001994D3 /* FcmTokenHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmTokenHandler.swift; sourceTree = "<group>"; };
 		6F9EF3D424345F0A00B4FAF7 /* QRDeviceScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRDeviceScannerVC.swift; sourceTree = "<group>"; };
 		6F9EF3D82434849700B4FAF7 /* Notification.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notification.xcdatamodel; sourceTree = "<group>"; };
-		6F9EF3FD2434899300B4FAF7 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		6F9EF3FF2434DEF400B4FAF7 /* UImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UImageView.swift; sourceTree = "<group>"; };
 		6F9EF4012436E18A00B4FAF7 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		6F9EF4032436E3CE00B4FAF7 /* DeviceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceHelper.swift; sourceTree = "<group>"; };
@@ -143,6 +146,9 @@
 		6FB9A1B5234B14E7005D8855 /* FirebaseExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseExtension.swift; sourceTree = "<group>"; };
 		6FB9A1B7234B19AF005D8855 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6FB9A1BC234B64DC005D8855 /* Urgence.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Urgence.entitlements; sourceTree = "<group>"; };
+		6FE7BAAB246D62A70045E169 /* NotificationListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListVC.swift; sourceTree = "<group>"; };
+		6FE7BAAD246E174A0045E169 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		6FE7BAAE246E174A0045E169 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		6FFACADB2366180C0001F610 /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FFACADD2366180D0001F610 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		6FFACADF2366180D0001F610 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -255,7 +261,6 @@
 				6F8268862365DE99001994D3 /* FcmTokenHandler.swift */,
 				6F72391523A2C71400538D3B /* QRCodeGenerator.swift */,
 				6F72391723A2CA1200538D3B /* WifiInfoAccessor.swift */,
-				6F9EF3FD2434899300B4FAF7 /* CoreDataHelper.swift */,
 				6F9EF4032436E3CE00B4FAF7 /* DeviceHelper.swift */,
 			);
 			path = Helpers;
@@ -265,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				6FB9A1AF234A1F77005D8855 /* NotificationVC.swift */,
+				6FE7BAAB246D62A70045E169 /* NotificationListVC.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -312,6 +318,7 @@
 			children = (
 				6F809E252361E7A700F1F9BA /* UUser.swift */,
 				6F9EF4012436E18A00B4FAF7 /* Device.swift */,
+				6F8218E8246D1A4A00556752 /* UNotification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -364,6 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				6F37EA332364945600929AD8 /* Device */,
+				6FE7BAA6246D5BF10045E169 /* Notification */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -429,6 +437,15 @@
 				6FB9A1B7234B19AF005D8855 /* Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6FE7BAA6246D5BF10045E169 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				6FE7BAAD246E174A0045E169 /* NotificationCell.swift */,
+				6FE7BAAE246E174A0045E169 /* NotificationCell.xib */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		6FFACADC2366180D0001F610 /* NotificationService */ = {
@@ -564,6 +581,7 @@
 				6FB9A18623485E48005D8855 /* GoogleService-Info.plist in Resources */,
 				6FB9A199234A1D95005D8855 /* Auth.storyboard in Resources */,
 				6FB9A1782348556A005D8855 /* Assets.xcassets in Resources */,
+				6FE7BAB0246E174A0045E169 /* NotificationCell.xib in Resources */,
 				6FB9A17623485569005D8855 /* Main.storyboard in Resources */,
 				6F37EA372364946D00929AD8 /* DeviceCell.xib in Resources */,
 				6F37EA392364A34E00929AD8 /* Alert.storyboard in Resources */,
@@ -728,8 +746,9 @@
 				6F37EA3223648F9700929AD8 /* UView.swift in Sources */,
 				6FB9A19D234A1DE7005D8855 /* SignUpVC.swift in Sources */,
 				6F37EA462365B5F600929AD8 /* RESTful.swift in Sources */,
+				6F8218E9246D1A4A00556752 /* UNotification.swift in Sources */,
 				6FB9A17323485569005D8855 /* SignInVC.swift in Sources */,
-				6F9EF3FE2434899300B4FAF7 /* CoreDataHelper.swift in Sources */,
+				6FE7BAAC246D62A70045E169 /* NotificationListVC.swift in Sources */,
 				6FB9A16F23485569005D8855 /* AppDelegate.swift in Sources */,
 				6F37EA402364AE8E00929AD8 /* AlertService.swift in Sources */,
 				6FB9A1972348924C005D8855 /* UTextField.swift in Sources */,
@@ -746,6 +765,7 @@
 				6FB9A1A7234A1EEC005D8855 /* AddDeviceVC.swift in Sources */,
 				6FB9A19B234A1DC7005D8855 /* MonitoringVC.swift in Sources */,
 				6FB9A1A1234A1E1D005D8855 /* ForgotPasswordVC.swift in Sources */,
+				6FE7BAAF246E174A0045E169 /* NotificationCell.swift in Sources */,
 				6FB9A1AB234A1F3A005D8855 /* EditProfileVC.swift in Sources */,
 				6FB9A1B8234B19AF005D8855 /* Extensions.swift in Sources */,
 				6F9EF4002434DEF400B4FAF7 /* UImageView.swift in Sources */,

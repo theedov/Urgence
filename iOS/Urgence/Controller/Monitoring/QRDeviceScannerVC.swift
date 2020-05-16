@@ -119,7 +119,7 @@ extension QRDeviceScannerVC: AVCaptureMetadataOutputObjectsDelegate {
             }
             
             if snap!.documents.isEmpty {
-                let data = ["room": self.deviceName, "deviceId" : deviceId, "userId" : uid]
+                let data = ["name": self.deviceName, "deviceId" : deviceId, "userId" : uid]
                 db.collection("devices").addDocument(data: data as [String : Any]) { (error) in
                     if let error = error {
                         debugPrint(error.localizedDescription)

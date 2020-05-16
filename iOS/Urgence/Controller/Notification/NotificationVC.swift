@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CoreData
+import Firebase
 
 class NotificationVC: UIViewController {
     
@@ -15,76 +15,94 @@ class NotificationVC: UIViewController {
     @IBOutlet weak var imageView: UImageView!
     @IBOutlet weak var headerTxt: UILabel!
     @IBOutlet weak var notificationView: UView!
-    @IBOutlet weak var emptyNotificationLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var buttonStack: UIStackView!
+    @IBOutlet weak var feedbackTxt: UILabel!
+    
+    //Variables
+    var notification: UNotification!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         headerTxt.isHidden = false
+        showNotification()
         
+        if notification.active {
+            functions.httpsCallable("onNotificationOpen").call(["notification_id":notification.id]) { (result, error) in
+                return
+            }
+        }
+        
+        hideButtonsIfNeeded()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIApplication.shared.applicationIconBadgeNumber = 0
-        let context = CoreDataHelper.getContext()
         
-        context.performAndWait {
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Notification")
-            request.returnsObjectsAsFaults = false
-            
-            do {
-                if let result = try context.fetch(request).first as? NSManagedObject {
-                    if let imageUrl = URL(string:result.value(forKey: "image") as! String){
-                        let imageData = try Data(contentsOf: imageUrl)
-                        self.showNotificationIfAvailable(available: true)
-                        DispatchQueue.main.async {
-                            let image = UIImage(data: imageData)
-                            self.imageView.image = image
-                        }
-                    }
+    }
+
+    func showNotification() {
+        //present a notification image
+        if let imageUrl = URL(string:notification!.imageUrl){
+            do{
+                let imageData = try Data(contentsOf: imageUrl)
+                DispatchQueue.main.async {
+                    let image = UIImage(data: imageData)
+                    self.imageView.image = image
                 }
             } catch {
-                print("Failed")
+                print("error")
             }
-            
         }
     }
     
-    
-    func showNotificationIfAvailable(available: Bool) {
-        if available {
-            notificationView.isHidden = false
-            emptyNotificationLabel.isHidden = true
-            return
+    func hideButtonsIfNeeded() {
+        if notification.accepted || notification.declined {
+            self.buttonStack.isHidden = true
+            self.feedbackTxt.isHidden = false
+        } else {
+            self.buttonStack.isHidden = false
+            self.feedbackTxt.isHidden = true
         }
-        
-        notificationView.isHidden = true
-        emptyNotificationLabel.isHidden = false
-        
     }
     
     @IBAction func onAcceptPressed(_ sender: Any) {
-        showNotificationIfAvailable(available: false)
+        if !notification.accepted {
+            activityIndicator.startAnimating()
+            functions.httpsCallable("onAcceptPrediction").call(["path":notification.imagePath, "notification_id":notification.id]) { (result, error) in
+                if let error = error {
+                    self.activityIndicator.stopAnimating()
+                    debugPrint(error)
+                    return
+                }
+                
+                if let result = result, result.data as! Bool == true {
+                    self.activityIndicator.stopAnimating()
+                    self.notification.accepted = true
+                    self.hideButtonsIfNeeded()
+                }
+            }
+        }
     }
     
     @IBAction func onDeclinePressed(_ sender: Any) {
-        //        //save to core data model
-//        let context = CoreDataHelper.getContext()
-        
-        //remove all data from entity
-        //        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Notification")
-        //        let request = NSBatchDeleteRequest(fetchRequest: fetch)
-        //        do{
-        //            try context.execute(request)
-        //
-        //        } catch {
-        //            print("Failed cleaning up the Notification entity")
-        //        }
-        
-        if CoreDataHelper.deleteEntity(entityName: "Notification"){
-            showNotificationIfAvailable(available: false)
-            self.tabBarController?.selectedIndex = 0
+        if !notification.declined {
+            activityIndicator.startAnimating()
+            functions.httpsCallable("onDeclinePrediction").call(["notification_id":notification.id]) { (result, error) in
+                if let error = error {
+                    self.activityIndicator.stopAnimating()
+                    debugPrint(error)
+                    return
+                }
+                
+                if let result = result, result.data as! Bool == true {
+                    self.activityIndicator.stopAnimating()
+                    self.notification.declined = true
+                    self.hideButtonsIfNeeded()
+                }
+            }
         }
     }
     

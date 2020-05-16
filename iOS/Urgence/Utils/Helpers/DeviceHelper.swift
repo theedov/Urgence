@@ -11,7 +11,7 @@ import UIKit
 
 class DeviceHelper {
     static func getDeviceIcon(device: Device) -> UIImage {
-        switch device.room {
+        switch device.name {
         case "Living Room":
             return UIImage(named: "living-room")!
         case "Bed Room":

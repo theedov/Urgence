@@ -24,7 +24,7 @@ class DeviceVC: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        self.title = device.room
+        self.title = device.name
         
         updateUI()
     }

@@ -104,7 +104,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1847.2" y="-595.56650246305423"/>
+            <point key="canvasLocation" x="1879" y="-1005"/>
         </scene>
         <!--Settings-->
         <scene sceneID="3cz-u4-4WZ">
@@ -286,7 +286,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9zp-4N-qhJ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936.79999999999995" y="827.58620689655174"/>
+            <point key="canvasLocation" x="937" y="1294"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9yY-P2-bSn">
@@ -302,13 +302,52 @@
                     </tabBar>
                     <connections>
                         <segue destination="Luc-cd-L2q" kind="relationship" relationship="viewControllers" id="d4s-qU-mJL"/>
-                        <segue destination="LWa-zq-4hs" kind="relationship" relationship="viewControllers" id="SsW-oo-EEP"/>
+                        <segue destination="oRA-1h-jnj" kind="relationship" relationship="viewControllers" id="T7e-Fs-p3k"/>
                         <segue destination="9aL-pC-wpf" kind="relationship" relationship="viewControllers" id="a3y-7Z-trC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KyH-CS-HZC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-263" y="108"/>
+        </scene>
+        <!--Notifications-->
+        <scene sceneID="IMb-di-4sP">
+            <objects>
+                <viewController id="ess-b0-YcY" customClass="NotificationListVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="doq-K9-TsH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="amf-8x-Oa4">
+                                <rect key="frame" x="0.0" y="180" width="375" height="549"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="vBr-M6-Q6Z">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" name="UBackground"/>
+                        <constraints>
+                            <constraint firstItem="amf-8x-Oa4" firstAttribute="top" secondItem="ZUp-2z-fGW" secondAttribute="top" constant="40" id="Qxu-fs-QRs"/>
+                            <constraint firstItem="ZUp-2z-fGW" firstAttribute="trailing" secondItem="amf-8x-Oa4" secondAttribute="trailing" id="SMH-bq-SjE"/>
+                            <constraint firstItem="amf-8x-Oa4" firstAttribute="leading" secondItem="ZUp-2z-fGW" secondAttribute="leading" id="fl2-yp-Yu4"/>
+                            <constraint firstItem="ZUp-2z-fGW" firstAttribute="bottom" secondItem="amf-8x-Oa4" secondAttribute="bottom" id="hYI-FL-jxh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZUp-2z-fGW"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Notifications" largeTitleDisplayMode="always" id="ba9-a5-0CH"/>
+                    <connections>
+                        <outlet property="collectionView" destination="amf-8x-Oa4" id="Xtd-H8-T1J"/>
+                        <segue destination="LWa-zq-4hs" kind="showDetail" identifier="toNotificationVC" id="0pO-iS-x5a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1gE-oi-oZj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1879.2" y="107.88177339901478"/>
         </scene>
         <!--Notification-->
         <scene sceneID="Y9D-by-ODd">
@@ -318,20 +357,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no notifications found" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U78-I3-dkV">
-                                <rect key="frame" x="20" y="104" width="335" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="XiW-5z-Bnf"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <color key="textColor" name="UText"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CKt-9w-b1H" customClass="UView" customModule="Urgence" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="74" width="375" height="655"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="1dj-L1-AUh">
+                                <rect key="frame" x="177.66666666666666" y="10" width="20" height="20"/>
+                                <color key="color" name="UText"/>
+                            </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CKt-9w-b1H" customClass="UView" customModule="Urgence" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="30" width="375" height="694"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HAU-Lx-5Fh" customClass="UImageView" customModule="Urgence" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="145" width="335" height="250"/>
+                                        <rect key="frame" x="40" y="145" width="295" height="250"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="250" id="6H1-dZ-szW"/>
                                         </constraints>
@@ -403,8 +437,8 @@
                                 <color key="backgroundColor" name="UBackground2"/>
                                 <constraints>
                                     <constraint firstItem="GUT-5y-o4D" firstAttribute="leading" secondItem="2hb-qR-oe0" secondAttribute="leading" id="3Tq-yE-CjS"/>
-                                    <constraint firstItem="HAU-Lx-5Fh" firstAttribute="leading" secondItem="CKt-9w-b1H" secondAttribute="leading" constant="20" id="9L2-Su-mJy"/>
-                                    <constraint firstAttribute="trailing" secondItem="HAU-Lx-5Fh" secondAttribute="trailing" constant="20" id="CMc-7x-Pcl"/>
+                                    <constraint firstItem="HAU-Lx-5Fh" firstAttribute="leading" secondItem="CKt-9w-b1H" secondAttribute="leading" constant="40" id="9L2-Su-mJy"/>
+                                    <constraint firstAttribute="trailing" secondItem="HAU-Lx-5Fh" secondAttribute="trailing" constant="40" id="CMc-7x-Pcl"/>
                                     <constraint firstItem="kLI-wJ-VtT" firstAttribute="top" secondItem="2hb-qR-oe0" secondAttribute="bottom" constant="12" id="DA3-rC-vpS"/>
                                     <constraint firstItem="2hb-qR-oe0" firstAttribute="centerX" secondItem="HAU-Lx-5Fh" secondAttribute="centerX" id="Hb5-Sa-4bN"/>
                                     <constraint firstItem="l4c-BQ-FUz" firstAttribute="top" secondItem="CKt-9w-b1H" secondAttribute="top" constant="30" id="WCq-t2-Kgu"/>
@@ -420,22 +454,36 @@
                                     <constraint firstItem="GUT-5y-o4D" firstAttribute="top" secondItem="l4c-BQ-FUz" secondAttribute="bottom" constant="12" id="zsb-bx-1Yw"/>
                                 </constraints>
                             </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for your feedback" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1s-zB-ewI">
+                                <rect key="frame" x="53.666666666666657" y="485" width="268" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="xB3-LJ-2yU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" name="UText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" name="UBackground"/>
+                        <color key="backgroundColor" name="UBackground2"/>
                         <constraints>
-                            <constraint firstItem="U78-I3-dkV" firstAttribute="leading" secondItem="jMA-bK-4aM" secondAttribute="leading" constant="20" id="CYI-Wb-3uI"/>
+                            <constraint firstItem="1dj-L1-AUh" firstAttribute="top" secondItem="jMA-bK-4aM" secondAttribute="top" constant="10" id="ATY-kM-s4r"/>
                             <constraint firstItem="CKt-9w-b1H" firstAttribute="trailing" secondItem="jMA-bK-4aM" secondAttribute="trailing" id="DWM-py-6dS"/>
-                            <constraint firstItem="jMA-bK-4aM" firstAttribute="trailing" secondItem="U78-I3-dkV" secondAttribute="trailing" constant="20" id="LHc-3e-nej"/>
+                            <constraint firstItem="j1s-zB-ewI" firstAttribute="centerY" secondItem="kLI-wJ-VtT" secondAttribute="centerY" id="DkR-xq-KHP"/>
                             <constraint firstItem="CKt-9w-b1H" firstAttribute="leading" secondItem="jMA-bK-4aM" secondAttribute="leading" id="Q1z-UB-7EO"/>
-                            <constraint firstItem="CKt-9w-b1H" firstAttribute="top" secondItem="jMA-bK-4aM" secondAttribute="top" constant="30" id="QkV-bu-vhZ"/>
+                            <constraint firstItem="CKt-9w-b1H" firstAttribute="top" secondItem="1dj-L1-AUh" secondAttribute="bottom" id="SWj-w7-jqh"/>
                             <constraint firstItem="CKt-9w-b1H" firstAttribute="bottom" secondItem="jMA-bK-4aM" secondAttribute="bottom" id="nPr-qn-fuO"/>
-                            <constraint firstItem="U78-I3-dkV" firstAttribute="top" secondItem="jMA-bK-4aM" secondAttribute="top" constant="60" id="wAS-eu-FmT"/>
+                            <constraint firstItem="j1s-zB-ewI" firstAttribute="centerX" secondItem="kLI-wJ-VtT" secondAttribute="centerX" id="tLY-v8-UUZ"/>
+                            <constraint firstItem="1dj-L1-AUh" firstAttribute="centerX" secondItem="jMA-bK-4aM" secondAttribute="centerX" id="xid-vW-jyq"/>
+                            <constraint firstItem="j1s-zB-ewI" firstAttribute="width" secondItem="kLI-wJ-VtT" secondAttribute="width" multiplier="0.908475" id="zhV-7C-RYG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jMA-bK-4aM"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Notification" image="notification" selectedImage="notification" id="iCg-mK-pm7"/>
+                    <navigationItem key="navigationItem" id="gg7-53-tYg"/>
                     <connections>
-                        <outlet property="emptyNotificationLabel" destination="U78-I3-dkV" id="bFb-hq-xLW"/>
+                        <outlet property="activityIndicator" destination="1dj-L1-AUh" id="G35-A0-VLT"/>
+                        <outlet property="buttonStack" destination="kLI-wJ-VtT" id="CxO-O6-sbk"/>
+                        <outlet property="feedbackTxt" destination="j1s-zB-ewI" id="0PS-4j-aZh"/>
                         <outlet property="headerTxt" destination="l4c-BQ-FUz" id="2Gu-8g-7Db"/>
                         <outlet property="imageView" destination="HAU-Lx-5Fh" id="6Rl-l5-LmN"/>
                         <outlet property="notificationView" destination="CKt-9w-b1H" id="yPS-UK-eOh"/>
@@ -443,7 +491,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Coy-hW-bcj" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936.79999999999995" y="107.88177339901478"/>
+            <point key="canvasLocation" x="2788" y="107.88177339901478"/>
         </scene>
         <!--Monitoring-->
         <scene sceneID="zKg-Tr-zm5">
@@ -470,7 +518,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vhb-mW-q4Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="937.68115942028987" y="-595.3125"/>
+            <point key="canvasLocation" x="937" y="-1005"/>
         </scene>
         <!--Add Device-->
         <scene sceneID="H08-VL-Juu">
@@ -558,7 +606,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AFE-BM-4pQ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2673" y="-930"/>
+            <point key="canvasLocation" x="2788" y="-1340"/>
         </scene>
         <!--QRScanner-->
         <scene sceneID="jeX-mi-qjo">
@@ -621,7 +669,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q0H-Mo-qgU" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3551" y="-930"/>
+            <point key="canvasLocation" x="3665" y="-1340"/>
         </scene>
         <!--DeviceVC-->
         <scene sceneID="hRp-c0-Y6r">
@@ -722,7 +770,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ouv-d3-ftc" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2673" y="-262"/>
+            <point key="canvasLocation" x="2788" y="-672"/>
         </scene>
         <!--Change Password-->
         <scene sceneID="tsS-yf-gfX">
@@ -889,7 +937,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xvd-4F-wKS" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1769" y="1136"/>
+            <point key="canvasLocation" x="1879" y="1602"/>
         </scene>
         <!--Update Profile-->
         <scene sceneID="fk6-NC-oyL">
@@ -1045,7 +1093,34 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gE3-YM-z88" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1768.8" y="450"/>
+            <point key="canvasLocation" x="1879" y="916"/>
+        </scene>
+        <!--Notifications-->
+        <scene sceneID="vdc-G9-xfW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oRA-1h-jnj" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Notifications" image="notification" id="icV-zE-Bhd"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="deA-nh-Xrd">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="UBackground"/>
+                        <color key="tintColor" name="UText"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" name="UText"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" name="UText"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ess-b0-YcY" kind="relationship" relationship="rootViewController" id="WDy-p6-uRI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LLN-tf-F4u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="936.79999999999995" y="107.88177339901478"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

@@ -23,7 +23,7 @@ class DeviceCell: UICollectionViewCell {
     
     //MARK: - Config
     func configureCell(device: Device) {
-        self.room.text = device.room
+        self.room.text = device.name
         self.image.image = DeviceHelper.getDeviceIcon(device: device)
     }
 

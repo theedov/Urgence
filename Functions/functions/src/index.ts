@@ -11,6 +11,8 @@ admin.initializeApp(functions.config().firebase);
 const app = express();
 const main = express();
 const db = admin.firestore();
+const storage = admin.storage().bucket();
+const {v4: uuidv4} = require('uuid');
 let error = false;
 let errorMessage = "";
 
@@ -79,6 +81,7 @@ app.post('/camera', async (req, res) => {
                 if (!snap.empty) {
                     snap.forEach(doc => {
                         let device = doc.data();
+                        const uniqueId = uuidv4();
 
                         //find user by userId
                         db.collection("users").doc(device.userId)
@@ -88,7 +91,8 @@ app.post('/camera', async (req, res) => {
                                     let user = doc.data();
 
                                     //add notification to DB
-                                    db.collection("notifications").add({
+                                    db.collection("notifications").doc(uniqueId).set({
+                                        id: uniqueId,
                                         userId: user!.id,
                                         deviceId: device_id,
                                         title: `Notification - ${device.name}`,
@@ -296,6 +300,97 @@ app.post('/updated', async (req, res) => {
                 errorMessage: error
             });
         });
+});
+
+app.post('/acceptedFilesList', async (req, res) => {
+
+    //Authorization
+    const tokenId = req.get('Authorization')?.split('Bearer ')[1];
+    if (tokenId != functions.config().api.key) {
+        res.status(403).json({
+            error: true,
+            errorMessage: 'Unauthorized'
+        });
+    }
+    let urls: any[] = [];
+    let [files] = await storage.getFiles({directory: 'notifications/accepted'});
+
+    for (const file of files) {
+        let filePath = file.name;
+        let url = await storage.file(filePath).getSignedUrl({
+            action: 'read',
+            expires: '03-09-2500'
+        });
+        console.log(url);
+        urls.push(url);
+    }
+
+    res.status(200).json({urls});
+});
+
+exports.onNotificationOpen = functions.https.onCall((data, context) => {
+    //Variables checking
+    let notification_id = data.notification_id;
+    if (!notification_id) {
+        return false;
+    }
+
+    //Set notification as not active
+    return db.collection("notifications").doc(notification_id).update({
+        active: false
+    }).then(_ => {
+        return true
+    }).catch(error => {
+        console.error("Could not update notification", error);
+        return false
+    });
+});
+
+exports.onAcceptPrediction = functions.https.onCall((data, context) => {
+    //Variables checking
+    let path = data.path;
+    let notification_id = data.notification_id;
+    if (!path || !notification_id) {
+        return false;
+    }
+
+    //Copy file
+    let file = storage.file(path);
+    return file.copy(`notifications/accepted/${Date.now().toString()}.jpg`)
+        .then(_ => {
+            console.log("onAcceptPrediction: Accepted prediction file successfully copied");
+            //Set as accepted in DB
+            return db.collection("notifications").doc(notification_id).update({
+                accepted: true
+            }).then(_ => {
+                return true
+            }).catch(error => {
+                console.error("onAcceptPrediction: Could not update notification", error);
+                return false
+            });
+        })
+        .catch(error => {
+            console.error("onAcceptPrediction: Accepted prediction file could not be copied: ", error);
+            return false;
+        });
+
+});
+
+exports.onDeclinePrediction = functions.https.onCall((data, context) => {
+    //Variables checking
+    let notification_id = data.notification_id;
+    if (!notification_id) {
+        return false;
+    }
+
+    return db.collection("notifications").doc(notification_id).update({
+        declined: true
+    }).then(_ => {
+        return true
+    }).catch(error => {
+        console.error("onDeclinePrediction: Could not update notification", error);
+        return false
+    });
 });
 
 function sendNotification(groupKey: string, imageUrl: string) {

@@ -31,10 +31,12 @@ enum VCIDs {
 
 enum CellIDs {
     static let DeviceCell = "DeviceCell"
+    static let NotificationCell = "NotificationCell"
 }
 
 enum SegueIDs {
     static let ToDeviceVC = "toDeviceVC"
+    static let ToNotificationVC = "toNotificationVC"
 }
 
 enum CoreDataEntities {

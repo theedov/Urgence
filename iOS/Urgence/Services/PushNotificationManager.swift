@@ -58,7 +58,7 @@ extension PushNotificationManager : UNUserNotificationCenterDelegate {
 //                debugPrint("Notification received in foreground")
 
         //save notification to coredata
-        self.saveNotification(notification: notification)
+        self.openNotification(notification: notification)
 
         // Change this to your preferred presentation option
         completionHandler(.alert)
@@ -70,39 +70,19 @@ extension PushNotificationManager : UNUserNotificationCenterDelegate {
 //                debugPrint("Notification received in background")
 
         //save notification to coredata
-        self.saveNotification(notification: response.notification)
+        self.openNotification(notification: response.notification)
 
         completionHandler()
     }
     
-    fileprivate func saveNotification(notification: UNNotification) {
+    fileprivate func openNotification(notification: UNNotification) {
         
         //get notification data
         let notification = notification.request.content
         let userInfo = notification.userInfo
         
-        //clear entity
-        CoreDataHelper.deleteEntity(entityName: "Notification")
-        
-        //get context
-        let context = CoreDataHelper.getContext()
-        
-        //add new data
-        let entity = NSEntityDescription.entity(forEntityName: "Notification", in: context)
-        let newNotification = NSManagedObject(entity: entity!, insertInto: context)
-        newNotification.setValue(notification.title, forKey: "title")
-        newNotification.setValue(notification.subtitle, forKey: "subtitle")
-        newNotification.setValue(notification.body, forKey: "body")
-        newNotification.setValue(userInfo["image"], forKey: "image")
-        
-        //save coredata
-        do {
-            try context.save()
-            if let deeplink = userInfo["dl"] as? String, let url = URL(string: deeplink), UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-        } catch {
-            print("Failed saving")
+        if let deeplink = userInfo["dl"] as? String, let url = URL(string: deeplink), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
@@ -111,6 +91,7 @@ extension PushNotificationManager : UNUserNotificationCenterDelegate {
         let storyboard : UIStoryboard = UIStoryboard(name: StoryboardIDs.MainStoryboard, bundle: nil)
         let vc : UITabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController
         vc.selectedIndex = 1
+        
         window?.makeKeyAndVisible()
         window?.rootViewController = vc
     }
