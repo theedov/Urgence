@@ -13,7 +13,7 @@
             <objects>
                 <viewController storyboardIdentifier="MonitoringVC" id="BYZ-38-t0r" customClass="MonitoringVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IKT-IE-Ekv" customClass="UCollectionViev" customModule="Urgence" customModuleProvider="target">
@@ -111,7 +111,7 @@
             <objects>
                 <viewController storyboardIdentifier="SettingsVC" id="9aL-pC-wpf" customClass="SettingsVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AZs-48-jX4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-cc-ugj" userLabel="BGView" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -315,7 +315,7 @@
             <objects>
                 <viewController id="ess-b0-YcY" customClass="NotificationListVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="doq-K9-TsH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="amf-8x-Oa4">
@@ -354,7 +354,7 @@
             <objects>
                 <viewController storyboardIdentifier="NotificationVC" id="LWa-zq-4hs" customClass="NotificationVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CfB-NU-ldI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="1dj-L1-AUh">
@@ -525,7 +525,7 @@
             <objects>
                 <viewController storyboardIdentifier="AddDeviceVC" id="OV7-0R-x8S" customClass="AddDeviceVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sa6-hB-jrn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRo-0w-dow" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -613,7 +613,7 @@
             <objects>
                 <viewController storyboardIdentifier="QRDeviceScannerVC" title="QRScanner" id="wBb-oo-be9" customClass="QRDeviceScannerVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UTF-ZL-nnf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mQ6-sb-3hW">
@@ -676,7 +676,7 @@
             <objects>
                 <viewController storyboardIdentifier="MonitoringDetailVC" id="WbS-OJ-RXw" customClass="DeviceVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xj3-AW-FtO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3n-ei-dzL" customClass="UView" customModule="Urgence" customModuleProvider="target">
