@@ -16,7 +16,7 @@ struct UNotification {
     var title: String
     var imageUrl: String
     var imagePath: String
-    var active:Bool
+    var viewed:Bool
     var accepted: Bool
     var declined: Bool
     var createdAt: Timestamp
@@ -28,7 +28,7 @@ struct UNotification {
         title = data["title"] as? String ?? ""
         imageUrl = data["imageUrl"] as? String ?? ""
         imagePath = data["imagePath"] as? String ?? ""
-        active = data["active"] as? Bool ?? false
+        viewed = data["viewed"] as? Bool ?? false
         accepted = data["accepted"] as? Bool ?? false
         declined = data["declined"] as? Bool ?? false
         createdAt = data["createdAt"] as? Timestamp ?? Timestamp()

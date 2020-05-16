@@ -98,7 +98,7 @@ app.post('/camera', async (req, res) => {
                                         title: `Notification - ${device.name}`,
                                         imageUrl: url,
                                         imagePath: path,
-                                        active: true,
+                                        viewed: false,
                                         accepted: false,
                                         declined: false,
                                         createdAt: admin.firestore.FieldValue.serverTimestamp()
@@ -332,7 +332,7 @@ app.post('/acceptedFilesList', async (req, res) => {
     res.status(200).json({urls});
 });
 
-// This updates a notification active state, when user opens a notification for the first time
+// This updates a notification viewed state, when user opens a notification for the first time
 exports.onNotificationOpen = functions.https.onCall(async (data, context) => {
     //Variables checking
     const notification_id = data.notification_id;
@@ -340,14 +340,14 @@ exports.onNotificationOpen = functions.https.onCall(async (data, context) => {
         return false;
     }
 
-    //Set notification as not active
+    //Set notification as viewed
 
     return await db.collection("notifications").where("id", "==", notification_id).get()
         .then(snap => {
             if (!snap.empty) {
                 snap.forEach(doc => {
                     db.collection("notifications").doc(doc.id).update({
-                        active: false
+                        viewed: true
                     }).catch(error => {
                         console.error("Could not update notification", error);
                     });

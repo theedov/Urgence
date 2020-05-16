@@ -23,7 +23,7 @@ class NotificationCell: UICollectionViewCell {
         titleTxt.text = notification.title
         dateTxt.text = dateToString(date: notification.createdAt.dateValue())
         
-        if notification.active {
+        if !notification.viewed {
             titleTxt.font = UIFont.boldSystemFont(ofSize: titleTxt.font.pointSize)
         } else {
             titleTxt.font = UIFont.systemFont(ofSize: titleTxt.font.pointSize)

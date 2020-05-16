@@ -21,29 +21,53 @@ class NotificationVC: UIViewController {
     
     //Variables
     var notification: UNotification!
+    var listener: ListenerRegistration!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         headerTxt.isHidden = false
-        showNotification()
-        
-        if notification.active {
+        showNotificationImage()
+        hideButtonsIfNeeded()
+        //Mark notification 
+        if !notification.viewed {
             functions.httpsCallable("onNotificationOpen").call(["notification_id":notification.id]) { (result, error) in
                 return
             }
         }
-        
-        hideButtonsIfNeeded()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIApplication.shared.applicationIconBadgeNumber = 0
-        
+        setNotificationListener()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        listener.remove()
+    }
+    
+    func setNotificationListener() {
+        listener = db.collection("notifications").whereField("id", isEqualTo: notification.id).whereField("userId", isEqualTo: self.authUser!.uid).limit(to: 1).addSnapshotListener({ (snap, error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                return
+            }
+            snap?.documentChanges.forEach({ (change) in
+                let data = change.document.data()
+                self.notification = UNotification.init(data: data)
+                
+                switch change.type {
+                case .added: break
+                case .modified:
+                    self.hideButtonsIfNeeded()
+                case .removed: break
+                }
+            })
+        })
     }
 
-    func showNotification() {
+    func showNotificationImage() {
         //present a notification image
         if let imageUrl = URL(string:notification!.imageUrl){
             do{
