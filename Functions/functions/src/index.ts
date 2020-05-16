@@ -91,7 +91,7 @@ app.post('/camera', async (req, res) => {
                                     const user = doc.data();
 
                                     //add notification to DB
-                                    db.collection("notifications").doc(uniqueId).set({
+                                    db.collection("notifications").add({
                                         id: uniqueId,
                                         userId: user!.id,
                                         deviceId: device_id,
@@ -333,7 +333,7 @@ app.post('/acceptedFilesList', async (req, res) => {
 });
 
 // This updates a notification active state, when user opens a notification for the first time
-exports.onNotificationOpen = functions.https.onCall((data, context) => {
+exports.onNotificationOpen = functions.https.onCall(async (data, context) => {
     //Variables checking
     const notification_id = data.notification_id;
     if (!notification_id) {
@@ -341,19 +341,27 @@ exports.onNotificationOpen = functions.https.onCall((data, context) => {
     }
 
     //Set notification as not active
-    return db.collection("notifications").doc(notification_id).update({
-        active: false
-    }).then(_ => {
-        return true
-    }).catch(error => {
-        console.error("Could not update notification", error);
-        return false
-    });
+
+    return await db.collection("notifications").where("id", "==", notification_id).get()
+        .then(snap => {
+            if (!snap.empty) {
+                snap.forEach(doc => {
+                    db.collection("notifications").doc(doc.id).update({
+                        active: false
+                    }).catch(error => {
+                        console.error("Could not update notification", error);
+                    });
+                });
+                return true
+            } else {
+                return false
+            }
+        });
 });
 
 // When user accepts a notification in the NotificationVC screen, it copies a notification image to "accepted" folder in storage.
 // Mainly used to retrain ML model by calling /acceptedFilesList request, which returns array of "accepted" images.
-exports.onAcceptPrediction = functions.https.onCall((data, context) => {
+exports.onAcceptPrediction = functions.https.onCall(async (data, context) => {
     //Variables checking
     const path = data.path;
     const notification_id = data.notification_id;
@@ -363,18 +371,28 @@ exports.onAcceptPrediction = functions.https.onCall((data, context) => {
 
     //Copy file
     const file = storage.file(path);
-    return file.copy(`notifications/accepted/${Date.now().toString()}.jpg`)
-        .then(_ => {
+    return await file.copy(`notifications/accepted/${Date.now().toString()}.jpg`)
+        .then(async _ => {
             console.log("onAcceptPrediction: Accepted prediction file successfully copied");
             //Set as accepted in DB
-            return db.collection("notifications").doc(notification_id).update({
-                accepted: true
-            }).then(_ => {
-                return true
-            }).catch(error => {
-                console.error("onAcceptPrediction: Could not update notification", error);
-                return false
-            });
+            const notificationsRef = db.collection("notifications");
+            return await notificationsRef.where("id", "==", notification_id).get()
+                .then(snap => {
+                    if (!snap.empty) {
+                        snap.forEach(doc => {
+                            notificationsRef.doc(doc.id).update({
+                                accepted: true
+                            }).catch(error => {
+                                console.error("onDeclinePrediction: Could not update notification", error);
+                            });
+                        });
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+
+
         })
         .catch(error => {
             console.error("onAcceptPrediction: Accepted prediction file could not be copied: ", error);
@@ -384,21 +402,28 @@ exports.onAcceptPrediction = functions.https.onCall((data, context) => {
 });
 
 // When user declines a notification in the NotificationVC screen, it updated the "decline" state in DB
-exports.onDeclinePrediction = functions.https.onCall((data, context) => {
+exports.onDeclinePrediction = functions.https.onCall(async (data, context) => {
     //Variables checking
     const notification_id = data.notification_id;
     if (!notification_id) {
         return false;
     }
 
-    return db.collection("notifications").doc(notification_id).update({
-        declined: true
-    }).then(_ => {
-        return true
-    }).catch(error => {
-        console.error("onDeclinePrediction: Could not update notification", error);
-        return false
-    });
+    const notificationsRef = db.collection("notifications");
+    return await notificationsRef.where("id", "==", notification_id).get()
+        .then(snap => {
+            if (!snap.empty) {
+                snap.forEach(doc => {
+                    notificationsRef.doc(doc.id).update({
+                        declined: true
+                    }).catch(error => {
+                        console.error("onDeclinePrediction: Could not update notification", error);
+                        return false
+                    });
+                });
+            }
+            return true;
+        });
 });
 
 
