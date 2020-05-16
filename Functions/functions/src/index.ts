@@ -55,11 +55,10 @@ app.post('/camera', async (req, res) => {
     }
 
     //Config for upload to storage
-    const bucket = admin.storage().bucket();
     const imageBuffer = Buffer.from(image_binary, 'base64');
     const imageByteArray = new Uint8Array(imageBuffer);
     const path = `notifications/${Date.now().toString()}.jpg`;
-    const file = bucket.file(path);
+    const file = storage.file(path);
     const options = {resumable: false, metadata: {contentType: "image/jpg"}};
 
     //upload to storage and get URL
