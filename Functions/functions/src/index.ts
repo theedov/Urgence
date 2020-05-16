@@ -13,6 +13,13 @@ const main = express();
 const db = admin.firestore();
 const storage = admin.storage().bucket();
 const {v4: uuidv4} = require('uuid');
+
+//db
+const usersDb = db.collection("users");
+const devicesDb = db.collection("devices");
+const notificationsDb = db.collection("notifications");
+const versionsDb = db.collection("versions");
+
 let error = false;
 let errorMessage = "";
 
@@ -75,7 +82,7 @@ app.post('/camera', async (req, res) => {
     // then add notification to the database for each user who has device with device_id added in their app,
     // and then send a push notification to all these users
     if (url != null) {
-        db.collection("devices").where("deviceId", "==", device_id)
+        devicesDb.where("deviceId", "==", device_id)
             .get()
             .then(snap => {
                 if (!snap.empty) {
@@ -84,14 +91,14 @@ app.post('/camera', async (req, res) => {
                         const uniqueId = uuidv4();
 
                         //find user by userId
-                        db.collection("users").doc(device.userId)
+                        usersDb.doc(device.userId)
                             .get()
                             .then(doc => {
                                 if (doc.exists) {
                                     const user = doc.data();
 
                                     //add notification to DB
-                                    db.collection("notifications").add({
+                                    notificationsDb.add({
                                         id: uniqueId,
                                         userId: user!.id,
                                         deviceId: device_id,
@@ -164,10 +171,8 @@ app.post('/version', async (req, res) => {
         });
     }
 
-    let db = admin.firestore();
-
     //find latest added version id DB
-    db.collection("versions").orderBy("releaseDate", "desc").limit(1)
+    versionsDb.orderBy("releaseDate", "desc").limit(1)
         .get()
         .then(snap => {
             if (!snap.empty) {
@@ -175,7 +180,7 @@ app.post('/version', async (req, res) => {
                 let storage = admin.storage();
 
                 //find device by its id in DB
-                db.collection("devices").where("deviceId", "==", device_id).limit(1)
+                devicesDb.where("deviceId", "==", device_id).limit(1)
                     .get()
                     .then(snap => {
                         if (!snap.empty) {
@@ -254,9 +259,8 @@ app.post('/updated', async (req, res) => {
         });
     }
 
-    let db = admin.firestore();
     //find devices with deviceId in DB
-    db.collection("devices").where("deviceId", "==", device_id)
+    devicesDb.where("deviceId", "==", device_id)
         .get()
         .then(snap => {
             if (!snap.empty) {
@@ -264,7 +268,7 @@ app.post('/updated', async (req, res) => {
                     //check if device updates are enabled
                     if (doc.data().update == true) {
                         //update device document(set new versionId)
-                        db.collection("devices").doc(doc.id).update({versionId: version_id})
+                        devicesDb.doc(doc.id).update({versionId: version_id})
                             .then(_ => {
                                 console.info("/updated: Device versionId has been updated.");
                                 res.status(200).json({
@@ -342,11 +346,11 @@ exports.onNotificationOpen = functions.https.onCall(async (data, context) => {
 
     //Set notification as viewed
 
-    return await db.collection("notifications").where("id", "==", notification_id).get()
+    return await notificationsDb.where("id", "==", notification_id).get()
         .then(snap => {
             if (!snap.empty) {
                 snap.forEach(doc => {
-                    db.collection("notifications").doc(doc.id).update({
+                    notificationsDb.doc(doc.id).update({
                         viewed: true
                     }).catch(error => {
                         console.error("Could not update notification", error);
@@ -375,12 +379,11 @@ exports.onAcceptPrediction = functions.https.onCall(async (data, context) => {
         .then(async _ => {
             console.log("onAcceptPrediction: Accepted prediction file successfully copied");
             //Set as accepted in DB
-            const notificationsRef = db.collection("notifications");
-            return await notificationsRef.where("id", "==", notification_id).get()
+            return await notificationsDb.where("id", "==", notification_id).get()
                 .then(snap => {
                     if (!snap.empty) {
                         snap.forEach(doc => {
-                            notificationsRef.doc(doc.id).update({
+                            notificationsDb.doc(doc.id).update({
                                 accepted: true
                             }).catch(error => {
                                 console.error("onDeclinePrediction: Could not update notification", error);
@@ -409,12 +412,11 @@ exports.onDeclinePrediction = functions.https.onCall(async (data, context) => {
         return false;
     }
 
-    const notificationsRef = db.collection("notifications");
-    return await notificationsRef.where("id", "==", notification_id).get()
+    return await notificationsDb.where("id", "==", notification_id).get()
         .then(snap => {
             if (!snap.empty) {
                 snap.forEach(doc => {
-                    notificationsRef.doc(doc.id).update({
+                    notificationsDb.doc(doc.id).update({
                         declined: true
                     }).catch(error => {
                         console.error("onDeclinePrediction: Could not update notification", error);

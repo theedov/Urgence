@@ -48,7 +48,7 @@ class NotificationListVC: UIViewController {
     }
     
     func setNotificationsListener() {
-        listener = db.collection("notifications").whereField("userId", isEqualTo: self.authUser!.uid).order(by: "createdAt", descending: true).limit(to: 20).addSnapshotListener({ (snap, error) in
+        listener = notificationsDb.whereField("userId", isEqualTo: self.authUser!.uid).order(by: "createdAt", descending: true).limit(to: 20).addSnapshotListener({ (snap, error) in
             if let error = error {
                 debugPrint(error.localizedDescription)
                 return

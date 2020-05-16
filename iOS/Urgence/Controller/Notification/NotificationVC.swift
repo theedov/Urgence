@@ -48,7 +48,7 @@ class NotificationVC: UIViewController {
     }
     
     func setNotificationListener() {
-        listener = db.collection("notifications").whereField("id", isEqualTo: notification.id).whereField("userId", isEqualTo: self.authUser!.uid).limit(to: 1).addSnapshotListener({ (snap, error) in
+        listener = notificationsDb.whereField("id", isEqualTo: notification.id).whereField("userId", isEqualTo: self.authUser!.uid).limit(to: 1).addSnapshotListener({ (snap, error) in
             if let error = error {
                 debugPrint(error.localizedDescription)
                 return

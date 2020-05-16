@@ -81,7 +81,7 @@ class MonitoringVC: UIViewController {
     }
     
     func setDevicesListener() {
-        listener = db.collection("devices").whereField("userId", isEqualTo: self.authUser?.uid).addSnapshotListener({ (snap, error) in
+        listener = devicesDb.whereField("userId", isEqualTo: self.authUser?.uid).addSnapshotListener({ (snap, error) in
             if let error = error {
                 debugPrint(error.localizedDescription)
                 return

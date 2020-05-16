@@ -12,8 +12,13 @@ import UIKit
 import Firebase
 
 //shared variables
-var db = Firestore.firestore()
-var functions = Functions.functions()
+let db = Firestore.firestore()
+let functions = Functions.functions()
+let usersDb = db.collection("users")
+let devicesDb = db.collection("devices")
+let notificationsDb = db.collection("notifications")
+
+
 
 enum StoryboardIDs {
     static let MainStoryboard = "Main"

@@ -47,7 +47,7 @@ class DeviceVC: UIViewController {
     }
     
     func setDeviceListener() {
-        listener = db.collection("devices").whereField("deviceId", isEqualTo: device.id).whereField("userId", isEqualTo: self.authUser!.uid).limit(to: 1).addSnapshotListener({ (snap, error) in
+        listener = devicesDb.whereField("deviceId", isEqualTo: device.id).whereField("userId", isEqualTo: self.authUser!.uid).limit(to: 1).addSnapshotListener({ (snap, error) in
             if let error = error {
                 debugPrint(error.localizedDescription)
                 return
@@ -78,7 +78,7 @@ class DeviceVC: UIViewController {
     
     func disconnectDevice() {
         //find the device in db based on userId and deviceId
-        db.collection("devices").whereField("userId", isEqualTo: device.userId).whereField("deviceId", isEqualTo: device.id).limit(to: 1)
+        devicesDb.whereField("userId", isEqualTo: device.userId).whereField("deviceId", isEqualTo: device.id).limit(to: 1)
             .getDocuments() { (snap, err) in
                 if let err = err {
                     print("Error getting devices: \(err)")
@@ -102,7 +102,7 @@ class DeviceVC: UIViewController {
     
     func changeUpdateState(isEnabled: Bool){
         //search for all devices with provided device.id
-        db.collection("devices").whereField("deviceId", isEqualTo: device.id).getDocuments { (snap, error) in
+        devicesDb.whereField("deviceId", isEqualTo: device.id).getDocuments { (snap, error) in
             //notify when error occurs
             if let _ = error {
                 AlertService.alert(state: .error, title: "Enabling updates", body: "Updates cannot be enabled right now. Please try later or contact use directly.", actionName: nil, vc: self, completion: nil)
