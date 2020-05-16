@@ -95,7 +95,7 @@ app.post('/camera', async (req, res) => {
                                         id: uniqueId,
                                         userId: user!.id,
                                         deviceId: device_id,
-                                        title: `Notification - ${device.name}`,
+                                        title: device.name,
                                         imageUrl: url,
                                         imagePath: path,
                                         viewed: false,
