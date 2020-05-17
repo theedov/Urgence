@@ -40,8 +40,6 @@ class MonitoringVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         isSignedIn()
-        //will show a tutorial if there is no devices in devices array
-        self.showAddDeviceTutorial()
         //listen to devices changes in firestore
         setDevicesListener()
     }
@@ -69,15 +67,12 @@ class MonitoringVC: UIViewController {
         }
     }
     
-    func showAddDeviceTutorial() {
-        //check if there is at least one device registered
-        if devices.count > 0 {
+    func showNoDevicesView() {
+        if devices.count == 0 {
+            noDevicesView.isHidden = false
+        } else {
             noDevicesView.isHidden = true
-            return
         }
-        
-        //show add device tutorial
-        noDevicesView.isHidden = false
     }
     
     func setDevicesListener() {
@@ -101,7 +96,7 @@ class MonitoringVC: UIViewController {
             })
             
             //will show a tutorial if there is no devices in devices array
-            self.showAddDeviceTutorial()
+            self.showNoDevicesView()
         })
     }
     
