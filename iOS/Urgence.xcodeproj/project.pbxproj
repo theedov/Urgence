@@ -24,7 +24,6 @@
 		6F8218E9246D1A4A00556752 /* UNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8218E8246D1A4A00556752 /* UNotification.swift */; };
 		6F8268872365DE99001994D3 /* FcmTokenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8268862365DE99001994D3 /* FcmTokenHandler.swift */; };
 		6F9EF3D524345F0A00B4FAF7 /* QRDeviceScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9EF3D424345F0A00B4FAF7 /* QRDeviceScannerVC.swift */; };
-		6F9EF3D92434849700B4FAF7 /* Notification.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F9EF3D72434849700B4FAF7 /* Notification.xcdatamodeld */; };
 		6F9EF4002434DEF400B4FAF7 /* UImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9EF3FF2434DEF400B4FAF7 /* UImageView.swift */; };
 		6F9EF4022436E18A00B4FAF7 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9EF4012436E18A00B4FAF7 /* Device.swift */; };
 		6F9EF4042436E3CE00B4FAF7 /* DeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9EF4032436E3CE00B4FAF7 /* DeviceHelper.swift */; };
@@ -116,7 +115,6 @@
 		6F8218E8246D1A4A00556752 /* UNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNotification.swift; sourceTree = "<group>"; };
 		6F8268862365DE99001994D3 /* FcmTokenHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmTokenHandler.swift; sourceTree = "<group>"; };
 		6F9EF3D424345F0A00B4FAF7 /* QRDeviceScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRDeviceScannerVC.swift; sourceTree = "<group>"; };
-		6F9EF3D82434849700B4FAF7 /* Notification.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notification.xcdatamodel; sourceTree = "<group>"; };
 		6F9EF3FF2434DEF400B4FAF7 /* UImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UImageView.swift; sourceTree = "<group>"; };
 		6F9EF4012436E18A00B4FAF7 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		6F9EF4032436E3CE00B4FAF7 /* DeviceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceHelper.swift; sourceTree = "<group>"; };
@@ -276,7 +274,6 @@
 		6FB9A16223485569005D8855 = {
 			isa = PBXGroup;
 			children = (
-				6F9EF3D72434849700B4FAF7 /* Notification.xcdatamodeld */,
 				6FB9A16D23485569005D8855 /* Urgence */,
 				6FFACADC2366180D0001F610 /* NotificationService */,
 				6FFACAF023661A7E0001F610 /* NotificationContentExtension */,
@@ -767,7 +764,6 @@
 				6F9EF4002434DEF400B4FAF7 /* UImageView.swift in Sources */,
 				6F56F8BA243C91400016825C /* UpdateProfileVC.swift in Sources */,
 				6F37EA362364946D00929AD8 /* DeviceCell.swift in Sources */,
-				6F9EF3D92434849700B4FAF7 /* Notification.xcdatamodeld in Sources */,
 				6F37EA422365959B00929AD8 /* UCollectionVIew.swift in Sources */,
 				6FB9A19523488EFC005D8855 /* UButton.swift in Sources */,
 				6FB9A1B0234A1F77005D8855 /* NotificationVC.swift in Sources */,
@@ -1128,19 +1124,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		6F9EF3D72434849700B4FAF7 /* Notification.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				6F9EF3D82434849700B4FAF7 /* Notification.xcdatamodel */,
-			);
-			currentVersion = 6F9EF3D82434849700B4FAF7 /* Notification.xcdatamodel */;
-			path = Notification.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 6FB9A16323485569005D8855 /* Project object */;
 }
