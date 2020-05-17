@@ -13,7 +13,7 @@
             <objects>
                 <viewController storyboardIdentifier="MonitoringVC" id="BYZ-38-t0r" customClass="MonitoringVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IKT-IE-Ekv" customClass="UCollectionViev" customModule="Urgence" customModuleProvider="target">
@@ -111,7 +111,7 @@
             <objects>
                 <viewController storyboardIdentifier="SettingsVC" id="9aL-pC-wpf" customClass="SettingsVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AZs-48-jX4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-cc-ugj" userLabel="BGView" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -315,7 +315,7 @@
             <objects>
                 <viewController id="ess-b0-YcY" customClass="NotificationListVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="doq-K9-TsH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="amf-8x-Oa4">
@@ -366,7 +366,7 @@
             <objects>
                 <viewController storyboardIdentifier="NotificationVC" id="LWa-zq-4hs" customClass="NotificationVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CfB-NU-ldI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="1dj-L1-AUh">
@@ -552,7 +552,7 @@
             <objects>
                 <viewController storyboardIdentifier="AddDeviceVC" id="OV7-0R-x8S" customClass="AddDeviceVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sa6-hB-jrn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRo-0w-dow" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -640,7 +640,7 @@
             <objects>
                 <viewController storyboardIdentifier="QRDeviceScannerVC" title="QRScanner" id="wBb-oo-be9" customClass="QRDeviceScannerVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UTF-ZL-nnf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mQ6-sb-3hW">
@@ -703,7 +703,7 @@
             <objects>
                 <viewController storyboardIdentifier="MonitoringDetailVC" id="WbS-OJ-RXw" customClass="DeviceVC" customModule="Urgence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xj3-AW-FtO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3n-ei-dzL" customClass="UView" customModule="Urgence" customModuleProvider="target">
@@ -827,7 +827,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwO-8a-CpX" userLabel="BGView" customClass="UView" customModule="Urgence" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="119" width="375" height="659"/>
+                                <rect key="frame" x="0.0" y="119" width="375" height="693"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hP5-LQ-4g5" customClass="UButton" customModule="Urgence" customModuleProvider="target">
                                         <rect key="frame" x="20" y="255" width="335" height="60"/>
@@ -940,14 +940,12 @@
                             <constraint firstItem="KK9-N2-GuZ" firstAttribute="top" secondItem="FJm-5N-x8c" secondAttribute="bottom" constant="10" id="BKe-t6-T7C"/>
                             <constraint firstItem="iyG-BN-WWn" firstAttribute="top" secondItem="7da-xv-4ld" secondAttribute="top" constant="10" id="QWg-H0-fgO"/>
                             <constraint firstItem="RwO-8a-CpX" firstAttribute="top" secondItem="iyG-BN-WWn" secondAttribute="bottom" constant="40" id="Zqc-Rg-RAd"/>
+                            <constraint firstAttribute="bottom" secondItem="RwO-8a-CpX" secondAttribute="bottom" id="atb-k0-7IC"/>
                             <constraint firstItem="RwO-8a-CpX" firstAttribute="leading" secondItem="7da-xv-4ld" secondAttribute="leading" id="cNd-ee-AQI"/>
-                            <constraint firstItem="RwO-8a-CpX" firstAttribute="bottom" secondItem="7da-xv-4ld" secondAttribute="bottom" id="iC9-hW-nDq"/>
                             <constraint firstItem="RwO-8a-CpX" firstAttribute="leading" secondItem="7da-xv-4ld" secondAttribute="leading" id="kFc-1e-Tsc"/>
                             <constraint firstItem="FJm-5N-x8c" firstAttribute="centerX" secondItem="7da-xv-4ld" secondAttribute="centerX" id="ptc-uv-4XB"/>
                             <constraint firstItem="KK9-N2-GuZ" firstAttribute="centerX" secondItem="FJm-5N-x8c" secondAttribute="centerX" id="rPK-ua-joN"/>
-                            <constraint firstItem="RwO-8a-CpX" firstAttribute="bottom" secondItem="7da-xv-4ld" secondAttribute="bottom" id="slP-Pe-qUi"/>
                             <constraint firstItem="RwO-8a-CpX" firstAttribute="trailing" secondItem="7da-xv-4ld" secondAttribute="trailing" id="wk8-Oh-pMy"/>
-                            <constraint firstItem="RwO-8a-CpX" firstAttribute="bottom" secondItem="7da-xv-4ld" secondAttribute="bottom" id="yiA-zp-KMO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7da-xv-4ld"/>
                     </view>
@@ -964,7 +962,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xvd-4F-wKS" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1879" y="1602"/>
+            <point key="canvasLocation" x="1877.5999999999999" y="1601.9704433497539"/>
         </scene>
         <!--Update Profile-->
         <scene sceneID="fk6-NC-oyL">
@@ -993,7 +991,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kmx-ct-tdN" userLabel="BGView" customClass="UView" customModule="Urgence" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="119" width="375" height="659"/>
+                                <rect key="frame" x="0.0" y="119" width="375" height="693"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TRb-fz-pye" customClass="UImageView" customModule="Urgence" customModuleProvider="target">
                                         <rect key="frame" x="112.66666666666669" y="30" width="150" height="150"/>
@@ -1090,7 +1088,6 @@
                         </subviews>
                         <color key="backgroundColor" name="UBackground"/>
                         <constraints>
-                            <constraint firstItem="kmx-ct-tdN" firstAttribute="bottom" secondItem="iO1-wO-ugs" secondAttribute="bottom" id="1S8-ac-HWX"/>
                             <constraint firstItem="kmx-ct-tdN" firstAttribute="leading" secondItem="iO1-wO-ugs" secondAttribute="leading" id="CfL-Pi-KOk"/>
                             <constraint firstItem="XeC-ib-Xy2" firstAttribute="centerX" secondItem="iO1-wO-ugs" secondAttribute="centerX" id="D95-rn-rp0"/>
                             <constraint firstItem="W23-a7-QyG" firstAttribute="top" secondItem="XeC-ib-Xy2" secondAttribute="bottom" constant="10" id="DAd-U2-TuE"/>
@@ -1098,10 +1095,9 @@
                             <constraint firstItem="kmx-ct-tdN" firstAttribute="leading" secondItem="iO1-wO-ugs" secondAttribute="leading" id="NwN-LD-Vqa"/>
                             <constraint firstItem="W23-a7-QyG" firstAttribute="centerX" secondItem="XeC-ib-Xy2" secondAttribute="centerX" id="T1I-JW-20H"/>
                             <constraint firstItem="XeC-ib-Xy2" firstAttribute="top" secondItem="iO1-wO-ugs" secondAttribute="top" constant="10" id="U2X-VV-WGu"/>
-                            <constraint firstItem="kmx-ct-tdN" firstAttribute="bottom" secondItem="iO1-wO-ugs" secondAttribute="bottom" id="cdb-aJ-0av"/>
                             <constraint firstItem="TRb-fz-pye" firstAttribute="centerX" secondItem="iO1-wO-ugs" secondAttribute="centerX" id="fov-Bn-6nx"/>
+                            <constraint firstAttribute="bottom" secondItem="kmx-ct-tdN" secondAttribute="bottom" id="fsE-t3-uR0"/>
                             <constraint firstItem="kmx-ct-tdN" firstAttribute="top" secondItem="Rbq-bu-vrE" secondAttribute="bottom" constant="40" id="jqf-nb-Zkl"/>
-                            <constraint firstItem="kmx-ct-tdN" firstAttribute="bottom" secondItem="iO1-wO-ugs" secondAttribute="bottom" id="n1j-gN-IS6"/>
                             <constraint firstItem="kmx-ct-tdN" firstAttribute="trailing" secondItem="iO1-wO-ugs" secondAttribute="trailing" id="puP-zd-i0K"/>
                             <constraint firstItem="Rbq-bu-vrE" firstAttribute="leading" secondItem="iO1-wO-ugs" secondAttribute="leading" constant="20" id="rqm-jL-5gO"/>
                             <constraint firstItem="kmx-ct-tdN" firstAttribute="trailing" secondItem="iO1-wO-ugs" secondAttribute="trailing" id="xNf-EZ-Bb6"/>
@@ -1120,7 +1116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gE3-YM-z88" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1879" y="916"/>
+            <point key="canvasLocation" x="1877.5999999999999" y="915.51724137931035"/>
         </scene>
         <!--Notifications-->
         <scene sceneID="vdc-G9-xfW">
