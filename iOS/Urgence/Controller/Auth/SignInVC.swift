@@ -40,7 +40,7 @@ class SignInVC: UIViewController, CLLocationManagerDelegate {
         }
         
         activityIndicator.startAnimating()
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
+        Auth.auth().signIn(withEmail: email.noSpaces, password: password) { [weak self] result, error in
             //check if there is an error
             if let error = error {
                 self?.activityIndicator.stopAnimating()

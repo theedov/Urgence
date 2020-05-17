@@ -32,7 +32,7 @@ class ForgotPasswordVC: UIViewController {
         
         activityIndicator.startAnimating()
         //send reset password email
-        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+        Auth.auth().sendPasswordReset(withEmail: email.noSpaces) { (error) in
             if let error = error {
                 debugPrint(error.localizedDescription)
                 self.activityIndicator.stopAnimating()

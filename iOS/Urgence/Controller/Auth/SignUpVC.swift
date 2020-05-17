@@ -36,7 +36,7 @@ class SignUpVC: UIViewController {
         
         activityIndicator.startAnimating()
         //register user
-        Auth.auth().createUser(withEmail: email, password: password) { [weak self] (result, error) in
+        Auth.auth().createUser(withEmail: email.noSpaces, password: password) { [weak self] (result, error) in
             if let error = error {
                 self?.activityIndicator.stopAnimating()
                 AlertService.alert(state: .error, title: "Cannot register", body: error.localizedDescription, actionName: "I understand", vc: self!, completion: nil)
@@ -45,7 +45,7 @@ class SignUpVC: UIViewController {
             
             //get user
             guard let fireUser = result?.user else {return}
-            let user = UUser.init(id: fireUser.uid, email: email, fullName: fullName)
+            let user = UUser.init(id: fireUser.uid, email: email.noSpaces, fullName: fullName)
             
             //upload user details to firestore
             self?.createFirestoreUser(user: user)

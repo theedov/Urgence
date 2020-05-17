@@ -97,7 +97,7 @@ class UpdateProfileVC: UIViewController {
     
     func updateFirestoreDetails(){
         //update firestore details
-        let fields = ["fullName":fullNameTxt.text!, "email":emailTxt.text!]
+        let fields = ["fullName":fullNameTxt.text!, "email":emailTxt.text!.noSpaces]
         
         usersDb.document(authUser!.uid).updateData(fields) { (error) in
             if let _ = error {
