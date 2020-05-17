@@ -29,12 +29,7 @@ class NotificationVC: UIViewController {
         headerTxt.isHidden = false
         showNotificationImage()
         hideButtonsIfNeeded()
-        //Mark notification 
-        if !notification.viewed {
-            functions.httpsCallable("onNotificationOpen").call(["notification_id":notification.id]) { (result, error) in
-                return
-            }
-        }
+        markNotificationAsViewed()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,6 +73,14 @@ class NotificationVC: UIViewController {
                 }
             } catch {
                 print("error")
+            }
+        }
+    }
+    
+    func markNotificationAsViewed() {
+        if !notification.viewed {
+            functions.httpsCallable("onNotificationOpen").call(["notification_id":notification.id]) { (result, error) in
+                return
             }
         }
     }
