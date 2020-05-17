@@ -34,6 +34,7 @@ class UpdateProfileVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        loadProfileDetails()
         loadProfilePicture()
     }
     
@@ -66,64 +67,63 @@ class UpdateProfileVC: UIViewController {
         }
     }
     
+    func loadProfileDetails() {
+        usersDb.document(authUser!.uid).getDocument { (document, error) in
+            if let error = error {
+                debugPrint("Error getting profile details: \(error)")
+                return
+            }
+            
+            if let document = document, document.exists {
+                let data = document.data()
+                self.fullNameTxt.text = data?["fullName"] as? String ?? ""
+                self.emailTxt.text = data?["email"] as? String ?? ""
+            } else {
+                print("User document does not exist")
+            }
+        }
+    }
+    
     @IBAction func onSavePressed(_ sender: Any) {
         self.activityIndicator.startAnimating()
-        updateProfileDetails()
-        
-        dismiss(animated: false, completion: nil)
+        updateProfile()
     }
     
-    func updateProfileDetails(){
-        validateFields()
-        updateFirestoreDetails()
-        updateProfilePicture()
-    }
-    
-    func validateFields(){
+    func updateProfile() {
         //check if all fields are filled in
         guard let fullName = fullNameTxt.text, fullName.isNotEmpty, let email = emailTxt.text, email.isNotEmpty else {
             self.activityIndicator.stopAnimating()
-            AlertService.alert(state: .error, title: "Cannot update profile details", body: "In order to update profile details, all fields must be filled in", actionName: "I understand", vc: self, completion: nil)
+            AlertService.alert(state: .error, title: "Cannot update profile details", body: "In order to update profile details, all fields must be filled in", actionName: nil, vc: self, completion: nil)
             return
         }
         
         //check if provided email is valid
         guard email.isEmailNotValid else {
             self.activityIndicator.stopAnimating()
-            AlertService.alert(state: .error, title: "Cannot update profile details", body: "Provided email is not valid, please provide valid email address.", actionName: "I understand", vc: self, completion: nil)
+            AlertService.alert(state: .error, title: "Cannot update profile details", body: "Provided email is not valid, please provide valid email address.", actionName: nil, vc: self, completion: nil)
             return
         }
+        
+        //Update firestore & firebase storage
+        updateDetails()
     }
+
     
-    func updateFirestoreDetails(){
+    func updateDetails(){
         //update firestore details
         let fields = ["fullName":fullNameTxt.text!, "email":emailTxt.text!.noSpaces]
         
         usersDb.document(authUser!.uid).updateData(fields) { (error) in
             if let _ = error {
                 self.activityIndicator.stopAnimating()
-                AlertService.alert(state: .error, title: "Cannot update profile details", body: "Please try it later or contact us directly: info@urgence.com.au", actionName: "I understand", vc: self, completion: nil)
+                AlertService.alert(state: .error, title: "Cannot update profile details", body: "Please try it later or contact us directly: info@urgence.com.au", actionName: nil, vc: self, completion: nil)
                 return
             }
+            self.updateProfilePicture()
         }
     }
     
     func updateProfilePicture(){
-        //check if user has picked new profile picture
-        //        if let profilePicture = profilePicture.image {
-        //            let emptyData = UIImage(systemName: "camera")?.jpegData(compressionQuality: 1)
-        //            let profilePictureData = profilePicture.jpegData(compressionQuality: 0.8)
-        //
-        //            if let empty = emptyData, let compareTo = profilePictureData {
-        //                if empty == compareTo {
-        //                    self.activityIndicator.stopAnimating()
-        //                    return
-        //                }
-        //            }
-        //
-        //
-        //        }
-        
         //check if user has picked new profile picture
         activityIndicator.stopAnimating()
         if profileImageChanged == false {

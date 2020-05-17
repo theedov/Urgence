@@ -46,7 +46,7 @@ class SettingsVC: UIViewController {
     
     func loadProfilePicture(){
         self.profilePictureActivityIndicator.startAnimating()
-        let filePath = "\(authUser!.uid)/profile/profile-picture"
+        let filePath = "users/\(authUser!.uid)/profile/profile-picture"
         Storage.storage().reference().child(filePath).downloadURL { (url, error) in
             if let error = error {
                 self.profilePictureActivityIndicator.stopAnimating()
