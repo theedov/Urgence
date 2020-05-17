@@ -19,7 +19,6 @@
 		6F4A9E79234B6FF900E040B2 /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4A9E78234B6FF900E040B2 /* PushNotificationManager.swift */; };
 		6F56F8BA243C91400016825C /* UpdateProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F56F8B9243C91400016825C /* UpdateProfileVC.swift */; };
 		6F72391623A2C71400538D3B /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F72391523A2C71400538D3B /* QRCodeGenerator.swift */; };
-		6F72391823A2CA1200538D3B /* WifiInfoAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F72391723A2CA1200538D3B /* WifiInfoAccessor.swift */; };
 		6F809E262361E7A700F1F9BA /* UUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F809E252361E7A700F1F9BA /* UUser.swift */; };
 		6F8218E9246D1A4A00556752 /* UNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8218E8246D1A4A00556752 /* UNotification.swift */; };
 		6F8268872365DE99001994D3 /* FcmTokenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8268862365DE99001994D3 /* FcmTokenHandler.swift */; };
@@ -110,7 +109,6 @@
 		6F4A9E78234B6FF900E040B2 /* PushNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		6F56F8B9243C91400016825C /* UpdateProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileVC.swift; sourceTree = "<group>"; };
 		6F72391523A2C71400538D3B /* QRCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
-		6F72391723A2CA1200538D3B /* WifiInfoAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiInfoAccessor.swift; sourceTree = "<group>"; };
 		6F809E252361E7A700F1F9BA /* UUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUser.swift; sourceTree = "<group>"; };
 		6F8218E8246D1A4A00556752 /* UNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNotification.swift; sourceTree = "<group>"; };
 		6F8268862365DE99001994D3 /* FcmTokenHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmTokenHandler.swift; sourceTree = "<group>"; };
@@ -256,7 +254,6 @@
 			children = (
 				6F8268862365DE99001994D3 /* FcmTokenHandler.swift */,
 				6F72391523A2C71400538D3B /* QRCodeGenerator.swift */,
-				6F72391723A2CA1200538D3B /* WifiInfoAccessor.swift */,
 				6F9EF4032436E3CE00B4FAF7 /* DeviceHelper.swift */,
 			);
 			path = Helpers;
@@ -750,7 +747,6 @@
 				6F9EF3D524345F0A00B4FAF7 /* QRDeviceScannerVC.swift in Sources */,
 				6F9EF4042436E3CE00B4FAF7 /* DeviceHelper.swift in Sources */,
 				6F4A9E79234B6FF900E040B2 /* PushNotificationManager.swift in Sources */,
-				6F72391823A2CA1200538D3B /* WifiInfoAccessor.swift in Sources */,
 				6FB9A1B3234AF6B0005D8855 /* Constants.swift in Sources */,
 				6FB9A1AD234A1F4B005D8855 /* ChangePasswordVC.swift in Sources */,
 				6FB9A1A5234A1ED2005D8855 /* DeviceVC.swift in Sources */,
