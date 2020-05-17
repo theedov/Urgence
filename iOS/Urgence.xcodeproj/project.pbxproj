@@ -44,7 +44,6 @@
 		6FB9A1A5234A1ED2005D8855 /* DeviceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A1A4234A1ED2005D8855 /* DeviceVC.swift */; };
 		6FB9A1A7234A1EEC005D8855 /* AddDeviceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A1A6234A1EEC005D8855 /* AddDeviceVC.swift */; };
 		6FB9A1A9234A1F0A005D8855 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A1A8234A1F0A005D8855 /* SettingsVC.swift */; };
-		6FB9A1AB234A1F3A005D8855 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A1AA234A1F3A005D8855 /* EditProfileVC.swift */; };
 		6FB9A1AD234A1F4B005D8855 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A1AC234A1F4B005D8855 /* ChangePasswordVC.swift */; };
 		6FB9A1B0234A1F77005D8855 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A1AF234A1F77005D8855 /* NotificationVC.swift */; };
 		6FB9A1B3234AF6B0005D8855 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9A1B2234AF6B0005D8855 /* Constants.swift */; };
@@ -139,7 +138,6 @@
 		6FB9A1A4234A1ED2005D8855 /* DeviceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceVC.swift; sourceTree = "<group>"; };
 		6FB9A1A6234A1EEC005D8855 /* AddDeviceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceVC.swift; sourceTree = "<group>"; };
 		6FB9A1A8234A1F0A005D8855 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
-		6FB9A1AA234A1F3A005D8855 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		6FB9A1AC234A1F4B005D8855 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		6FB9A1AF234A1F77005D8855 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
 		6FB9A1B2234AF6B0005D8855 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -413,7 +411,6 @@
 			isa = PBXGroup;
 			children = (
 				6FB9A1A8234A1F0A005D8855 /* SettingsVC.swift */,
-				6FB9A1AA234A1F3A005D8855 /* EditProfileVC.swift */,
 				6FB9A1AC234A1F4B005D8855 /* ChangePasswordVC.swift */,
 				6F56F8B9243C91400016825C /* UpdateProfileVC.swift */,
 			);
@@ -766,7 +763,6 @@
 				6FB9A19B234A1DC7005D8855 /* MonitoringVC.swift in Sources */,
 				6FB9A1A1234A1E1D005D8855 /* ForgotPasswordVC.swift in Sources */,
 				6FE7BAAF246E174A0045E169 /* NotificationCell.swift in Sources */,
-				6FB9A1AB234A1F3A005D8855 /* EditProfileVC.swift in Sources */,
 				6FB9A1B8234B19AF005D8855 /* Extensions.swift in Sources */,
 				6F9EF4002434DEF400B4FAF7 /* UImageView.swift in Sources */,
 				6F56F8BA243C91400016825C /* UpdateProfileVC.swift in Sources */,
