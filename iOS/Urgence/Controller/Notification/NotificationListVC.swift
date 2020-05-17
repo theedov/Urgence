@@ -13,6 +13,7 @@ class NotificationListVC: UIViewController {
     
     //Outlets
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var noNotificationsTxt: UILabel!
     
     
     //Variables
@@ -38,6 +39,14 @@ class NotificationListVC: UIViewController {
         listener.remove()
         notifications.removeAll()
         collectionView.reloadData()
+    }
+    
+    func showNoNotificationTextIfNeeded() {
+        if(notifications.count == 0) {
+            noNotificationsTxt.isHidden = false
+        } else {
+            noNotificationsTxt.isHidden = true
+        }
     }
     
     func setupCollectionView() {
@@ -66,6 +75,8 @@ class NotificationListVC: UIViewController {
                     self.onDocumentRemoved(change: change)
                 }
             })
+            
+            self.showNoNotificationTextIfNeeded()
         })
     }
     
