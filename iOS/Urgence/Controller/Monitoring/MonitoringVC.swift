@@ -25,11 +25,6 @@ class MonitoringVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupCollectionView()
-        
-        
-//        devices.append(Device(id: "1", room: "test", userId: "dddd"))
-//        devices.append(Device(id: "2", room: "test2", userId: "dddd2"))
-//        devices.append(Device(id: "3", room: "test3", userId: "dddd3"))
     }
     
     

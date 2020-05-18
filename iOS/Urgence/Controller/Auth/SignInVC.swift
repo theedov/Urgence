@@ -18,16 +18,6 @@ class SignInVC: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print("SSID: \(WifiInfoAccessor.getSSID())")
-//        if #available(iOS 13.0, *) {
-//            let status = CLLocationManager.authorizationStatus()
-//            if status == .authorizedWhenInUse {
-//                print("XXXXXXX")
-//            } else {
-//                locationManager.delegate = self
-//                locationManager.requestWhenInUseAuthorization()
-//            }
-//        }
     }
     
     
