@@ -58,10 +58,10 @@ extension PushNotificationManager : UNUserNotificationCenterDelegate {
 //                debugPrint("Notification received in foreground")
 
         //save notification to coredata
-        self.openNotification(notification: notification)
+//        self.openNotification(notification: notification)
 
         // Change this to your preferred presentation option
-        completionHandler(.alert)
+        completionHandler([.alert, .badge, .sound])
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,

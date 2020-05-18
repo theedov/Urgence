@@ -31,6 +31,9 @@ class NotificationListVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setNotificationsListener()
+        
+        //reset notification badge
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     override func viewDidDisappear(_ animated: Bool) {
