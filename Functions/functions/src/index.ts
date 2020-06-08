@@ -70,24 +70,25 @@ app.post('/camera', async (req, res) => {
             });
         })
         .then(urls => {
+            console.log(`Image uploaded and url received`);
             return urls[0];
         })
         .catch(err => {
-            console.log(`Unable to upload image`, err);
+            console.error(`Unable to upload image`, err);
             return null;
         });
 
     // Find all registered devices with device_id,
     // then add notification to the database for each user who has device with device_id added in their app,
     // and then send a push notification to all these users
+    const uniqueNotificationId = uuidv4();
     if (url != null) {
-        devicesDb.where("deviceId", "==", device_id)
+        await devicesDb.where("deviceId", "==", device_id)
             .get()
             .then(snap => {
                 if (!snap.empty) {
                     snap.forEach(doc => {
                         const device = doc.data();
-                        const uniqueId = uuidv4();
 
                         //find user by userId
                         usersDb.doc(device.userId)
@@ -98,7 +99,7 @@ app.post('/camera', async (req, res) => {
 
                                     //add notification to DB
                                     notificationsDb.add({
-                                        id: uniqueId,
+                                        id: uniqueNotificationId,
                                         userId: user!.id,
                                         deviceId: device_id,
                                         title: device.name,
@@ -124,9 +125,11 @@ app.post('/camera', async (req, res) => {
                             errorMessage = error;
                         });
                     });
+                } else {
+                    console.warn(`Empty device snapshot received`);
                 }
             })
-            .catch(function (error) {
+            .catch(error => {
                 console.error("/camera: Error getting devices collection:", error);
                 error = true;
                 errorMessage = error;

@@ -87,6 +87,7 @@ class UpdateProfileVC: UIViewController {
     @IBAction func onSavePressed(_ sender: Any) {
         self.activityIndicator.startAnimating()
         updateProfile()
+        navigationController?.popViewController(animated: true)
     }
     
     func updateProfile() {
