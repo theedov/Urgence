@@ -27,6 +27,9 @@ class UpdateProfileVC: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        //present profile picture placeholder
+        profilePicture.image = UIImage(named: "camera")
+        
         //enable tap gesture for profilePicture
         profilePicture.isUserInteractionEnabled = true
         profilePicture.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.loadPhotoLibrary(tapGestureRecognizer:))))
@@ -60,9 +63,6 @@ class UpdateProfileVC: UIViewController {
             if let url = url {
                 //present profile picture
                 self.profilePicture.load(url: url)
-            } else {
-                //present profile placeholder
-                self.profilePicture.image = UIImage(named: "camera")
             }
         }
     }
