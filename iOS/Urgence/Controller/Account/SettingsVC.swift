@@ -21,8 +21,6 @@ class SettingsVC: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        //present profile picture placeholder
-        profilePicture.image = UIImage(named: "camera")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,6 +51,9 @@ class SettingsVC: UIViewController {
             if let error = error {
                 self.profilePictureActivityIndicator.stopAnimating()
                 debugPrint("Error getting downloadURL: \(error)")
+                
+                //present profile picture placeholder
+                self.profilePicture.image = UIImage(named: "camera")
                 return
             }
             self.profilePictureActivityIndicator.stopAnimating()

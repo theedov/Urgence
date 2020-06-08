@@ -27,8 +27,6 @@ class UpdateProfileVC: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        //present profile picture placeholder
-        profilePicture.image = UIImage(named: "camera")
         
         //enable tap gesture for profilePicture
         profilePicture.isUserInteractionEnabled = true
@@ -56,6 +54,9 @@ class UpdateProfileVC: UIViewController {
             if let error = error {
                 self.imageActivityIndicator.stopAnimating()
                 debugPrint("Error getting downloadURL: \(error)")
+                
+                //present profile picture placeholder
+                self.profilePicture.image = UIImage(named: "camera")
                 return
             }
             self.imageActivityIndicator.stopAnimating()
@@ -87,7 +88,6 @@ class UpdateProfileVC: UIViewController {
     @IBAction func onSavePressed(_ sender: Any) {
         self.activityIndicator.startAnimating()
         updateProfile()
-        navigationController?.popViewController(animated: true)
     }
     
     func updateProfile() {
@@ -126,8 +126,10 @@ class UpdateProfileVC: UIViewController {
     
     func updateProfilePicture(){
         //check if user has picked new profile picture
-        activityIndicator.stopAnimating()
+        activityIndicator.startAnimating()
         if profileImageChanged == false {
+            activityIndicator.stopAnimating()
+            dismiss(animated: false, completion: nil)
             return
         }
         
@@ -156,6 +158,7 @@ class UpdateProfileVC: UIViewController {
             }
             
             self.activityIndicator.stopAnimating()
+            self.dismiss(animated: false, completion: nil)
         }
         
     }
@@ -163,8 +166,8 @@ class UpdateProfileVC: UIViewController {
     func deleteImage(path: String){
         // Delete the file
         Storage.storage().reference().child(path).delete { error in
-            self.activityIndicator.stopAnimating()
             if let error = error {
+                self.activityIndicator.stopAnimating()
                 debugPrint("Error deleting the file: \(error)")
                 return
             }
