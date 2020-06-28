@@ -130,17 +130,13 @@ extension SettingsVC: MFMailComposeViewControllerDelegate {
         
         switch result {
         case .cancelled:
-            controller.dismiss(animated: false) {
-                AlertService.alert(state: .warning, title: "Email cancelled", body: "It seems you have cancelled your your email ticked", actionName: "I understand", vc: self, completion: nil)
-            }
+            break
         case .failed:
             controller.dismiss(animated: false) {
                 AlertService.alert(state: .error, title: "Email failed", body: "It seems your email ticked has not been send. Please try it later or contact use directly via email support@urgence.com.au", actionName: "I understand", vc: self, completion: nil)
             }
         case .saved:
-            controller.dismiss(animated: false) {
-                AlertService.alert(state: .warning, title: "Email saved", body: "Your email ticked has been saved.", actionName: "I understand", vc: self, completion: nil)
-            }
+            break
         case .sent:
             controller.dismiss(animated: false) {
                 AlertService.alert(state: .success, title: "Email sent", body: "Your email ticked has been sent. We will be in touch shortly.", actionName: "I understand", vc: self, completion: nil)
