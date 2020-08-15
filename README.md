@@ -65,8 +65,8 @@ The iOS app was built in **Swift** using **UIKit**, **Push Notifications**, **St
 	 <kbd>
 		 <img src="https://raw.githubusercontent.com/bogdandovgopol/Urgence/master/screenshots/7.png" width="200">
 		 <br/>
-		 Users can see a notification which 
-		 <br/>include an image captured by the camera
+		 Users can see a push notification that 
+		 <br/>includes an image captured by the camera
 	 </kbd>
 	 <kbd>
 		 <img src="https://raw.githubusercontent.com/bogdandovgopol/Urgence/master/screenshots/9.png" width="200">
