@@ -9,7 +9,7 @@ To make this project happen, me and my teammate split our responsibilities as fo
  - [Teammate was responsible for the camera.](https://github.com/aoddy10/adv2-urgence)
 
 ## Technologies
-The iOS app was built in **Swift** using **UIKit**, **Storyboards**, **Cocoapods** **Firebase**(Auth, Cloud Firestore, Cloud Storage, Functions, Messaging)
+The iOS app was built in **Swift** using **UIKit**, **Push Notifications** **Storyboards**, **Cocoapods** **Firebase**(Auth, Cloud Firestore, Cloud Storage, Functions, Messaging)
 
 ## Screenshots
 
