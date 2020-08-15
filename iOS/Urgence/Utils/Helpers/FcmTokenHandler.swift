@@ -87,8 +87,8 @@ class FcmTokenHandler {
             ] as [String : Any]
         let headers = [
             "Content-Type" : "application/json",
-            "Authorization" : "key=AAAAO_ex8WE:APA91bF3DHsUGnfep3_AYw5dicSMj-RhdskZ9H3I7-bIHTnZGnUipYSJTFOoIqpo3RBMdbGnfgv-8dL94kRj5EJxQBy1K7Zev1ew0wyV0dpqazaQiqIGC3GKlZjFEtrGRdEyOPXSUDOE",
-            "project_id" : "257558704481"
+            "Authorization" : "key=\(NotificationAuthorization.Key)",
+            "project_id" : "\(NotificationAuthorization.Project_ID)"
         ]
         RESTful.request(path: "https://fcm.googleapis.com/fcm/notification", method: "POST", parameters: parameters, headers: headers) { (data, response, error) in
             if let error = error {
@@ -135,8 +135,8 @@ class FcmTokenHandler {
             ] as [String : Any]
         let headers = [
             "Content-Type" : "application/json",
-            "Authorization" : "key=AAAAO_ex8WE:APA91bF3DHsUGnfep3_AYw5dicSMj-RhdskZ9H3I7-bIHTnZGnUipYSJTFOoIqpo3RBMdbGnfgv-8dL94kRj5EJxQBy1K7Zev1ew0wyV0dpqazaQiqIGC3GKlZjFEtrGRdEyOPXSUDOE",
-            "project_id" : "257558704481"
+            "Authorization" : "key=\(NotificationAuthorization.Key)",
+            "project_id" : "\(NotificationAuthorization.Project_ID)"
         ]
         RESTful.request(path: "https://fcm.googleapis.com/fcm/notification", method: "POST", parameters: parameters, headers: headers) { (data, response, error) in
             if let error = error {
@@ -181,8 +181,8 @@ class FcmTokenHandler {
             ] as [String : Any]
         let headers = [
             "Content-Type" : "application/json",
-            "Authorization" : "key=AAAAO_ex8WE:APA91bF3DHsUGnfep3_AYw5dicSMj-RhdskZ9H3I7-bIHTnZGnUipYSJTFOoIqpo3RBMdbGnfgv-8dL94kRj5EJxQBy1K7Zev1ew0wyV0dpqazaQiqIGC3GKlZjFEtrGRdEyOPXSUDOE",
-            "project_id" : "257558704481"
+            "Authorization" : "key=\(NotificationAuthorization.Key)",
+            "project_id" : "\(NotificationAuthorization.Project_ID)"
         ]
         RESTful.request(path: "https://fcm.googleapis.com/fcm/notification", method: "POST", parameters: parameters, headers: headers) { (data, response, error) in
             if let error = error {

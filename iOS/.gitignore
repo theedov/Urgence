@@ -68,5 +68,5 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 #project files
-*Secrets.swift
-*GoogleService-Info.plist
+#*Secrets.swift
+#*GoogleService-Info.plist

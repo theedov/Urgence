@@ -17,8 +17,8 @@
 #import "FirebaseMessaging/Sources/FIRMessagingPubSub.h"
 
 #import <FirebaseMessaging/FIRMessaging.h>
-#import <GoogleUtilities/GULSecureCoding.h>
-#import <GoogleUtilities/GULUserDefaults.h>
+#import "GoogleUtilities/Environment/Private/GULSecureCoding.h"
+#import "GoogleUtilities/UserDefaults/Private/GULUserDefaults.h"
 
 #import "FirebaseMessaging/Sources/FIRMessagingClient.h"
 #import "FirebaseMessaging/Sources/FIRMessagingDefines.h"
@@ -61,7 +61,10 @@ static NSString *const kPendingSubscriptionsListKey =
                    options:(NSDictionary *)options
                    handler:(FIRMessagingTopicOperationCompletion)handler {
   if (!self.client) {
-    handler([NSError errorWithFCMErrorCode:kFIRMessagingErrorCodePubSubFIRMessagingNotSetup]);
+    handler([NSError
+        messagingErrorWithCode:kFIRMessagingErrorCodePubSubClientNotSetup
+                 failureReason:@"Firebase Messaging Client does not exist. Firebase Messaging was "
+                               @"not setup property and subscription failed."]);
     return;
   }
 
@@ -73,9 +76,11 @@ static NSString *const kPendingSubscriptionsListKey =
   }
 
   if (![[self class] isValidTopicWithPrefix:topic]) {
-    FIRMessagingLoggerError(kFIRMessagingMessageCodePubSub000,
-                            @"Invalid FIRMessaging Pubsub topic %@", topic);
-    handler([NSError errorWithFCMErrorCode:kFIRMessagingErrorCodePubSubInvalidTopic]);
+    NSString *failureReason =
+        [NSString stringWithFormat:@"Invalid subscription topic :'%@'", topic];
+    FIRMessagingLoggerError(kFIRMessagingMessageCodePubSub000, @"%@", failureReason);
+    handler([NSError messagingErrorWithCode:kFIRMessagingErrorCodeInvalidTopicName
+                              failureReason:failureReason]);
     return;
   }
 
@@ -102,7 +107,10 @@ static NSString *const kPendingSubscriptionsListKey =
                      options:(NSDictionary *)options
                      handler:(FIRMessagingTopicOperationCompletion)handler {
   if (!self.client) {
-    handler([NSError errorWithFCMErrorCode:kFIRMessagingErrorCodePubSubFIRMessagingNotSetup]);
+    handler([NSError
+        messagingErrorWithCode:kFIRMessagingErrorCodePubSubClientNotSetup
+                 failureReason:@"Firebase Messaging Client does not exist. Firebase Messaging was "
+                               @"not setup property and subscription failed."]);
     return;
   }
   token = [token copy];
@@ -112,9 +120,11 @@ static NSString *const kPendingSubscriptionsListKey =
   }
 
   if (![[self class] isValidTopicWithPrefix:topic]) {
-    FIRMessagingLoggerError(kFIRMessagingMessageCodePubSub002,
-                            @"Invalid FIRMessaging Pubsub topic %@", topic);
-    handler([NSError errorWithFCMErrorCode:kFIRMessagingErrorCodePubSubInvalidTopic]);
+    NSString *failureReason =
+        [NSString stringWithFormat:@"Invalid topic name : '%@' for unsubscription.", topic];
+    FIRMessagingLoggerError(kFIRMessagingMessageCodePubSub002, @"%@", failureReason);
+    handler([NSError messagingErrorWithCode:kFIRMessagingErrorCodeInvalidTopicName
+                              failureReason:failureReason]);
     return;
   }
   if (![self verifyPubSubOptions:options]) {
@@ -270,7 +280,7 @@ static NSString *const kTopicRegexPattern = @"/topics/([a-zA-Z0-9-_.~%]+)";
 /**
  *  Gets the class describing occurences of topic names and sender IDs in the sender.
  *
- *  @param expression The topic expression used to generate a pubsub topic
+ *  @param topic The topic expression used to generate a pubsub topic
  *
  *  @return Representation of captured subexpressions in topic regular expression
  */
