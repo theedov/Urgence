@@ -1,5 +1,5 @@
 # Urgence
-The Urgence was the final capstone project to finish our Bachelor’s degree. 
+The Urgence was the final capstone project to finish my Bachelor’s degree. 
 
 The idea was a smart camera built using **Raspberry Pi** that would detect if a person collapsed using **motion detection & machine learning**, and notify the user using **push notification**.
 
