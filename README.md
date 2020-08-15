@@ -17,7 +17,7 @@ The iOS app was built in **Swift** using **UIKit**, **Storyboards**, **Firebase*
 <p align="center">
 	 <kbd style="">
 		<img src="https://raw.githubusercontent.com/bogdandovgopol/Urgence/master/screenshots/1.png" width="200">
-	   <br/>The first page users see when they open the app. <br/>
+	   <br/>The first page users see <br/>when they open the app. <br/>
 	They can sign in or create a new account. <br/>
 	   </kbd>
 	 <span>
