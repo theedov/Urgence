@@ -6,7 +6,7 @@ The idea was a smart camera built using **Raspberry Pi** that would detect if a 
 To make this project happen, me and my teammate split our responsibilities as follows: 
 
  - I was responsible for the iOS Application. 
- - [He was responsible for the camera.](https://github.com/aoddy10/adv2-urgence)
+ - [Teammate was responsible for the camera.](https://github.com/aoddy10/adv2-urgence)
 
 ## Technologies
 The iOS app was built in **Swift** using **UIKit**, **Storyboards**, **Cocoapods** **Firebase**(Auth, Cloud Firestore, Cloud Storage, Functions, Messaging)
