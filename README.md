@@ -30,7 +30,7 @@ The iOS app was built in **Swift** using **UIKit**, **Storyboards**, **Firebase*
 	 <kbd>
 		 <img src="https://raw.githubusercontent.com/bogdandovgopol/Urgence/master/screenshots/3.png" width="200">
 		 <br/>
-		 Users see all their devices in a CollectionView<br/>
+		 Users see all their devices in <br/> a CollectionView<br/>
 		 <br/>
 	 </kbd>
 </p>
