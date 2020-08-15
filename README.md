@@ -71,7 +71,7 @@ The iOS app was built in **Swift** using **UIKit**, **Storyboards**, **Firebase*
 	 <kbd>
 		 <img src="https://raw.githubusercontent.com/bogdandovgopol/Urgence/master/screenshots/9.png" width="200">
 		 <br/>
-		 Users can edit their profile, change password or <br/>
+		 Users can edit their profile, <br/>change password or <br/>
 		 contact support<br/>
 	 </kbd>
 </p>
