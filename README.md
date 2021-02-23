@@ -1,7 +1,7 @@
 # Urgence
 The Urgence was the final capstone project to finish my Bachelor’s degree. 
 
-The idea was a smart camera built using **Raspberry Pi** that would detect if a person collapsed using **motion detection & machine learning**, and notify the user using **push notification**.
+The idea was a smart camera built using **Raspberry Pi** that would detect if a person collapsed thanks to **motion detection & machine learning**, and notify the user using **push notification**.
 
 To make this project happen, me and my teammate split our responsibilities as follows: 
 
@@ -91,14 +91,4 @@ The iOS app was built in **Swift** using **UIKit**, **Push Notifications**, **St
 		 <br/><br/>
 	 </kbd>
 </p>
-
-## Demo
-[![Urgence Demo](https://img.youtube.com/vi/331uxFFW-yA/0.jpg)](https://www.youtube.com/watch?v=331uxFFW-yA "Urgence Demo")
-
-
-## Contact Info:
-- Email: bogdan@dovgopol.dev
-- Web: [dovgopol.dev](https://dovgopol.dev)
-
-# Thanks for stopping by!
 
