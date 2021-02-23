@@ -68,27 +68,5 @@ The iOS app was built in **Swift** using **UIKit**, **Push Notifications**, **St
 		 Users can see a push notification that 
 		 <br/>includes an image captured by the camera
 	 </kbd>
-	 <kbd>
-		 <img src="https://raw.githubusercontent.com/bogdandovgopol/Urgence/master/screenshots/9.png" width="200">
-		 <br/>
-		 Users can edit their profile, <br/>change password or <br/>
-		 contact support<br/>
-	 </kbd>
-</p>
-
-<p align="center">
-	 <kbd style="">
-		<img src="https://raw.githubusercontent.com/bogdandovgopol/Urgence/master/screenshots/10.png" width="200">
-	   <br/>
-		 Users can change profile picture,
-		 <br/>update name and contact email<br/>
-	   </kbd>
-	 <span>
-	 <kbd>
-		 <img src="https://raw.githubusercontent.com/bogdandovgopol/Urgence/master/screenshots/11.png" width="200">
-		 <br/>
-		 Users can change their current password
-		 <br/><br/>
-	 </kbd>
 </p>
 
